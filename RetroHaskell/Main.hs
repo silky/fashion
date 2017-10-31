@@ -150,7 +150,7 @@ colourSample = do
       img (cs, name) = do 
           d <- retroHaskell cs 
 
-          let diag = text name # scale 0.02 <> d # centerXY
+          let diag = (text name # scale 0.02 <> rect 1 0.1 # bg white # lw 0 <> d # centerXY) # frame 0.05
 
           return (diag)
 
