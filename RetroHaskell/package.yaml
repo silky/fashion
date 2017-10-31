@@ -1,0 +1,29 @@
+name:                retro-haskell
+version:             0.1.0.0
+homepage:            https://github.com/silky/fashion/RetroHaskell
+license:             BSD3
+author:              Noon van der Silk
+maintainer:          noonsilk@gmail.com
+copyright:           2017 Noon van der Silk
+category:            Web
+extra-source-files:
+  - README.md
+
+dependencies:
+  - base >= 4.7 && < 5
+  - active
+  - colour
+  - diagrams
+  - diagrams-cairo
+  - diagrams-contrib
+  - diagrams-lib
+  - gsl-random
+  - palette
+  - random
+  - split
+
+executables:
+  retro-haskell:
+    main: Main.hs
+    other-modules:
+        - ColourSets

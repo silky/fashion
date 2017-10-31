@@ -1,0 +1,6 @@
+resolver: lts-9.9
+packages:
+    - .
+extra-deps:
+  - gsl-random-0.5.3
+
