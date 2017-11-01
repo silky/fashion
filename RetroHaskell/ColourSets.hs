@@ -58,6 +58,7 @@ allColours = [ (pastelSorrows,         "pastelSorrows")
              , (meaningful,            "meaningful")
              , (redGalaxy,             "redGalaxy")
              , (aibril,                "aibril")
+             , (alwaysWhite,           "alwaysWhite")
              ]
             
 
@@ -500,3 +501,7 @@ aibril = toC [ "fdb913"
              , "ed145b"
              , "782b90"
              ]
+
+
+alwaysWhite :: Colours
+alwaysWhite = toC [ "ffffff" ]
