@@ -156,11 +156,11 @@ colourSample = do
 
 
 colourPalette :: Colours
-colourPalette = sunsetPassion
+colourPalette = christmas
 
 
 -- Global var
-bgColour = pink
+bgColour = white
 
 
 -- main = mainWith gif

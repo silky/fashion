@@ -322,7 +322,7 @@ christmas :: Colours
 christmas = toC [ "ec1313"
                 , "ff1313"
                 , "25a519"
-                , "ffffff"
+                , "eaeaea"
                 , "dadada"
                 ]
 
