@@ -47,10 +47,10 @@ logo = Path trails # expandPath 0.2
 
 
 dropShadow :: Diagram B -> Diagram B
-dropShadow = id
--- dropShadow d = d <> d # translateX 0.4
---                       # translateY (-0.4)
---                       # fc black
+-- dropShadow = id
+dropShadow d = d <> d # translateX 0.4
+                      # translateY (-0.4)
+                      # fc black
 
 
 -- TODO: Use this.
@@ -156,11 +156,11 @@ colourSample = do
 
 
 colourPalette :: Colours
-colourPalette = takoTank
+colourPalette = sunsetPassion
 
 
 -- Global var
-bgColour = black
+bgColour = pink
 
 
 -- main = mainWith gif
