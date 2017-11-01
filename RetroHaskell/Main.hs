@@ -47,9 +47,10 @@ logo = Path trails # expandPath 0.2
 
 
 dropShadow :: Diagram B -> Diagram B
-dropShadow d = d <> d # translateX 0.4
-                      # translateY (-0.4)
-                      # fc black
+dropShadow = id
+-- dropShadow d = d <> d # translateX 0.4
+--                       # translateY (-0.4)
+--                       # fc black
 
 
 -- TODO: Use this.
@@ -94,7 +95,6 @@ retroHaskell colours = do
         b = 15 * 2 + 10
         c = 1  * 2
         start = 101
-        bgColour = white
 
     points    <- getPoints halton (start + 2*a + 2*b + c)
 
@@ -159,8 +159,12 @@ colourPalette :: Colours
 colourPalette = takoTank
 
 
+-- Global var
+bgColour = black
+
+
 -- main = mainWith gif
--- main = mainWith (retroHaskell colourPalette)
-main = mainWith (colourSample)
+main = mainWith (retroHaskell colourPalette)
+-- main = mainWith (colourSample)
 
 
