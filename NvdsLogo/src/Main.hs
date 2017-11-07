@@ -18,7 +18,7 @@ n,v,d,s :: [(Double, Double)]
 
 n = [ (0, 0), (0, 5) , (3, 0), (3, 5) ]
 v = drop 1 n
-d = take 2 v ++ [(0, 0), (2, 2)]
+d = take 2 v ++ [(0, 0), (1.1, 2)]
 
 -- This is an independent letter.
 s = [ (0, 0), (2, 3), (0, 4), (2, 7) ]
@@ -26,8 +26,8 @@ s = [ (0, 0), (2, 3), (0, 4), (2, 7) ]
 
 logo :: Diagram B
 logo =  (  mkPath n # lc black
-        <> mkPath v # lc magenta # translate (r2 ( 0.2, 0))
-        <> mkPath d # lc magenta # translate (r2 (-0.2, 0))
+        <> mkPath v # lc magenta # scale 0.5 # translate (r2 (0.9, 2.1))
+        <> mkPath d # lc magenta # scale 0.5 # translate (r2 (0.7, 0.2))
         )
         ||| strutX 0.8
         ||| mkPath s # lc black # scale 0.7
