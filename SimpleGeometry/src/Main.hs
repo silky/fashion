@@ -14,22 +14,30 @@ import Diagrams.TwoD.Offset (expandPath)
 import Diagrams.TwoD.Path.Boolean (union, intersection, difference)
 
 
-diagram :: Diagram B
-diagram = (intersection Winding
+-- single :: Diagram B
+single c1 c2 c3 = (intersection Winding
                 (circle 2 # translateY (-2.5))
                 (square 5)
-          )
+		  )
           # strokeP
-          # fc red
+          # fc c3
           # lw 0
 		  <> polygon ( with
 			& polyType .~ PolySides
 				[ 135 @@ deg, 90 @@ deg]
 				[ 5        , sqrt (5 ^ 2 + 5 ^ 2) ]
 			) # centerXY
-			  # fc blue
+			  # fc c2
 			  # lw 0
-          <> square 5 # fc yellow # lw 0
+          <> square 5 # fc c1 # lw 0
+
+
+diagram :: Diagram B
+diagram = single magenta blue cyan 
+		  -- ||| reflectX (single blue yellow red)
+		  === (reflectY (single blue cyan magenta))
+		  -- ||| reflectY (single red blue red))
+
 
 
 main :: IO ()
