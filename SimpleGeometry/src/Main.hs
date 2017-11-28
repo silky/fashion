@@ -71,8 +71,8 @@ randDiagram colours = do
 
 randWithColours :: IO (Diagram B)
 randWithColours = do
-    let rows    = 4
-        columns = 4
+    let rows    = 5
+        columns = 10
 
     all <- replicateM (rows * columns) $ do
         i <- randomRIO (0, length allColours - 1)
