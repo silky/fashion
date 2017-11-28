@@ -25,8 +25,8 @@ single c1 c2 c3 =
                 (square 5)
           )
           # strokeP
-          # fillTexture (radial c3)
-          -- # fc c3
+          -- # fillTexture (radial c3)
+          # fc c3
           # lw 0
           <> polygon ( with
             & polyType .~ PolySides
