@@ -18,6 +18,7 @@ dependencies:
   - diagrams-contrib
   - diagrams-lib
   - gsl-random
+  - nvds-lib
   - palette
   - random
   - split
@@ -25,5 +26,3 @@ dependencies:
 executables:
   retro-haskell:
     main: Main.hs
-    other-modules:
-        - ColourSets

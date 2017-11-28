@@ -2,11 +2,11 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 39f52d649c139d49dff7917559b88ee4e159ec05a18262b1699676c4669b1286
+-- hash: 2b615123b62235018990b42ed0b25587ae83c728d0d383c78e20482e2d239a90
 
-name:           nvds-logo
+name:           nvds-lib
 version:        0.1.0.0
-homepage:       https://github.com/silky/fashion/NvdsLogo#readme
+category:       Web
 author:         Noon van der Silk
 maintainer:     noonsilk@gmail.com
 copyright:      2017 Noon van der Silk
@@ -18,18 +18,15 @@ cabal-version:  >= 1.10
 extra-source-files:
     README.md
 
-executable nvds-logo
-  main-is: Main.hs
+library
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
     , colour
-    , diagrams
-    , diagrams-cairo
-    , diagrams-contrib
-    , diagrams-lib
     , palette
+  exposed-modules:
+      Nvds.Colours.ColourSets
   other-modules:
-      Paths_nvds_logo
+      Paths_nvds_lib
   default-language: Haskell2010

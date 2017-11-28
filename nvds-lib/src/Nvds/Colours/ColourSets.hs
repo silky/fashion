@@ -1,4 +1,4 @@
-module ColourSets where
+module Nvds.Colours.ColourSets where
 
 import Data.Colour
 import Data.Colour.SRGB
@@ -10,8 +10,6 @@ type Colours = [Colour Double]
 
 
 toC = map sRGB24read
-
-
 
 allColours = [ (pastelSorrows,         "pastelSorrows")
              , (bellyache,             "bellyache")

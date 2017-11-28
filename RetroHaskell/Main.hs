@@ -2,7 +2,7 @@
 {-# LANGUAGE FlexibleContexts          #-}
 {-# LANGUAGE TypeFamilies              #-}
 
-import ColourSets
+import Nvds.Colours.ColourSets
 import Control.Monad (replicateM)
 import Control.Monad.IO.Class (liftIO)
 import Data.List (intersperse)

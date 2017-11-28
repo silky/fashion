@@ -1,6 +1,8 @@
--- This file has been generated from package.yaml by hpack version 0.18.1.
+-- This file has been generated from package.yaml by hpack version 0.20.0.
 --
 -- see: https://github.com/sol/hpack
+--
+-- hash: 13c9b17c0c2b7c17d8c1e7803f880909a78713676366777b3403542b0c9f07f7
 
 name:           retro-haskell
 version:        0.1.0.0
@@ -19,17 +21,18 @@ extra-source-files:
 executable retro-haskell
   main-is: Main.hs
   build-depends:
-      base >= 4.7 && < 5
-    , active
+      active
+    , base >=4.7 && <5
     , colour
     , diagrams
     , diagrams-cairo
     , diagrams-contrib
     , diagrams-lib
     , gsl-random
+    , nvds-lib
     , palette
     , random
     , split
   other-modules:
-      ColourSets
+      Paths_retro_haskell
   default-language: Haskell2010

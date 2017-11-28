@@ -1,0 +1,19 @@
+name:       nvds-lib
+version:    0.1.0.0
+license:    BSD3
+author:     Noon van der Silk
+maintainer: noonsilk@gmail.com
+copyright:  2017 Noon van der Silk
+category:   Web
+extra-source-files:
+    - README.md
+
+dependencies:
+    - base >= 4.7 && < 5
+    - colour
+    - palette
+
+library:
+    source-dirs:      src
+    exposed-modules:  
+        - Nvds.Colours.ColourSets
