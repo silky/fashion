@@ -20,7 +20,8 @@ radial c = mkRadialGradient (mkStops [(white,0,1), (c,1,1)])
 single :: Colour Double -> Colour Double -> Colour Double -> Diagram B
 single c1 c2 c3 = 
           (intersection Winding
-                (circle 2 # translateY (-2.5))
+                -- (circle 2 # translateY (-2.5))
+                (circle 2)
                 (square 5)
           )
           # strokeP
@@ -77,10 +78,12 @@ randWithColours :: IO (Diagram B)
 randWithColours = do
     let rows    = 5
         columns = 10
+        -- Drop the last thing, which is the 'alwaysWhite' colour
+        colours = init allColours
 
     all <- replicateM (rows * columns) $ do
-        i <- randomRIO (0, length allColours - 1)
-        randDiagram (fst (allColours !! i))
+        i <- randomRIO (0, length colours - 1)
+        randDiagram (fst (colours !! i))
 
     return $ vcat (map hcat (chunksOf columns all))
              # frame 1
