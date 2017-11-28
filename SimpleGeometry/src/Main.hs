@@ -48,28 +48,40 @@ diagram = (single magenta blue cyan
 myColours = [ magenta, blue, cyan, yellow ]
 
 
-randDiagram :: IO (Diagram B)
-randDiagram = do
-    let rows    = 2
-        columns = 3
+randDiagram :: Colours -> IO (Diagram B)
+randDiagram colours = do
+    let rows    = 1
+        columns = 1
 
     all <- replicateM (rows * columns) $ do
-        i1 <- randomRIO (0, length myColours - 1)
-        i2 <- randomRIO (0, length myColours - 1)
-        i3 <- randomRIO (0, length myColours - 1)
+        i1 <- randomRIO (0, length colours - 1)
+        i2 <- randomRIO (0, length colours - 1)
+        i3 <- randomRIO (0, length colours - 1)
 
-        let c1 = myColours !! i1
-            c2 = myColours !! i2
-            c3 = myColours !! i3
+        let c1 = colours !! i1
+            c2 = colours !! i2
+            c3 = colours !! i3
 
         i4 <- randomRIO (0, length transforms - 1)
 
         return $ (transforms !! i4) (single c1 c2 c3)
 
     return $ vcat (map hcat (chunksOf columns all))
-             # frame 1
 
+
+randWithColours :: IO (Diagram B)
+randWithColours = do
+    let rows    = 4
+        columns = 4
+
+    all <- replicateM (rows * columns) $ do
+        i <- randomRIO (0, length allColours - 1)
+        randDiagram (fst (allColours !! i))
+
+    return $ vcat (map hcat (chunksOf columns all))
+             # frame 1
 
 main :: IO ()
 -- main = mainWith (diagram # frame 1)
-main = mainWith (randDiagram)
+-- main = mainWith (randDiagram myColours)
+main = mainWith (randWithColours)
