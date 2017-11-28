@@ -8,6 +8,7 @@ copyright:           2017 Noon van der Silk
 extra-source-files:
   - README.md
 
+
 dependencies:
   - base >= 4.7 && < 5
   - colour
@@ -16,6 +17,10 @@ dependencies:
   - diagrams-contrib
   - diagrams-lib
   - palette
+  - nvds-lib
+  - random
+  - split
+
 
 executables:
   simple-geometry:

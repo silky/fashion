@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 1698cb8b75260d3ee2f5aae24a63bad9c9b3681bd952b6d68b85dd2976de8c25
+-- hash: df81d9d66b486777b92c1d656dc7c17469b7a9ae3647fac29a67ff61ebbb8be7
 
 name:           simple-geometry
 version:        0.1.0.0
@@ -29,7 +29,10 @@ executable simple-geometry
     , diagrams-cairo
     , diagrams-contrib
     , diagrams-lib
+    , nvds-lib
     , palette
+    , random
+    , split
   other-modules:
       Paths_simple_geometry
   default-language: Haskell2010
