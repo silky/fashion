@@ -13,23 +13,27 @@ import Nvds.Colours.ColourSets
 import System.Random
 import Data.List.Split (chunksOf)
 
+radial c = mkRadialGradient (mkStops [(white,0,1), (c,1,1)])
+                          ((-1.10) ^& (1.10)) 0.3 (0 ^& 0) 2.5
+                          GradPad
 
 single :: Colour Double -> Colour Double -> Colour Double -> Diagram B
 single c1 c2 c3 = 
           (intersection Winding
                 (circle 2 # translateY (-2.5))
                 (square 5)
-		  )
+          )
           # strokeP
-          # fc c3
+          # fillTexture (radial c3)
+          -- # fc c3
           # lw 0
-		  <> polygon ( with
-			& polyType .~ PolySides
-				[ 135 @@ deg, 90 @@ deg]
-				[ 5        , sqrt (5 ^ 2 + 5 ^ 2) ]
-			) # centerXY
-			  # fc c2
-			  # lw 0
+          <> polygon ( with
+            & polyType .~ PolySides
+                [ 135 @@ deg, 90 @@ deg]
+                [ 5        , sqrt (5 ^ 2 + 5 ^ 2) ]
+            ) # centerXY
+              # fc c2
+              # lw 0
           <> square 5 # fc c1 # lw 0
 
 
@@ -39,8 +43,8 @@ transforms = liftM2 (.) [ id , reflectX, reflectY ] [ reflectX, reflectY ]
 
 diagram :: Diagram B
 diagram = (single magenta blue cyan 
-		  ||| reflectX (single blue yellow magenta))
-		  === ((reflectY (single blue cyan magenta))
+          ||| reflectX (single blue yellow magenta))
+          === ((reflectY (single blue cyan magenta))
           ||| (reflectX (reflectY (single cyan magenta yellow ))))
 
 
