@@ -156,7 +156,7 @@ colourSample = do
 
 
 colourPalette :: Colours
-colourPalette = christmas
+colourPalette = fiesta
 
 
 -- Global var
@@ -166,5 +166,4 @@ bgColour = white
 -- main = mainWith gif
 main = mainWith (retroHaskell colourPalette)
 -- main = mainWith (colourSample)
-
 
