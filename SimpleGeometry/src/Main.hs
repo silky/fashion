@@ -19,7 +19,7 @@ radial c = mkRadialGradient (mkStops [(white,0,1), (c,1,1)])
 
 single :: Colour Double -> Colour Double -> Colour Double -> Diagram B
 single c1 c2 c3 = 
-          (intersection Winding
+          ((intersection Winding
                 -- (circle 2 # translateY (-2.5))
                 (circle 2)
                 (square 5)
@@ -36,6 +36,8 @@ single c1 c2 c3 =
               # fc c2
               # lw 0
           <> square 5 # fc c1 # lw 0
+          ) 
+            -- # frame 0.5
 
 
 transforms :: [Diagram B -> Diagram B]
@@ -76,8 +78,8 @@ randDiagram colours = do
 
 randWithColours :: IO (Diagram B)
 randWithColours = do
-    let rows    = 5
-        columns = 10
+    let rows    = 1
+        columns = 1 
         -- Drop the last thing, which is the 'alwaysWhite' colour
         colours = init allColours
 
@@ -86,7 +88,7 @@ randWithColours = do
         randDiagram (fst (colours !! i))
 
     return $ vcat (map hcat (chunksOf columns all))
-             # frame 1
+             -- # frame 1
 
 main :: IO ()
 -- main = mainWith (diagram # frame 1)
