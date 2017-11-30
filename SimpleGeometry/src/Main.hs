@@ -37,7 +37,7 @@ single c1 c2 c3 =
               # lw 0
           <> square 5 # fc c1 # lw 0
           ) 
-            -- # frame 0.5
+           -- # frame 0.5
 
 
 transforms :: [Diagram B -> Diagram B]
@@ -78,8 +78,8 @@ randDiagram colours = do
 
 randWithColours :: IO (Diagram B)
 randWithColours = do
-    let rows    = 1
-        columns = 1 
+    let rows    = 4
+        columns = 15 
         -- Drop the last thing, which is the 'alwaysWhite' colour
         colours = init allColours
 
