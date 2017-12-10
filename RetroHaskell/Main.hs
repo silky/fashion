@@ -87,8 +87,8 @@ transforms colours d = do
 
 
 
-retroHaskell :: Colours -> IO (Diagram B)
-retroHaskell colours = do
+retroHaskell :: Colours -> Colour Double -> IO (Diagram B)
+retroHaskell colours bgColour = do
     -- scale
     let s = 0.01 / 1.8
         a = 55 * 2 + 10
@@ -129,11 +129,11 @@ retroHaskell colours = do
 
 -- stack run -- -- -w 500 -h 500 -o ./output/a.png
 -- convert -delay 50 *.png a.gif
-gif :: IO (Animation B V2 Double)
-gif = do
+gif :: Colours -> Colour Double -> IO (Animation B V2 Double)
+gif colourPalette bgColour = do
     let n = 100
 
-    frames <- replicateM n (retroHaskell colourPalette)
+    frames <- replicateM n (retroHaskell colourPalette bgColour)
     -- 31 is something to do with how long it takes to run each step, or
     -- something.
 
@@ -148,7 +148,7 @@ colourSample = do
     return $ vcat (map hcat (chunksOf 2 imgs))
   where
       img (cs, name) = do 
-          d <- retroHaskell cs 
+          d <- retroHaskell cs white
 
           let diag = (text name # scale 0.02 <> rect 1 0.1 # bg white # lw 0 <> d # centerXY) # frame 0.05
 
@@ -158,12 +158,10 @@ colourSample = do
 colourPalette :: Colours
 colourPalette = fiesta
 
-
--- Global var
-bgColour = white
-
+-- bgColour = white
 
 -- main = mainWith gif
-main = mainWith (retroHaskell colourPalette)
+main = mainWith (retroHaskell)
+-- main = mainWith (retroHaskell colourPalette)
 -- main = mainWith (colourSample)
 

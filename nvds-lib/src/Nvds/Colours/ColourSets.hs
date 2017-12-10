@@ -1,15 +1,44 @@
+{-# LANGUAGE TypeSynonymInstances #-}
+{-# LANGUAGE FlexibleInstances    #-}
+
 module Nvds.Colours.ColourSets where
 
 import Data.Colour
 import Data.Colour.SRGB
 import Data.Colour.Palette.BrewerSet
+import Diagrams.Backend.CmdLine
+import Data.Monoid
+import Options.Applicative.Builder 
+import Control.Applicative
+import Options.Applicative.Types (readerAsk)
+import qualified Data.Map as M
+import Data.Maybe (fromMaybe)
 
 -- http://www.color-hex.com/color-palettes/?page=124
 
 type Colours = [Colour Double]
 
 
+-- This let's us read the colour set name as an argument on the command line.
+instance Parseable Colours where
+    parser = argument (rc) mempty
+        where
+            rc :: ReadM (Colours)
+            rc = readerAsk >>= readColourSetName
+
+
+readColourSetName :: (Applicative m, Monad m) 
+                  => String 
+                  -> m (Colours)
+readColourSetName name = return colourSet
+    where
+        namesToColours = M.fromList $ map (\(a,b) -> (b,a)) allColours
+        colourSet      = fromMaybe (error "Unknown colour") 
+                                   (M.lookup name namesToColours)
+
+
 toC = map sRGB24read
+
 
 allColours = [ (pastelSorrows,         "pastelSorrows")
              , (bellyache,             "bellyache")

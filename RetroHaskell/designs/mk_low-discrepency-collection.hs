@@ -14,7 +14,7 @@ import Data.Text (unwords)
 import Data.String.Conv
 
 tshow = toS . show
-run   =  flip shell empty
+run   = flip shell empty
 
 main :: IO ()
 main = do
@@ -22,8 +22,8 @@ main = do
         combos = [ ("fiesta",           "aquamarine") 
                  , ("brewerSet3_12",    "blue")
                  , ("incaTawantinsuyo", "black")
-                 , ("atTheBeach",       "purple")
-                 , ("fiesta",           "purple")
+                 , ("atTheBeach",       "mediumpurple")
+                 , ("fiesta",           "mediumpurple")
                  , ("carnaval",         "pink")
                  ]
 
