@@ -26,6 +26,7 @@ main = do
                  , ("atTheBeach",       "mediumpurple")
                  , ("fiesta",           "mediumpurple")
                  , ("carnaval",         "pink")
+                 , ("christmas",        "white")
                  ]
 
     forM_ combos $ \(colourSet, bg) -> do
@@ -66,7 +67,8 @@ ca w h             = defaultCrop (fromInches w h)
 tshirt colourSet bg = basic (Just 3360) Nothing (ca 35 20)
                         (colourSet <> "-" <> bg <> "-tee") colourSet bg
 
-pants colourSet bg  = basic Nothing (Just 5000) (ca 35 40)
+-- WAS: 5000
+pants colourSet bg  = basic Nothing (Just 3840) (ca 35 40)
                         (colourSet <> "-" <> bg <> "-pants") colourSet bg
 
 

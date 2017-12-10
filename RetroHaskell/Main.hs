@@ -162,6 +162,5 @@ colourPalette = fiesta
 
 -- main = mainWith gif
 main = mainWith (retroHaskell)
--- main = mainWith (retroHaskell colourPalette)
 -- main = mainWith (colourSample)
 

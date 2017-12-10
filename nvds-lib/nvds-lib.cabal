@@ -2,10 +2,10 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a49188449d848b6a2a75abed03d1be2a56fd99c1f4759a4f383b2f255eee93da
+-- hash: 0fdf5d9af8a4da35b2a19bda6c3235fc908bd5b615dc4df77a015f17e0ec6fff
 
 name:           nvds-lib
-version:        0.1.0.3
+version:        0.1.0.4
 category:       Web
 author:         Noon van der Silk
 maintainer:     noonsilk@gmail.com
