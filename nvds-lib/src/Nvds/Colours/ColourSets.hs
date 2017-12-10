@@ -86,6 +86,50 @@ allColours = [ (pastelSorrows,         "pastelSorrows")
              , (redGalaxy,             "redGalaxy")
              , (aibril,                "aibril")
              , (alwaysWhite,           "alwaysWhite")
+             , (energyInMotion,        "energyInMotion")
+             , (blueShell,             "blueShell")
+             , (barbapapa,             "barbapapa")
+             , (sleepAlone,            "sleepAlone")
+             , (treePoint,             "treePoint")
+             , (galaticEnd,            "galaticEnd")
+             , (studio0815,            "studio0815")
+             , (redCarpet,             "redCarpet")
+             , (fairyFloss,            "fairyFloss")
+             , (oldTrellisPayne,       "oldTrellisPayne")
+             , (spaceShock,            "spaceShock")
+             , (wald,                  "wald")
+             , (gothamAtSunrise,       "gothamAtSunrise")
+             , (dashboardInterns,      "dashboardInterns")
+             , (anythingBut,           "anythingBut")
+             , (crystalReef,           "crystalReef")
+             , (asmShirt,              "asmShirt")
+             , (nightLagoon,           "nightLagoon")
+             , (projectAI,             "projectAI")
+             , (pinkLadies,            "pinkLadies")
+             , (ifSheHadABeach,        "ifSheHadABeach")
+             , (goldfish,              "goldfish")
+             , (sunsetWonder,          "sunsetWonder")
+             , (dreamViolet,           "dreamViolet")
+             , (nonmeaningful,         "nonmeaningful")
+             , (proudMountains,        "proudMountains")
+             , (pulpy,                 "pulpy")
+             , (girlNextDoor,          "girlNextDoor")
+             , (washfastAcid,          "washfastAcid")
+             , (waterAndTheWaves,      "waterAndTheWaves")
+             , (violetEnergy,          "violetEnergy")
+             , (smoothScaling,         "smoothScaling")
+             , (logga,                 "logga")
+             , (noodles,               "noodles")
+             , (frenchFlag,            "frenchFlag")
+             , (lire,                  "lire")
+             , (pinkCrystals,          "pinkCrystals")
+             , (aquaCrystals,          "aquaCrystals")
+             , (orangeCherry,          "orangeCherry")
+             , (plumToCerulean,        "plumToCerulean")
+             , (sunsetAtSea,           "sunsetAtSea")
+             , (cleanAndEnergetic,     "cleanAndEnergetic")
+             , (lightPastel,           "lightPastel")
+             , (everyDayIsNight,       "everyDayIsNight")
              ]
             
 
@@ -785,13 +829,13 @@ singingInTheEclipse = toC [ "5b4ee7"
 
 
  -- http://www.color-hex.com/color-palette/42390
- goldfish :: Colours
- goldfish = toc [ "ffae49"
-                , "ffc391"
-                , "8fd4ff"
-                , "63b4ff"
-                , "d6d6d6"
-                ]
+goldfish :: Colours
+goldfish = toC [ "ffae49"
+               , "ffc391"
+               , "8fd4ff"
+               , "63b4ff"
+               , "d6d6d6"
+               ]
 
 
 -- http://www.color-hex.com/color-palette/42342
@@ -884,4 +928,131 @@ violetEnergy = toC [ "c770e5"
                    ]
 
 
--- 
+-- http://www.color-hex.com/color-palette/43571
+smoothScaling :: Colours
+smoothScaling = toC [ "f9eead"
+                    , "d5f9b6"
+                    , "bff8cb"
+                    , "c7f7f2"
+                    , "cfe0f6"
+                    ]
+
+
+-- http://www.color-hex.com/color-palette/43561
+logga :: Colours
+logga = toC [ "e72d2d"
+            , "4b0916"
+            , "9f1b33"
+            , "ff663f"
+            , "00aebd"
+            ]
+
+
+-- http://www.color-hex.com/color-palette/43521
+noodles :: Colours
+noodles = toC [ "f9e2cd"
+              , "9c6fad"
+              , "9dcbfb"
+              , "71e6cc"
+              , "ff5e8c"
+              ]
+
+
+-- http://www.color-hex.com/color-palette/43313
+frenchFlag :: Colours
+frenchFlag = toC [ "ff0000"
+                 , "cf0581"
+                 , "0015fd"
+                 , "7900ff"
+                 , "ffffff"
+                 ]
+
+
+-- http://www.color-hex.com/color-palette/43281
+lire :: Colours
+lire = toC [ "12a16b"
+           , "f09090"
+           , "0064a3"
+           , "fdae33"
+           , "bf78b0"
+           ]
+
+
+-- http://www.color-hex.com/color-palette/43263
+pinkCrystals :: Colours
+pinkCrystals = toC [ "faa0ff"
+                   , "e59efe"
+                   , "bd9bf1"
+                   , "837eda"
+                   , "6c55ee"
+                   ]
+
+
+-- http://www.color-hex.com/color-palette/43265
+aquaCrystals :: Colours
+aquaCrystals = toC [ "8db4f9"
+                   , "82bfff"
+                   , "82d5fd"
+                   , "57fbfa"
+                   , "31f3ff"
+                   ]
+
+
+-- http://www.color-hex.com/color-palette/43240
+orangeCherry :: Colours
+orangeCherry = toC [ "f4543b"
+                   , "f4443b"
+                   , "f4343b"
+                   , "f4243b"
+                   , "f4143b"
+                   ]
+
+
+-- http://www.color-hex.com/color-palette/43242
+plumToCerulean :: Colours
+plumToCerulean = toC [ "e8a0e8"
+                     , "d0a0e8"
+                     , "b8a0e8"
+                     , "a0a0e8"
+                     , "a0b8e8"
+                     ]
+
+
+-- http://www.color-hex.com/color-palette/43238
+sunsetAtSea :: Colours
+sunsetAtSea = toC [ "b5e8d2"
+                  , "c9e8d2"
+                  , "dee7d0"
+                  , "f1e8d2"
+                  , "ffe3ce"
+                  ]
+
+
+-- http://www.color-hex.com/color-palette/43157
+cleanAndEnergetic :: Colours
+cleanAndEnergetic = toC [ "5680e9"
+                        , "84ceeb"
+                        , "5ab9ea"
+                        , "c1c8e4"
+                        , "8860d0"
+                        ]
+
+
+-- http://www.color-hex.com/color-palette/43082
+lightPastel :: Colours
+lightPastel = toC [ "ece0f4"
+                  , "efe5ff"
+                  , "ffe9f4"
+                  , "ffeeea"
+                  , "fafbea"
+                  ]
+
+
+-- http://www.color-hex.com/color-palette/43073
+everyDayIsNight :: Colours
+everyDayIsNight = toC [ "ff4386"
+                      , "ff2ec1"
+                      , "1d1074"
+                      , "c3008a"
+                      , "63004b"
+                      ]
