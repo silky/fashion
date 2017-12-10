@@ -22,6 +22,7 @@ main = do
         combos = [ ("fiesta",           "aquamarine") 
                  , ("brewerSet3_12",    "blue")
                  , ("incaTawantinsuyo", "black")
+                 , ("takoTank",         "black")
                  , ("atTheBeach",       "mediumpurple")
                  , ("fiesta",           "mediumpurple")
                  , ("carnaval",         "pink")
