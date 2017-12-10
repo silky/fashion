@@ -14,7 +14,7 @@ import Options.Applicative.Types (readerAsk)
 import qualified Data.Map as M
 import Data.Maybe (fromMaybe)
 
--- http://www.color-hex.com/color-palettes/?page=124
+-- http://www.color-hex.com/color-palettes/?page=176
 
 type Colours = [Colour Double]
 
@@ -532,3 +532,356 @@ aibril = toC [ "fdb913"
 
 alwaysWhite :: Colours
 alwaysWhite = toC [ "ffffff" ]
+
+
+-- http://www.color-hex.com/color-palette/43060
+energyInMotion :: Colours
+energyInMotion = toC [ "6e3dbd"
+                     , "29c677"
+                     , "fff32e"
+                     , "bd9f1d"
+                     , "ac3a00"
+                     ]
+
+
+-- http://www.color-hex.com/color-palette/43053
+blueShell :: Colours
+blueShell = toC [ "7dedf5"
+                , "67ced5"
+                , "65abf3"
+                , "6399d1"
+                , "aaaaaa"
+                ]
+
+
+-- http://www.color-hex.com/color-palette/43046
+barbapapa :: Colours
+barbapapa = toC [ "f3b0cf"
+                , "000000"
+                , "22b14c"
+                , "fa91fb"
+                , "3fb5e5"
+                ]
+
+
+-- http://www.color-hex.com/color-palette/43030
+sleepAlone :: Colours
+sleepAlone = toC [ "ffc40c"
+                 , "bfa51e"
+                 , "80872f"
+                 , "406841"
+                 , "004953"
+                 ]
+
+
+-- http://www.color-hex.com/color-palette/43027
+treePoint :: Colours
+treePoint = toC [ "32d69b"
+                , "48a881"
+                , "5f7b68"
+                , "754e4e"
+                , "8c2034"
+                ]
+
+
+-- http://www.color-hex.com/color-palette/43026
+galaticEnd :: Colours
+galaticEnd = toC [ "08b1d6"
+                 , "419aa6"
+                 , "798477"
+                 , "b16d47"
+                 , "ea5617"
+                 ]
+
+
+-- http://www.color-hex.com/color-palette/42987
+studio0815 :: Colours
+studio0815 = toC [ "4285f4"
+                 , "34a853"
+                 , "fbbc05"
+                 , "ea4335"
+                 , "f1f1f1"
+                 ]
+
+
+-- http://www.color-hex.com/color-palette/42941
+redCarpet :: Colours
+redCarpet = toC [ "ff004d"
+                , "ef004d"
+                , "df004d"
+                , "cf004d"
+                , "bf004d"
+                ]
+
+
+-- http://www.color-hex.com/color-palette/42891
+fairyFloss :: Colours
+fairyFloss = toC [ "c660ff"
+                 , "f69dea"
+                 , "ffd164"
+                 , "9270ff"
+                 , "5c0000"
+                 ]
+
+
+-- http://www.color-hex.com/color-palette/42877
+oldTrellisPayne :: Colours
+oldTrellisPayne = toC [ "ffa077"
+                      , "f2b8b8"
+                      , "87e1cd"
+                      , "87a986"
+                      , "211f6d"
+                      ]
+
+
+-- http://www.color-hex.com/color-palette/42827
+spaceShock :: Colours
+spaceShock = toC [ "000147"
+                 , "340060"
+                 , "370056"
+                 , "4e0058"
+                 , "8b009c"
+                 ]
+
+
+-- http://www.color-hex.com/color-palette/42807
+wald :: Colours
+wald = toC [ "ffea6d"
+           , "f9a872"
+           , "837dab"
+           , "464fc5"
+           , "34309a"
+           ]
+
+
+-- http://www.color-hex.com/color-palette/42793
+gothamAtSunrise :: Colours
+gothamAtSunrise = toC [ "161616"
+                      , "dee5ef"
+                      , "ffe177"
+                      , "ff9523"
+                      , "ff7795"
+                      ]
+
+
+-- http://www.color-hex.com/color-palette/42786
+dashboardInterns :: Colours
+dashboardInterns = toC [ "d41243"
+                       , "ffe000"
+                       , "2ce386"
+                       , "409da5"
+                       , "cbb5db"
+                       ]
+
+
+-- http://www.color-hex.com/color-palette/42758
+anythingBut :: Colours
+anythingBut = toC [ "ff65d9"
+                  , "ff5151"
+                  , "a375ff"
+                  , "ff38a7"
+                  , "ff9d67"
+                  ]
+
+
+-- http://www.color-hex.com/color-palette/42745
+crystalReef :: Colours
+crystalReef = toC [ "7effc8"
+                  , "ddfba8"
+                  , "eae081"
+                  , "8769d0"
+                  , "ee8696"
+                  ]
+
+
+-- http://www.color-hex.com/color-palette/42735
+asmShirt :: Colours
+asmShirt = toC [ "ffffff"
+               , "6c0fae"
+               , "1b9dff"
+               , "ffe759"
+               , "ffd44e"
+               ]
+
+
+-- http://www.color-hex.com/color-palette/42711 
+nightLagoon :: Colours
+nightLagoon = toC [ "13b094"
+                  , "2859df"
+                  , "1d1f9a"
+                  , "8b21e5"
+                  , "9298ea"
+                  ]
+
+
+-- http://www.color-hex.com/color-palette/42669
+projectAI :: Colours
+projectAI = toC [ "ffef4d"
+                , "2b2913"
+                , "3a3828"
+                , "908e7a"
+                , "9dd1d2"
+                ]
+
+
+-- http://www.color-hex.com/color-palette/42652
+pinkLadies :: Colours
+pinkLadies = toC [ "d61978"
+                 , "ff3e3e"
+                 , "ff308e"
+                 , "ff8d18"
+                 , "ffec34"
+                 ]
+
+
+-- http://www.color-hex.com/color-palette/42636
+ifSheHadABeach :: Colours
+ifSheHadABeach = toC [ "554468"
+                     , "db4264"
+                     , "ef6389"
+                     , "ff92b5"
+                     , "fee398"
+                     ]
+
+
+-- http://www.color-hex.com/color-palette/42634
+toFlyAway :: Colours
+toFlyAway = toC [ "595fed"
+                , "487de4"
+                , "5abbf1"
+                , "71d1d7"
+                , "a1e4d3"
+                ]
+
+
+-- http://www.color-hex.com/color-palette/42587
+sexDayDreams :: Colours
+sexDayDreams = toC [ "ffb8e9"
+                   , "efc8d9"
+                   , "dfd8c9"
+                   , "cfe8b9"
+                   , "bff8a9"
+                   ]
+
+
+-- http://www.color-hex.com/color-palette/42488
+dreamyClouds :: Colours
+dreamyClouds = toC [ "cc4faa"
+                   , "da3c84"
+                   , "f03782"
+                   , "f7a481"
+                   , "fee8a3"
+                   ]
+
+
+-- http://www.color-hex.com/color-palette/42389
+singingInTheEclipse :: Colours
+singingInTheEclipse = toC [ "5b4ee7"
+                          , "9c3eff"
+                          , "da35ee"
+                          , "f41d74"
+                          , "e32121"
+                          ]
+
+
+ -- http://www.color-hex.com/color-palette/42390
+ goldfish :: Colours
+ goldfish = toc [ "ffae49"
+                , "ffc391"
+                , "8fd4ff"
+                , "63b4ff"
+                , "d6d6d6"
+                ]
+
+
+-- http://www.color-hex.com/color-palette/42342
+sunsetWonder :: Colours
+sunsetWonder = toC [ "ff2e87"
+                   , "ff4c78"
+                   , "ff6161"
+                   , "ffa578"
+                   , "ffd684"
+                   ]
+
+
+-- http://www.color-hex.com/color-palette/42105
+dreamViolet :: Colours
+dreamViolet = toC [ "c185f9"
+                  , "af73f3"
+                  , "9966f1"
+                  , "8846f9"
+                  , "734ff5"
+                  ]
+
+
+-- http://www.color-hex.com/color-palette/42079
+nonmeaningful :: Colours
+nonmeaningful = toC [ "ff0081"
+                    , "7c00ff"
+                    , "ffdb00"
+                    , "ff82ed"
+                    , "ffe1f5"
+                    ]
+
+
+-- http://www.color-hex.com/color-palette/41773
+proudMountains :: Colours
+proudMountains = toC [ "328b41"
+                     , "009a60"
+                     , "3c4b3d"
+                     , "363a38"
+                     , "21396b"
+                     ]
+
+
+-- http://www.color-hex.com/color-palette/41778
+pulpy :: Colours
+pulpy = toC [ "fd00ff"
+            , "f000ff"
+            , "a300ff"
+            , "009fff"
+            , "6300ff"
+            ]
+
+
+-- http://www.color-hex.com/color-palette/43681
+girlNextDoor :: Colours
+girlNextDoor = toC [ "b05dff"
+                   , "fad4ff"
+                   , "ffa6ca"
+                   , "a68ab6"
+                   , "7a8fa7"
+                   ]
+
+
+-- http://www.color-hex.com/color-palette/43692
+washfastAcid :: Colours
+washfastAcid = toC [ "ffff01"
+                   , "ffb401"
+                   , "ee0000"
+                   , "da0074"
+                   , "5f009c"
+                   ]
+
+
+-- http://www.color-hex.com/color-palette/43640
+waterAndTheWaves :: Colours
+waterAndTheWaves = toC [ "000d3c"
+                       , "003276"
+                       , "0046bd"
+                       , "00a3ba"
+                       , "00e6f9"
+                       ]
+
+
+-- http://www.color-hex.com/color-palette/43604
+violetEnergy :: Colours
+violetEnergy = toC [ "c770e5"
+                   , "9e65db"
+                   , "6150d0"
+                   , "4a299c"
+                   , "390985"
+                   ]
+
+
+-- 
