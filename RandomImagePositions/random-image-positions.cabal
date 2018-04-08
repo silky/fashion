@@ -1,0 +1,38 @@
+-- This file has been generated from package.yaml by hpack version 0.28.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 6bbef34dce796f0ee9a6582cbfe77a6971a7451e44606ea34cedc25964f48ea6
+
+name:           random-image-positions
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/silky/fashion/RandomImagePositions
+author:         Noon van der Silk
+maintainer:     noonsilk@gmail.com
+copyright:      2018 Noon van der Silk
+license:        BSD3
+build-type:     Simple
+cabal-version:  >= 1.10
+extra-source-files:
+    README.md
+
+executable random-image-positions
+  main-is: Main.hs
+  other-modules:
+      Paths_random_image_positions
+  hs-source-dirs:
+      src
+  build-depends:
+      array
+    , base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-contrib
+    , diagrams-lib
+    , filemanip
+    , filepath
+    , gsl-random
+    , random
+    , split
+  default-language: Haskell2010

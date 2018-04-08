@@ -1,0 +1,7 @@
+resolver: lts-10.7
+packages:
+    - .
+compiler-check: newer-minor
+extra-deps:
+  - gsl-random-0.5.3
+
