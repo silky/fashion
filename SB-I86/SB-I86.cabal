@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: fa8fa28ecc867cbf2ed8ec8792a12dd1577c52792e14772e0fb15bd928e31d83
+-- hash: 5293964fb1f0a0e1914bdf5fd939744388237e2463054cb6b38b68021f8ae419
 
 name:           SB-I86
 version:        0.1.0.0
@@ -30,4 +30,6 @@ executable SB-I86
     , diagrams-cairo
     , diagrams-contrib
     , diagrams-lib
+    , nvds-lib
+    , random
   default-language: Haskell2010

@@ -17,6 +17,9 @@ dependencies:
   - diagrams-cairo
   - diagrams-contrib
   - diagrams-lib
+  - nvds-lib
+  - random
+  - split
 
 executables:
   SB-I86:
