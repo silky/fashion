@@ -1,0 +1,29 @@
+name:                Cubic-Limit-Series
+version:             0.1.0.0
+#synopsis:
+#description:
+homepage:            https://github.com/githubuser/Cubic-Limit-Series#readme
+license:             BSD3
+author:              Author name here
+maintainer:          example@example.com
+copyright:           2018 Author name here
+category:            Web
+extra-source-files:
+- README.md
+
+dependencies:
+  - base >= 4.7 && < 5
+  - diagrams
+  - diagrams-cairo
+  - diagrams-contrib
+  - diagrams-lib
+  - nvds-lib
+  - random
+  - random-extras
+  - random-fu
+  - split
+
+executables:
+  Cubic-Limit-Series:
+    source-dirs:      src
+    main:             Main.hs
