@@ -15,6 +15,7 @@ import System.Random (randomRIO)
 import Control.Monad
 import Data.Random.RVar
 import Data.Random
+import Nvds.Colours.ColourSets
 
 
 main :: IO ()
@@ -44,8 +45,8 @@ cubeParts = as ++ bs ++ zipWith g as bs
         (as, bs) = almostCubeParts
 
 
-cubeWith :: [Int] -> Diagram B
-cubeWith indicies = 
+cubeWith :: Colour Double -> [Int] -> Diagram B
+cubeWith c indicies = 
     sublines 
         # map fromVertices 
         # mconcat          
@@ -53,14 +54,15 @@ cubeWith indicies =
     <> p
     where
         p :: Diagram B
-        p = (square 3) # lw 0.2 # lc white # bg black
+        p = (square 3) # lw 0.2 # lc c
 
         sublines = map (\i -> cubeParts !! i) indicies
 
 
-tile :: [Int] -> Diagram B
-tile xs = cubeWith xs # lw thin
-                      # lc gray
+tile :: Colour Double -> Colour Double -> Colour Double -> [Int] -> Diagram B
+tile c1 c2 c3 xs = cubeWith c2 xs # lw thin
+                                  # lc c1
+                                  # bg c3
 
 
 someIndicies :: IO [Int]
@@ -106,19 +108,29 @@ d :: IO (Diagram B)
 d =  do
     let chunks  = 20
         items = chunks * chunks
+        tile' = tile gray white black
+
+    colourIndex <- randomRIO (0, length allColours - 1)
+
+    let colourSet = fst $ allColours !! colourIndex
 
     -- Method 1:
     --  Random variations in each step
     --
     let f (cur, xs) _ = do xs' <- nextSet xs
                            return (xs' : cur, xs')
-    seqs <- foldM f (return [], [1, 2]) [0.. items - 2] >>= return . fst
-    let tiles = map tile seqs
+
+    seqs    <- foldM f (return [], [1, 2]) [0.. items - 2] >>= return . fst
+    colours <- replicateM items (runRVar (shuffle colourSet) StdRandom)
+
+    let getTile s cs = tile black (head cs) (head cs) s
+    let tiles        = zipWith getTile seqs colours
+
 
     -- Method 2:
     --  Just completely random.
     --
-    -- tiles <- replicateM items (someIndicies >>= return . tile)
+    -- tiles <- replicateM items (someIndicies >>= return . tile')
 
     let diag = vcat (map hcat (chunksOf chunks tiles))
 
