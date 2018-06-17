@@ -123,7 +123,7 @@ d =  do
     seqs    <- foldM f (return [], [1, 2]) [0.. items - 2] >>= return . fst
     colours <- replicateM items (runRVar (shuffle colourSet) StdRandom)
 
-    let getTile s cs = tile black (head cs) (head cs) s
+    let getTile s cs = tile (head cs) (head cs) black s
     let tiles        = zipWith getTile seqs colours
 
 
