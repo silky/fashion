@@ -37,7 +37,8 @@ almostCubeParts = (squareParts, (map offset squareParts))
         offset [a, b] = [a + amount, b + amount] 
         amount = 0.5
 
-    
+
+-- An cube (the original)
 cubeParts :: [[P2 Double]]
 cubeParts = as ++ bs ++ zipWith g as bs
     where
@@ -45,8 +46,20 @@ cubeParts = as ++ bs ++ zipWith g as bs
         (as, bs) = almostCubeParts
 
 
-cubeWith :: Colour Double -> [Int] -> Diagram B
-cubeWith c indicies = 
+-- The rays of a unit circle 
+circleParts :: Double -> [[P2 Double]]
+circleParts n = map f [0..n]
+    where
+        f k = [ 0 ^& 0, cos (k * a * pi / 180) ^& sin (k * a * pi / 180) ]
+        a = 360 / n
+
+
+-- linesToDraw = circleParts 3
+linesToDraw = cubeParts
+
+
+linesWith :: Colour Double -> [Int] -> Diagram B
+linesWith c indicies = 
     sublines 
         # map fromVertices 
         # mconcat          
@@ -56,19 +69,23 @@ cubeWith c indicies =
         p :: Diagram B
         p = (square 3) # lw 0.2 # lc c
 
-        sublines = map (\i -> cubeParts !! i) indicies
+        -- Always everything
+        -- sublines = linesToDraw
+        --
+        -- Some subset
+        sublines = map (\i -> linesToDraw !! i) indicies
 
 
 tile :: Colour Double -> Colour Double -> Colour Double -> [Int] -> Diagram B
-tile c1 c2 c3 xs = cubeWith c2 xs # lw thin
-                                  # lc c1
-                                  # bg c3
+tile c1 c2 c3 xs = linesWith c2 xs # lw thin
+                                   # lc c1
+                                   # bg c3
 
 
 someIndicies :: IO [Int]
 someIndicies = do
-    totalIndicies <- randomRIO (0, length cubeParts - 1)
-    shuffled      <- runRVar (shuffle [0..length cubeParts - 1]) StdRandom
+    totalIndicies <- randomRIO (0, length linesToDraw - 1)
+    shuffled      <- runRVar (shuffle [0..length linesToDraw - 1]) StdRandom
 
     let indicies = take totalIndicies shuffled
 
@@ -85,10 +102,10 @@ nextSet xs = do
     b :: Int <- randomRIO (0, 1)
     i <- randomRIO (0, length xs - 1)
 
-    let remaining = [0..length cubeParts - 1] \\ xs
+    let remaining = [0..length linesToDraw - 1] \\ xs
     shuffled <- runRVar (shuffle remaining) StdRandom
 
-    let forcedDrop = length xs == length cubeParts
+    let forcedDrop = length xs == length linesToDraw
 
     let xs' = if length xs > 1 && (b == 0 || forcedDrop) 
                 then dropIndex i xs 
@@ -106,9 +123,9 @@ dropIndex i xs = let (h, t) = splitAt i xs in h ++ dropIndex i (drop 1 t)
 
 d :: IO (Diagram B)
 d =  do
-    let chunks  = 20
-        items = chunks * chunks
-        tile' = tile gray white black
+    let chunks = 5
+        items  = chunks * chunks
+        tile'  = tile gray white black
 
     colourIndex <- randomRIO (0, length allColours - 1)
 
@@ -117,13 +134,20 @@ d =  do
     -- Method 1:
     --  Random variations in each step
     --
-    let f (cur, xs) _ = do xs' <- nextSet xs
-                           return (xs' : cur, xs')
+    let stepDifference = 2
+    let f (cur, xs) _  = do xs' <- foldM (\xs _ -> nextSet xs) xs [1..stepDifference]
+                            return (xs' : cur, xs')
 
-    seqs    <- foldM f (return [], [1, 2]) [0.. items - 2] >>= return . fst
+    seqs    <- foldM f (return [], [1, 2]) [0.. items -1] >>= return . fst
     colours <- replicateM items (runRVar (shuffle colourSet) StdRandom)
 
-    let getTile s cs = tile (head cs) (head cs) black s
+    -- Colour one:
+    -- let getTile s cs = tile black (head cs) (head cs) s
+    -- let getTile s cs = tile (head cs) (head cs) black s
+    let getTile s cs = tile (head cs) gray black s
+    --
+    -- Original one:
+    -- let getTile s cs = tile gray white black s
     let tiles        = zipWith getTile seqs colours
 
 
