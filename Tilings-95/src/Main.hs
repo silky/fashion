@@ -13,10 +13,12 @@ main = mainWith ( d # frame 0.1 ) >> putStrLn "Done"
 
 
 d :: Diagram B
+-- d = t
 d = mkCols (map mkRow tss)
   where
     t :: Diagram B
-    t = tile # frame 0.09
+    t = tile (tile mempty # scale 0.5 # rotateBy (1/8))
+             # frame 0.09
              # intrudeEnvelope (0 ^& 0.22)
 
     mkCols = foldl (\d' t' -> d' # snugB <> t' # alignT) mempty
@@ -28,10 +30,10 @@ d = mkCols (map mkRow tss)
     n2  = n * n
 
 
-tile :: Diagram B
-tile = (((box # snugB # snugR <> t1 # snugB # snugR) 
+tile :: Diagram B -> Diagram B
+tile d' = d' # centerXY <> ((((box # snugB # snugR <> t1 # snugB # snugR) 
       # snugB # snugL <> t2 # snugB # snugL) # snugT # snugL <> t3 # snugT # snugL)
-      # snugT # snugR <> t4 # snugT # snugR
+      # snugT # snugR <> t4 # snugT # snugR) # centerXY
   where
     box   = sq -- # deform' 0.01 wibble 
                # strokeP
