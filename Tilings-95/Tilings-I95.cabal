@@ -1,0 +1,36 @@
+-- This file has been generated from package.yaml by hpack version 0.28.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 08ac3d5e0df0fd711e4e1fa3817bcaee494ab34b9bb56173144198c50a56a6b6
+
+name:           Tilings-I95
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/githubuser/Tilings-I95#readme
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2018 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+extra-source-files:
+    README.md
+
+executable Tilings-I95
+  main-is: Main.hs
+  other-modules:
+      Paths_Tilings_I95
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-contrib
+    , diagrams-lib
+    , nvds-lib
+    , random
+    , split
+  default-language: Haskell2010
