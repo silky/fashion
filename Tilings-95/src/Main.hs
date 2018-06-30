@@ -17,8 +17,12 @@ d :: Diagram B
 d = mkCols (map mkRow tss)
   where
     t :: Diagram B
-    t = tile (tile mempty # scale 0.5 # rotateBy (1/8))
-             # frame 0.09
+    -- t = tile blue (tile orange (tile blue mempty # scale 0.4) # scale 0.5 # rotateBy (1/8))
+    t = tile blue (tile orange (square 1.5 # lc orange) # scale 0.5 # rotateBy (1/8))
+             -- Magic numbers that make things equal:
+             --     # frame 0.09
+             --     # intrudeEnvelope (0 ^& 0.22)
+             # frame 0.3
              # intrudeEnvelope (0 ^& 0.22)
 
     mkCols = foldl (\d' t' -> d' # snugB <> t' # alignT) mempty
@@ -26,12 +30,12 @@ d = mkCols (map mkRow tss)
 
     ts  = take n2 $ repeat t
     tss = chunksOf n ts
-    n   = 3
+    n   = 5
     n2  = n * n
 
 
-tile :: Diagram B -> Diagram B
-tile d' = d' # centerXY <> ((((box # snugB # snugR <> t1 # snugB # snugR) 
+tile :: Colour Double -> Diagram B -> Diagram B
+tile colour d' = d' # centerXY <> ((((box # snugB # snugR <> t1 # snugB # snugR) 
       # snugB # snugL <> t2 # snugB # snugL) # snugT # snugL <> t3 # snugT # snugL)
       # snugT # snugR <> t4 # snugT # snugR) # centerXY
   where
@@ -47,9 +51,9 @@ tile d' = d' # centerXY <> ((((box # snugB # snugR <> t1 # snugB # snugR)
     tbase = rht # deform' 0.01 wibble
                 # strokeP
                 # scale 0.4
-                # fc black 
+                # fc colour 
                 # lw 0.1
-                # lc black
+                # lc colour
 
 
 sq :: Path V2 Double
