@@ -9,7 +9,7 @@ import Diagrams.Backend.Cairo.CmdLine
 import Data.List.Split (chunksOf)
 
 main :: IO ()
-main = mainWith ( d # frame 0.1 ) >> putStrLn "Done"
+main = mainWith ( d # frame 0.1 # bg white ) >> putStrLn "Done"
 
 
 d :: Diagram B
@@ -18,10 +18,10 @@ d = mkCols (map mkRow tss)
   where
     t :: Diagram B
     -- t = tile blue (tile orange (tile blue mempty # scale 0.4) # scale 0.5 # rotateBy (1/8))
-    t = tile blue (tile orange (square 1.5 # lc orange) # scale 0.5 # rotateBy (1/8))
+    t = tile blue (tile magenta (square 1.5 # lc magenta) # scale 0.5 # rotateBy (1/8))
              -- Magic numbers that make things equal:
-             --     # frame 0.09
-             --     # intrudeEnvelope (0 ^& 0.22)
+             -- # frame 0.09
+             -- # intrudeEnvelope (0 ^& 0.22)
              # frame 0.3
              # intrudeEnvelope (0 ^& 0.22)
 
