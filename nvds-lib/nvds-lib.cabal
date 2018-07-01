@@ -1,8 +1,8 @@
--- This file has been generated from package.yaml by hpack version 0.20.0.
+-- This file has been generated from package.yaml by hpack version 0.28.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0fdf5d9af8a4da35b2a19bda6c3235fc908bd5b615dc4df77a015f17e0ec6fff
+-- hash: d7e281fb9e9e4f77f4332ef68dc24ef71d17e6103f9f2167aa6a64bbe07935ed
 
 name:           nvds-lib
 version:        0.1.0.4
@@ -14,7 +14,6 @@ license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
 cabal-version:  >= 1.10
-
 extra-source-files:
     README.md
 
