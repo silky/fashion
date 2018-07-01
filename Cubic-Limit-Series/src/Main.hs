@@ -97,6 +97,7 @@ someIndicies = do
 --
 --  1. Removing some element
 --  2. Adding some element
+--
 nextSet :: [Int] -> IO [Int]
 nextSet xs = do
     b :: Int <- randomRIO (0, 1)
@@ -132,16 +133,16 @@ d =  do
     let colourSet = fst $ allColours !! colourIndex
 
     -- Method 1:
-    --  Random variations in each step
+    --  Random variations in each step.
     --
-    let stepDifference = 2
-    let f (cur, xs) _  = do xs' <- foldM (\xs _ -> nextSet xs) xs [1..stepDifference]
+    let stepDifference = 3
+    let f (cur, xs) _  = do xs' <- foldM (\nxs _ -> nextSet nxs) xs [1..stepDifference]
                             return (xs' : cur, xs')
 
     seqs    <- foldM f (return [], [1, 2]) [0.. items -1] >>= return . fst
     colours <- replicateM items (runRVar (shuffle colourSet) StdRandom)
 
-    -- Colour one:
+    -- Colour ones:
     -- let getTile s cs = tile black (head cs) (head cs) s
     -- let getTile s cs = tile (head cs) (head cs) black s
     let getTile s cs = tile (head cs) gray black s
