@@ -9,16 +9,18 @@ import Diagrams.Backend.Cairo.CmdLine
 import Data.List.Split (chunksOf)
 
 main :: IO ()
--- main = mainWith ( d # frame 0.1 # bg white ) >> putStrLn "Done"
+-- main = mainWith ( d 4 # frame 0.1 # bg white ) >> putStrLn "Done"
 -- main = mainWith ( circleTile # frame 0.1 # bg white ) >> putStrLn "Done"
 main = mainWith ( dd # frame 0.1 # bg white ) >> putStrLn "Done"
 
 
 dd :: Diagram B
-dd = vcat (map hcat tss)
+dd = vcat $ map hcat tss
   where
     t   = (circleTile <> d 4 # centerXY)
-            # withEnvelope (rect 5.75 4.85 :: D V2 Double)
+            -- # withEnvelope (rect 5.75 4.85 :: D V2 Double)
+            # withEnvelope (rect 3 3 :: D V2 Double)
+            -- # showEnvelope
 
     ts  = take n2 $ repeat t
     tss = chunksOf n ts
@@ -39,7 +41,7 @@ circleTile = shape # lw 5 # lc white
 
 
 d :: Int -> Diagram B
-d n = mkCols (map mkRow tss)
+d n = vcat (map hcat tss)
   where
     t :: Diagram B
     -- t = tile blue (tile orange (tile blue mempty # scale 0.4) # scale 0.5 # rotateBy (1/8))
@@ -47,11 +49,11 @@ d n = mkCols (map mkRow tss)
              -- Magic numbers that make things equal:
              -- # frame 0.09
              -- # intrudeEnvelope (0 ^& 0.22)
-             # frame 0.3
-             # intrudeEnvelope (0 ^& 0.22)
+             -- # frame 0.3
+             -- # intrudeEnvelope (0 ^& 0.22)
 
-    mkCols = foldl (\d' t' -> d' # snugB <> t' # alignT) mempty
-    mkRow  = foldl (\d' t' -> d' # snugR <> t' # alignL) mempty
+    -- mkCols = foldl (\d' t' -> d' # snugB <> t' # snugT) mempty
+    -- mkRow  = foldl (\d' t' -> d' # snugR <> t' # snugL) mempty
 
     ts  = take n2 $ repeat t
     tss = chunksOf n ts
@@ -72,7 +74,7 @@ tile colour d' = d' # centerXY <> ((((box # snugB # snugR <> t1 # snugB # snugR)
     t2    = tbase # reflectX
     t3    = tbase # reflectXY
     t4    = tbase # reflectY
-    tbase = rht # deform' 0.01 wibble
+    tbase = rht -- # deform' 0.01 wibble
                 # strokeP
                 # scale 0.4
                 # fc colour 
