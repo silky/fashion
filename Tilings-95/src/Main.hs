@@ -19,7 +19,7 @@ dd = vcat $ map hcat tss
   where
     t   = (circleTile <> d 4 # centerXY)
             -- # withEnvelope (rect 5.75 4.85 :: D V2 Double)
-            # withEnvelope (rect 3 3 :: D V2 Double)
+            # withEnvelope (square 4.24 :: D V2 Double)
             -- # showEnvelope
 
     ts  = take n2 $ repeat t
@@ -48,7 +48,6 @@ d n = vcat (map hcat tss)
     t = tile blue (tile magenta (square 1.5 # lc magenta <> regPoly 5 0.4 # fc red # lc red ) # scale 0.5 # rotateBy (1/8))
              -- Magic numbers that make things equal:
              -- # frame 0.09
-             -- # intrudeEnvelope (0 ^& 0.22)
              -- # frame 0.3
              -- # intrudeEnvelope (0 ^& 0.22)
 
