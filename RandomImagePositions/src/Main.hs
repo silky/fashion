@@ -49,26 +49,27 @@ shuffle xs = do let upperBound = length xs
   where shuffleCycle arr i = do j <- getStdRandom (randomR (1, i))
                                 swapElements_ arr i j
 
-
+-- 14909x12553
 d :: FilePath -> IO (Diagram B)
 d dir = do
-    let n       = 300
-        density = 0.03
+    let n       = 100
+        density = 0.06
 
     points <- getPoints halton n
 
     allFiles  <- getByExts [".png", ".jpg"] dir
-    files     <- take n <$> shuffle allFiles
-    baseDiags <- scale density <$> mapM simpleImage files
+    files     <- take n . cycle <$> shuffle allFiles
+    baseDiags <- (\d -> d # scale density) <$> mapM simpleImage files
     
     -- Lay things out in a grid instead:
-    -- let ds = vcat (map hcat (chunksOf 10 baseDiags))
+    let ds = vcat (map hcat (chunksOf 10 baseDiags))
+ 
+    -- Randomly
+    -- rs <- replicateM n (randomRIO (0, 1))
+    -- let diags = zipWith (\r d -> d # rotateBy r) rs baseDiags
+    -- let ds    = position (zip points diags)
     
-    rs <- replicateM n (randomRIO (0, 1))
-    let diags = zipWith (\r d -> d # rotateBy r) rs baseDiags
-    let ds    = position (zip points diags)
-    
-    return $ ds # bg white
+    return $ ds # bg black
 
 
 simpleImage :: FilePath -> IO (Diagram B) 
