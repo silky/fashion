@@ -18,19 +18,24 @@ dd :: Diagram B
 dd = vcat (map hcat tss)
   where
     t   = (circleTile <> d 4 # centerXY)
-            # withEnvelope (rect 5.7 4.8 :: D V2 Double)
+            # withEnvelope (rect 5.75 4.85 :: D V2 Double)
 
     ts  = take n2 $ repeat t
     tss = chunksOf n ts
     n2  = n * n
-    n   = 4
+    n   = 3
 
 
 circleTile :: Diagram B
-circleTile = circle 1 # lw 5 # lc white
-             <> d 10 
-                  # bg gold # scale 0.5 
-                  # centerXY # clipBy (circle 1)
+circleTile = shape # lw 5 # lc white
+             <> d 10
+                  # bg gold 
+                  # rotateBy (1/8)
+                  # scale 0.5
+                  # centerXY 
+                  # clipBy shape
+  where
+    shape = regPoly 6 1
 
 
 d :: Int -> Diagram B
@@ -38,7 +43,7 @@ d n = mkCols (map mkRow tss)
   where
     t :: Diagram B
     -- t = tile blue (tile orange (tile blue mempty # scale 0.4) # scale 0.5 # rotateBy (1/8))
-    t = tile blue (tile magenta (square 1.5 # lc magenta) # scale 0.5 # rotateBy (1/8))
+    t = tile blue (tile magenta (square 1.5 # lc magenta <> regPoly 5 0.4 # fc red # lc red ) # scale 0.5 # rotateBy (1/8))
              -- Magic numbers that make things equal:
              -- # frame 0.09
              -- # intrudeEnvelope (0 ^& 0.22)
