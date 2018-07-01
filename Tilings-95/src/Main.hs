@@ -18,15 +18,7 @@ dd :: Diagram B
 dd = vcat (map hcat tss)
   where
     t   = (circleTile <> d 4 # centerXY)
-            -- # intrudeEnvelope (3.2 ^& (-2.8))
-            # intrudeEnvelope (3.2 ^& (-2.8))
-            # intrudeEnvelope ((-3.2) ^& (2.8))
-            # intrudeEnvelope ((3.2) ^& (2.8))
-            # intrudeEnvelope ((-3.2) ^& (-2.8))
-            -- # intrudeEnvelope (3.2 ^& 0)
-            -- # extrudeEnvelope (3.2 ^& (-2.8))
-            -- # showEnvelope
-            # centerXY
+            # withEnvelope (rect 5.7 4.8 :: D V2 Double)
 
     ts  = take n2 $ repeat t
     tss = chunksOf n ts
