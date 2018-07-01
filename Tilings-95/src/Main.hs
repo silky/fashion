@@ -9,12 +9,40 @@ import Diagrams.Backend.Cairo.CmdLine
 import Data.List.Split (chunksOf)
 
 main :: IO ()
-main = mainWith ( d # frame 0.1 # bg white ) >> putStrLn "Done"
+-- main = mainWith ( d # frame 0.1 # bg white ) >> putStrLn "Done"
+-- main = mainWith ( circleTile # frame 0.1 # bg white ) >> putStrLn "Done"
+main = mainWith ( dd # frame 0.1 # bg white ) >> putStrLn "Done"
 
 
-d :: Diagram B
--- d = t
-d = mkCols (map mkRow tss)
+dd :: Diagram B
+dd = vcat (map hcat tss)
+  where
+    t   = (circleTile <> d 4 # centerXY)
+            -- # intrudeEnvelope (3.2 ^& (-2.8))
+            # intrudeEnvelope (3.2 ^& (-2.8))
+            # intrudeEnvelope ((-3.2) ^& (2.8))
+            # intrudeEnvelope ((3.2) ^& (2.8))
+            # intrudeEnvelope ((-3.2) ^& (-2.8))
+            -- # intrudeEnvelope (3.2 ^& 0)
+            -- # extrudeEnvelope (3.2 ^& (-2.8))
+            -- # showEnvelope
+            # centerXY
+
+    ts  = take n2 $ repeat t
+    tss = chunksOf n ts
+    n2  = n * n
+    n   = 4
+
+
+circleTile :: Diagram B
+circleTile = circle 1 # lw 5 # lc white
+             <> d 10 
+                  # bg gold # scale 0.5 
+                  # centerXY # clipBy (circle 1)
+
+
+d :: Int -> Diagram B
+d n = mkCols (map mkRow tss)
   where
     t :: Diagram B
     -- t = tile blue (tile orange (tile blue mempty # scale 0.4) # scale 0.5 # rotateBy (1/8))
@@ -30,7 +58,6 @@ d = mkCols (map mkRow tss)
 
     ts  = take n2 $ repeat t
     tss = chunksOf n ts
-    n   = 5
     n2  = n * n
 
 
