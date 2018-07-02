@@ -21,65 +21,23 @@ p c as xs =
             & polyOrient .~ NoOrient
             & polyType   .~ PolySides as xs
         )
-        # lw 0.5
-        # lc c
+        # lw 5
+        # lc black
 
 
 main :: IO ()
 -- main = mainWith (frame 0.5 <$> diagTiled)
-main = mainWith (frame 0.5 <$> diag1)
+-- main = mainWith (frame 0.5 <$> diag1)
+main = mainWith diagTiled
                 
-
--- | Creates the basic "Stu Brown" tile that we can repeat indefinitely.
--- baseDiagram :: Colour Double
---             -> Colour Double
---             -> Colour Double
---             -> Colour Double
---             -> Diagram B
--- baseDiagram c1 c2 c3 c4 = t1' c1 c2 c3 <> t4 c4
---     where
---         t1' c1 c2 c3 = (t1 c1 <> t3' c2 c3)
-
-
---         t4 c = p c  [ 90 @@ deg , 270 @@ deg , 270 @@ deg  ]
---                     [ 0         , 4.6        , 2.7       , 4 ]
---                # fc c
-
-
---         -- Combined blue/blue thing
---         t3' c1 c2 = (t3_1 c1 <> t3_2 c2)
---                 # center
-
-
---         a1 = (atan (0.4/4) * (180 / pi))
---         d  = (sqrt ( 4 ** 2 + 0.4 ** 2 ))
---         d1 = d * 0.55
---         d2 = d1 - d
-
-
---         -- Triangle part of blue/blue thing
---         t3_1 c = p c [ (270 + a1) @@ deg , 0 @@ deg ]
---                      [ 5.6                 , d1 ]
---                    # fc c
-
-
---         -- Polygon part of blue/blue thing
---         t3_2 c = p c [ 270 @@ deg , 90 @@ deg , (90 + a1) @@ deg     ]
---                      [ 0          , 4         , 6               , d1 ]
---                    # fc c
-
-
---         -- top green-ish thing
---         t1 c = p c [ 90 @@ deg, 90 @@ deg, 90 @@ deg ]
---                    [ 0.8        , 4        , 1.2     ]
---                # fc c
 
 
 diagTiled :: IO (Diagram B)
 diagTiled = do
-    tiles <- replicateM (5 * 5) diag1
+    tiles <- replicateM (1) ( frame 0.5 <$> diag1 )
+    -- tiles <- replicateM (16) ( id <$> diag1 )
 
-    let ds = vcat (map hcat (chunksOf 5 tiles))
+    let ds = vcat (map hcat (chunksOf 1 tiles))
 
     return ds
 
@@ -127,7 +85,8 @@ diag1 = do
               
             )
             # bg (s "#22274c")
-    return d -- # frame 0.5)
+    return ( d # rotateBy (1/4) ) -- # frame 0.5)
+    -- return ( d ) -- # frame 0.5)
     where
         section c1 c2 c3 c4
           = t1' c1 c2 c3 <> t4 c4
@@ -159,7 +118,7 @@ diag1 = do
 
         -- Triangle part of blue/blue thing
         t3_1 c = p c [ (270 + a1) @@ deg , mempty ]
-                     [ 5.6               , d1 ]
+                     [ 5.6               , d2     ]
                    # fc c
                    # alignB
                    # snugR
@@ -179,4 +138,51 @@ diag1 = do
                # fc c
                # snugB
 
+
+
+
+
+-- | Creates the basic "Stu Brown" tile that we can repeat indefinitely.
+-- baseDiagram :: Colour Double
+--             -> Colour Double
+--             -> Colour Double
+--             -> Colour Double
+--             -> Diagram B
+-- baseDiagram c1 c2 c3 c4 = t1' c1 c2 c3 <> t4 c4
+--     where
+--         t1' c1 c2 c3 = (t1 c1 <> t3' c2 c3)
+
+
+--         t4 c = p c  [ 90 @@ deg , 270 @@ deg , 270 @@ deg  ]
+--                     [ 0         , 4.6        , 2.7       , 4 ]
+--                # fc c
+
+
+--         -- Combined blue/blue thing
+--         t3' c1 c2 = (t3_1 c1 <> t3_2 c2)
+--                 # center
+
+
+--         a1 = (atan (0.4/4) * (180 / pi))
+--         d  = (sqrt ( 4 ** 2 + 0.4 ** 2 ))
+--         d1 = d * 0.55
+--         d2 = d1 - d
+
+
+--         -- Triangle part of blue/blue thing
+--         t3_1 c = p c [ (270 + a1) @@ deg , 0 @@ deg ]
+--                      [ 5.6                 , d1 ]
+--                    # fc c
+
+
+--         -- Polygon part of blue/blue thing
+--         t3_2 c = p c [ 270 @@ deg , 90 @@ deg , (90 + a1) @@ deg     ]
+--                      [ 0          , 4         , 6               , d1 ]
+--                    # fc c
+
+
+--         -- top green-ish thing
+--         t1 c = p c [ 90 @@ deg, 90 @@ deg, 90 @@ deg ]
+--                    [ 0.8        , 4        , 1.2     ]
+--                # fc c
 

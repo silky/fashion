@@ -2,12 +2,12 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 26b1f4f8692d216e8e276605598761ba91fef17c76eb5885387199412ba754e2
+-- hash: 44e6c7afc87039dcb576d1699917d675ef92e02569fc147ec9e921e890f8c3a2
 
-name:           SB-I86
+name:           Abelian-Sandpile
 version:        0.1.0.0
 category:       Web
-homepage:       https://github.com/silky/SB-I86#readme
+homepage:       https://github.com/silky/fashion/Abelian-Sandpile#readme
 author:         Noon van der Silk
 maintainer:     noonsilk@gmail.com
 copyright:      2018 Noon van der Silk
@@ -18,19 +18,17 @@ cabal-version:  >= 1.10
 extra-source-files:
     README.md
 
-executable SB-I86
+executable Abelian-Sandpile
   main-is: Main.hs
   other-modules:
-      Paths_SB_I86
+      Paths_Abelian_Sandpile
   hs-source-dirs:
       src
   build-depends:
-      base >=4.7 && <5
-    , diagrams
-    , diagrams-cairo
-    , diagrams-contrib
-    , diagrams-lib
-    , nvds-lib
-    , random
-    , split
+      JuicyPixels
+    , JuicyPixels-repa
+    , base >=4.7 && <5
+    , primitive
+    , repa
+    , text
   default-language: Haskell2010
