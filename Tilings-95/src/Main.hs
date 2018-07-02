@@ -11,6 +11,7 @@ import Data.List.Split (chunksOf)
 main :: IO ()
 -- main = mainWith ( d 4 # frame 0.1 # bg white ) >> putStrLn "Done"
 -- main = mainWith ( circleTile # frame 0.1 # bg white ) >> putStrLn "Done"
+-- main = mainWith ( tile red (tile blue mempty # scale 0.4) # frame 0.1 # bg white ) >> putStrLn "Done"
 main = mainWith ( dd # frame 0.1 # bg white ) >> putStrLn "Done"
 
 
@@ -23,17 +24,17 @@ dd = vcat $ map hcat tss
             -- # showEnvelope
 
     ts  = take n2 $ repeat t
-    tss = chunksOf n ts
+    tss = chunksOf n2 ts
     n2  = n * n
-    n   = 3
+    n   = 2
 
 
 circleTile :: Diagram B
-circleTile = shape # lw 5 # lc white
+circleTile = shape # lw 0 # lc white
              <> d 10
                   # bg gold 
-                  # rotateBy (1/8)
-                  # scale 0.5
+                  -- # rotateBy (1/8)
+                  -- # scale 0.5
                   # centerXY 
                   # clipBy shape
   where
