@@ -9,44 +9,62 @@ import Diagrams.Backend.Cairo.CmdLine
 import Data.List.Split (chunksOf)
 
 main :: IO ()
--- main = mainWith ( d 4 # frame 0.1 # bg white ) >> putStrLn "Done"
--- main = mainWith ( circleTile # frame 0.1 # bg white ) >> putStrLn "Done"
 -- main = mainWith ( tile red (tile blue mempty # scale 0.4) # frame 0.1 # bg white ) >> putStrLn "Done"
+-- main = mainWith ( d 3 # frame 0.1 # bg white ) >> putStrLn "Done"
+-- main = mainWith ( circleTile # frame 0.1 # bg white ) >> putStrLn "Done"
 main = mainWith ( dd # frame 0.1 # bg white ) >> putStrLn "Done"
+-- main = mainWith ( rose # frame 0.1 # bg white ) >> putStrLn "Done"
 
 
 dd :: Diagram B
 dd = vcat $ map hcat tss
   where
-    t   = (circleTile <> d 4 # centerXY)
+    t   = (circleTile <> d gold 4 # centerXY)
             -- # withEnvelope (rect 5.75 4.85 :: D V2 Double)
             # withEnvelope (square 4.24 :: D V2 Double)
             -- # showEnvelope
 
     ts  = take n2 $ repeat t
-    tss = chunksOf n2 ts
+    tss = chunksOf n ts
     n2  = n * n
     n   = 2
 
 
+-- It's no good.
+rose :: Diagram B
+rose = foldl f mempty datas
+  where
+    datas = zip (take 4 reds) (reverse [0..4 - 1])
+
+    f diag (c, s) = diag <> base 
+                        # fc c 
+                        # scale (1 - (s/4))
+                        # rotateBy (s/15)
+
+    base  = regPoly 5 0.8 # lw 0
+    reds  = cycle [ darkred, red, pink, indianred ]
+
+
+
 circleTile :: Diagram B
-circleTile = shape # lw 0 # lc white
-             <> d 10
-                  # bg gold 
-                  -- # rotateBy (1/8)
-                  -- # scale 0.5
+circleTile = shape # lw 5 # lc white
+             <> d blue 10
+                  # bg pink 
+                  # rotateBy (1/8)
+                  # scale 0.5
                   # centerXY 
                   # clipBy shape
   where
-    shape = regPoly 6 1
+    -- shape = regPoly 6 1
+    shape = regPoly 8 1
 
 
-d :: Int -> Diagram B
-d n = vcat (map hcat tss)
+d :: Colour Double -> Int -> Diagram B
+d c n = vcat (map hcat tss)
   where
     t :: Diagram B
     -- t = tile blue (tile orange (tile blue mempty # scale 0.4) # scale 0.5 # rotateBy (1/8))
-    t = tile blue (tile magenta (square 1.5 # lc magenta <> regPoly 5 0.4 # fc red # lc red ) # scale 0.5 # rotateBy (1/8))
+    t = tile c (tile magenta (square 1.5 # lc magenta <> inner) # scale 0.5 # rotateBy (1/8))
              -- Magic numbers that make things equal:
              -- # frame 0.09
              -- # frame 0.3
@@ -54,6 +72,8 @@ d n = vcat (map hcat tss)
 
     -- mkCols = foldl (\d' t' -> d' # snugB <> t' # snugT) mempty
     -- mkRow  = foldl (\d' t' -> d' # snugR <> t' # snugL) mempty
+    inner = rose # scale 0.5 
+    -- inner = regPoly 5 0.4 # fc red # lc red
 
     ts  = take n2 $ repeat t
     tss = chunksOf n ts
