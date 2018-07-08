@@ -16,19 +16,34 @@ import qualified Diagrams.TwoD.Path.Boolean as B
 main :: IO ()
 -- main = mainWith ( moon # frame 0.1 ) >> putStrLn "Done"
 -- main = mainWith ( moonBg # frame 0.1 ) >> putStrLn "Done"
--- main = mainWith ( tiledMoon1 # frame 2 ) >> putStrLn "Done"
 -- main = mainWith ( diamond # frame 0.1 ) >> putStrLn "Done"
 -- main = mainWith ( hexDiamond # frame 0.1 ) >> putStrLn "Done"
-main = mainWith ( tiledMoon2 # frame 2 ) >> putStrLn "Done"
+-- main = mainWith ( sinFunc # frame 2 ) >> putStrLn "Done"
+main = mainWith ( tiledMoon # frame 2 ) >> putStrLn "Done"
 
 
-tiledMoon2 :: Diagram B
-tiledMoon2 = drawEmbeddedTiling drawPolyForT6 t w h
-                # rotateBy (1/12)
+sinFunc :: Diagram B
+sinFunc = 
+  (hrule 10 :: Path V2 Double) # deform' 0.001 (g f1) 
+      # strokeP
+      # lw 50
+      # rotateBy (1/12)
+  where
+    f1 x = sin ((x / 4) * tau)
+    f2 x = cos ((x / 4) * tau)
+    -- g :: Deformation V2 V2 Double
+    g f = Deformation $ \p ->
+      ( (p ^. _x) ^& f ( p ^. _x ) )
+
+
+
+tiledMoon :: Diagram B
+tiledMoon = drawEmbeddedTiling drawPolyForT6 t w h
+                -- # rotateBy (1/12)
   where
     t = t6
-    w = 10
-    h = 10
+    w = 4
+    h = 4
 
 
 
@@ -40,24 +55,32 @@ hexDiamond = ((diamond # snugR # snugT <> diamond # reflectY # snugL # snugT)
 
 diamond :: Diagram B
 diamond = moon # scale 0.15 # centerXY 
-          <> d # scale 0.8 # fc blue
-          <> d # fc white
+          <> d # scale 0.8 # fc blue # lw 0
+          <> (d :: Path V2 Double) # scale 0.88 
+                # deform' 0.0001 g # strokeP # lw 2 # lc gray 
+          <> d # fc gold # lw 1
   where
+    f x = cos ((x / 4) * tau)
+    g = Deformation $ \p ->
+      ( ((p ^. _x) + 0.02 * sin ((p ^. _y) * 16 * tau)) ^& 
+        ((p ^. _y) + 0.01 * sin ((p ^. _y) * 32 * tau)) )
+
     d = polygon ( with
             & polyOrient .~ NoOrient
             & polyType   .~ PolySides 
             [ 120 @@ deg , 60 @@ deg , 120 @@ deg]
             [ 1          , 1         , 1         ]
           )
-          # lw 1
-          # lc black
+          -- # lw 1
+          -- # lc black
           # centerXY
+
 
 drawPolyForT6 p = d
   where
     d = case polyFromSides . length . polygonVertices $ p of
           Hexagon -> poly (mempty # lw 0) <> hd # moveTo cp -- (innerSq  <> poly (mempty # lw 1 # fc blue)) 
-          _        -> error "Unsupported Polygon"
+          _       -> error "Unsupported Polygon"
 
     poly s = drawPoly s p
     poly'  = poly mempty
@@ -69,7 +92,6 @@ drawPolyForT6 p = d
                     # moveTo (centerPoint poly')
 
 
--- drawEmbeddedTiling :: 
 drawEmbeddedTiling drawPoly' t w h = wrapDiagram d
   where
     d = generateTiling t (r2 (0,0)) (r2 (1,0)) inRect f g
@@ -81,45 +103,9 @@ drawEmbeddedTiling drawPoly' t w h = wrapDiagram d
     inRect ((unr2 . toV2) -> (x,y)) = -w/2 <= x && x <= w/2 && -h/2 <= y && y <= h/2
 
 
-
--- | Not quite right, but indicative of the ideas.
-tiledMoon1 :: Diagram B
-tiledMoon1 = drawEmbeddedTiling drawPolyForT33434 t w h
-  where
-    t = t33434
-    w = 10
-    h = 10
-
-
-drawPolyForT33434 p = d
-  where
-    d = case polyFromSides . length . polygonVertices $ p of
-          Triangle -> (poly (mempty # lw 0 # fc orange) # scale 0.8 # centerXY) # moveTo cp 
-          Square   -> innerSq  <> (poly (mempty # lw 0 # fc blue) # scale 0.8 # centerXY) # moveTo cp
-          _        -> error "Unsupported Polygon"
-
-    poly s = drawPoly s p
-    poly'  = poly mempty
-    cp     = centerPoint poly'
-
-    innerSq  = moon # scale 0.2 
-                    # rotateBy ( (cp ^. _x) ^ 2 + (cp ^. _y) ^2 )
-                    # moveTo (centerPoint poly')
-
-    innerTri = moon # fc orange # scale 0.1 # rotateBy (1/2)  # moveTo cp
-  
-
 moonBg :: Diagram B
 moonBg =
   moon # centerXY <> square 3 # bg blue
-
-
-moon' = d 
-  where
-    c1 = circle 1
-    c2 = circle 0.7 # moveTo (p2 (0.5, 0))
-    d  = B.difference Winding c1 c2
-
 
 
 moon :: Diagram B
