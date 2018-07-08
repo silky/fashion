@@ -41,9 +41,8 @@ tiledMoon = drawEmbeddedTiling drawPolyForT6 t w h
                 # rotateBy (1/12)
   where
     t = t6
-    w = 2
-    h = 2
-
+    w = 10
+    h = w
 
 
 hexDiamond :: Diagram B
@@ -55,11 +54,13 @@ hexDiamond = ((diamond # snugR # snugT <> diamond # reflectY # snugL # snugT)
 diamond :: Diagram B
 diamond = moon # scale 0.15 # centerXY 
           <> d # scale 0.8 # fc blue # lw 0
-          <> (d :: Path V2 Double) # scale 0.87 # strokeP # dashingL [0.1, 0.1] 0 # lw 2
+          -- <> (d :: Path V2 Double) # scale 0.87 # strokeP # dashingL [0.1, 0.1] 0 # lw 2
+          --       -- # deform' 0.0001 g # strokeP # lw 2 # lc gray 
+          <> (d :: Path V2 Double) # scale 0.93 # strokeP # dashingL [0.01, 0.01] 0 
+                # lw 10
+                # lc orange
                 -- # deform' 0.0001 g # strokeP # lw 2 # lc gray 
-          <> (d :: Path V2 Double) # scale 0.93 # strokeP # dashingL [0.2, 0.2] 0 # lw 2
-                -- # deform' 0.0001 g # strokeP # lw 2 # lc gray 
-          <> d # fc gold # lw 1
+          <> d # fc white # lw 0
   where
     f x = cos ((x / 4) * tau)
     g = Deformation $ \p ->
@@ -72,8 +73,6 @@ diamond = moon # scale 0.15 # centerXY
             [ 120 @@ deg , 60 @@ deg , 120 @@ deg]
             [ 1          , 1         , 1         ]
           )
-          -- # lw 1
-          -- # lc black
           # centerXY
 
 
