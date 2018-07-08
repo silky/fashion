@@ -109,8 +109,6 @@ drawPolyForT33434 p = d
     innerTri = moon # fc orange # scale 0.1 # rotateBy (1/2)  # moveTo cp
   
 
-
-
 moonBg :: Diagram B
 moonBg =
   moon # centerXY <> square 3 # bg blue
