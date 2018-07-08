@@ -16,7 +16,7 @@ import qualified Diagrams.TwoD.Path.Boolean as B
 main :: IO ()
 -- main = mainWith ( moon # frame 0.1 ) >> putStrLn "Done"
 -- main = mainWith ( moonBg # frame 0.1 ) >> putStrLn "Done"
-main = mainWith ( tiledMoon # frame 0.1 ) >> putStrLn "Done"
+main = mainWith ( tiledMoon # frame 2 ) >> putStrLn "Done"
 
 
 tiledMoon :: Diagram B
@@ -36,12 +36,10 @@ tiledMoon = dd (d')
     inRect ((unr2 . toV2) -> (x,y)) = -w/2 <= x && x <= w/2 && -h/2 <= y && y <= h/2
 
 
--- drawPoly' :: (RealFloat n, Renderable (Path V2 n) b, Typeable n) 
---            => Polygon -> QDiagram b V2 n Any
 drawPoly' p = d
   where
     d = case polyFromSides . length . polygonVertices $ p of
-          Triangle -> poly (mempty # lw 1) 
+          Triangle -> (poly (mempty # lw 0 # fc orange) # scale 0.8 # centerXY) # moveTo cp 
           Square   -> innerSq  <> (poly (mempty # lw 0 # fc blue) # scale 0.8 # centerXY) # moveTo cp
           _        -> error "Unsupported Polygon"
 
@@ -52,6 +50,7 @@ drawPoly' p = d
     innerSq  = moon # scale 0.2 
                     # rotateBy ( (cp ^. _x) ^ 2 + (cp ^. _y) ^2 )
                     # moveTo (centerPoint poly')
+
     innerTri = moon # fc orange # scale 0.1 # rotateBy (1/2)  # moveTo cp
   
 
