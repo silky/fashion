@@ -2,6 +2,7 @@
 {-# LANGUAGE GADTs                      #-}
 {-# LANGUAGE NoMonomorphismRestriction  #-}
 {-# LANGUAGE ViewPatterns               #-}
+{-# LANGUAGE ScopedTypeVariables        #-}
 
 module Main where
 
@@ -27,42 +28,27 @@ tiledMoon = dd (d')
 
     d' = generateTiling t (r2 (0,0)) (r2 (1,0)) inRect f g
     f  = liftA2 (,) (drawEdge mempty) mempty
-    g  = liftA2 (,) mempty (drawPoly'' mempty)
+    g  = liftA2 (,) mempty (drawPoly')
 
 
     dd (es, ps) = viewRect (es <> ps)
-    viewRect    = withEnvelope (rect w h :: Diagram B)
-
+    viewRect = withEnvelope (rect w h :: Diagram B)
     inRect ((unr2 . toV2) -> (x,y)) = -w/2 <= x && x <= w/2 && -h/2 <= y && y <= h/2
 
 
-drawPoly'' :: (RealFloat n, Renderable (Path V2 n) b, Typeable n) 
-           => (Polygon -> Style V2 n) -> Polygon -> QDiagram b V2 n Any
-drawPoly'' s p = poly <> square 0.5 # moveTo (centerPoint poly)
+-- drawPoly' :: (RealFloat n, Renderable (Path V2 n) b, Typeable n) 
+--            => Polygon -> QDiagram b V2 n Any
+drawPoly' p = d
   where
-    poly = applyStyle (s p) . fromVertices . map toP2 . polygonVertices $ p
+    d = case polyFromSides . length . polygonVertices $ p of
+          Triangle -> poly (mempty) 
+          Square   -> inner <> poly (mempty # fc blue)
+          _        -> error "Unsupported Polygon"
+
+    poly s = drawPoly s p
+    -- inner = square 0.5 # moveTo (centerPoint (poly mempty))
+    inner = moon # scale 0.2 # moveTo (centerPoint (poly mempty))
   
-
-
--- drawTilingStyled :: (Renderable (Path R2) b, Backend b R2)
---                  => Style R2 -> (Polygon -> Style R2)
---                  -> Tiling -> Double -> Double -> Diagram b Any
--- drawTilingStyled eStyle pStyle t w h =
---   mkDia $ generateTiling t (0,0) (1,0) inRect
-
---             -- draw the edges and polygons into separate
---             -- diagrams, so we can make sure all the edges are
---             -- overlaid on top of all the polygons at the end
---             (liftA2 (,) (drawEdge eStyle) mempty)
---             (liftA2 (,) mempty (drawPoly pStyle))
---   where
---     inRect ((unr2 . toR2) -> (x,y)) = -w/2 <= x && x <= w/2 && -h/2 <= y && y <= h/2
---     mkDia (es, ps) = viewRect (es <> ps)
---     viewRect = withEnvelope (rect w h :: D R2)
-
-
-
-
 
 
 
@@ -73,6 +59,14 @@ drawPoly'' s p = poly <> square 0.5 # moveTo (centerPoint poly)
 moonBg :: Diagram B
 moonBg =
   moon # centerXY <> square 3 # bg blue
+
+
+moon' = d 
+  where
+    c1 = circle 1
+    c2 = circle 0.7 # moveTo (p2 (0.5, 0))
+    d  = B.difference Winding c1 c2
+
 
 
 moon :: Diagram B
