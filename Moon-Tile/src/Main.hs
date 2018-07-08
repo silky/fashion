@@ -27,7 +27,7 @@ tiledMoon = dd (d')
     h = 10
 
     d' = generateTiling t (r2 (0,0)) (r2 (1,0)) inRect f g
-    f  = liftA2 (,) (drawEdge mempty) mempty
+    f  = liftA2 (,) (drawEdge (mempty # lw 0)) mempty
     g  = liftA2 (,) mempty (drawPoly')
 
 
@@ -41,18 +41,19 @@ tiledMoon = dd (d')
 drawPoly' p = d
   where
     d = case polyFromSides . length . polygonVertices $ p of
-          Triangle -> poly (mempty) 
-          Square   -> inner <> poly (mempty # fc blue)
+          Triangle -> poly (mempty # lw 1) 
+          Square   -> innerSq  <> (poly (mempty # lw 0 # fc blue) # scale 0.8 # centerXY) # moveTo cp
           _        -> error "Unsupported Polygon"
 
     poly s = drawPoly s p
-    -- inner = square 0.5 # moveTo (centerPoint (poly mempty))
-    inner = moon # scale 0.2 # moveTo (centerPoint (poly mempty))
+    poly'  = poly mempty
+    cp     = centerPoint poly'
+
+    innerSq  = moon # scale 0.2 
+                    # rotateBy ( (cp ^. _x) ^ 2 + (cp ^. _y) ^2 )
+                    # moveTo (centerPoint poly')
+    innerTri = moon # fc orange # scale 0.1 # rotateBy (1/2)  # moveTo cp
   
-
-
-
-
 
 
 
@@ -70,7 +71,7 @@ moon' = d
 
 
 moon :: Diagram B
-moon = d # strokeP # fc white # lw 0
+moon = d # strokeP # recommendFillColor white # lw 0
   where
     c1 = circle 1
     c2 = circle 0.7 # moveTo (p2 (0.5, 0))
