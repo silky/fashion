@@ -31,19 +31,18 @@ sinFunc =
   where
     f1 x = sin ((x / 4) * tau)
     f2 x = cos ((x / 4) * tau)
-    -- g :: Deformation V2 V2 Double
-    g f = Deformation $ \p ->
-      ( (p ^. _x) ^& f ( p ^. _x ) )
+    g f  = Deformation $ \p ->
+            ( (p ^. _x) ^& f ( p ^. _x ) )
 
 
 
 tiledMoon :: Diagram B
 tiledMoon = drawEmbeddedTiling drawPolyForT6 t w h
-                -- # rotateBy (1/12)
+                # rotateBy (1/12)
   where
     t = t6
-    w = 4
-    h = 4
+    w = 2
+    h = 2
 
 
 
@@ -56,14 +55,16 @@ hexDiamond = ((diamond # snugR # snugT <> diamond # reflectY # snugL # snugT)
 diamond :: Diagram B
 diamond = moon # scale 0.15 # centerXY 
           <> d # scale 0.8 # fc blue # lw 0
-          <> (d :: Path V2 Double) # scale 0.88 
-                # deform' 0.0001 g # strokeP # lw 2 # lc gray 
+          <> (d :: Path V2 Double) # scale 0.87 # strokeP # dashingL [0.1, 0.1] 0 # lw 2
+                -- # deform' 0.0001 g # strokeP # lw 2 # lc gray 
+          <> (d :: Path V2 Double) # scale 0.93 # strokeP # dashingL [0.2, 0.2] 0 # lw 2
+                -- # deform' 0.0001 g # strokeP # lw 2 # lc gray 
           <> d # fc gold # lw 1
   where
     f x = cos ((x / 4) * tau)
     g = Deformation $ \p ->
-      ( ((p ^. _x) + 0.02 * sin ((p ^. _y) * 16 * tau)) ^& 
-        ((p ^. _y) + 0.01 * sin ((p ^. _y) * 32 * tau)) )
+      ( ((p ^. _x) + 0.02 * cos ((p ^. _y) * 10 * tau)) ^& 
+        ((p ^. _y) + 0.02 * sin ((p ^. _y) * 30 * tau)) )
 
     d = polygon ( with
             & polyOrient .~ NoOrient
