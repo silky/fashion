@@ -41,7 +41,7 @@ tiledMoon = drawEmbeddedTiling drawPolyForT6 t w h
                 # rotateBy (1/12)
   where
     t = t6
-    w = 10
+    w = 2
     h = w
 
 
@@ -52,7 +52,7 @@ hexDiamond = ((diamond # snugR # snugT <> diamond # reflectY # snugL # snugT)
 
 
 diamond :: Diagram B
-diamond = moon # scale 0.15 # centerXY 
+diamond = moon # rotateBy (1/6) # scale 0.15 # centerXY 
           <> d # scale 0.8 # fc blue # lw 0
           -- <> (d :: Path V2 Double) # scale 0.87 # strokeP # dashingL [0.1, 0.1] 0 # lw 2
           --       -- # deform' 0.0001 g # strokeP # lw 2 # lc gray 
