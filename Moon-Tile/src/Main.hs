@@ -41,16 +41,31 @@ tiledMoon = drawEmbeddedTiling drawPolyForT6 t w h
                 # rotateBy (1/12)
   where
     t = t6
-    w = 2
+    w = 10
     h = w
 
 
+-- | As-is, it goes the colourful one, if you swap `diamond' c` for `diamond'
+--   then it does the original one.
 hexDiamond :: Diagram B
-hexDiamond = ((diamond # snugR # snugT <> diamond # reflectY # snugL # snugT)
+hexDiamond = ((diamond' cyan # snugR # snugT <> diamond' magenta # reflectY # snugL # snugT)
               # snugB)
-            <> diamond # rotateBy (1/3) # snugT
+            <> diamond' gold # rotateBy (1/3) # snugT
+
+-- One with colours
+diamond' c = d
+  where
+    d = polygon ( with
+            & polyOrient .~ NoOrient
+            & polyType   .~ PolySides 
+            [ 120 @@ deg , 60 @@ deg , 120 @@ deg]
+            [ 1          , 1         , 1         ]
+          )
+          # centerXY
+          # fc c
 
 
+-- | The original
 diamond :: Diagram B
 diamond = moon # rotateBy (1/6) # scale 0.15 # centerXY 
           <> d # scale 0.8 # fc blue # lw 0
