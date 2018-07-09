@@ -131,6 +131,18 @@ allColours = [ (pastelSorrows,         "pastelSorrows")
              , (cleanAndEnergetic,     "cleanAndEnergetic")
              , (lightPastel,           "lightPastel")
              , (everyDayIsNight,       "everyDayIsNight")
+             , (parkChanyeol,          "parkChanyeol")
+             , (lookMeInTheEye,        "lookMeInTheEye")
+             , (sweetEscape,           "sweetEscape")
+             , (memphis,               "memphis")
+             , (pisos,                 "pisos")
+             , (oceanNotions,          "oceanNotions")
+             , (miracle,               "miracle")
+             , (someKindOfHeaven,      "someKindOfHeaven")
+             , (ethereal,              "ethereal")
+             , (surrender,             "surrender")
+             , (fruitSmoothie,         "fruitSmoothie")
+             , (kujoJotaro,            "kujoJotaro")
              ]
             
 
@@ -1057,3 +1069,134 @@ everyDayIsNight = toC [ "ff4386"
                       , "c3008a"
                       , "63004b"
                       ]
+
+
+-- http://www.color-hex.com/color-palette/44502
+parkChanyeol :: Colours
+parkChanyeol = toC [ "fffaf0"
+                   , "ffceb7"
+                   , "ffaec9"
+                   , "99d9ea"
+                   , "fff200"
+                   ]
+
+
+-- http://www.color-hex.com/color-palette/44502
+lookMeInTheEye :: Colours
+lookMeInTheEye = toC [ "c24ec9"
+                     , "5f159f"
+                     , "f2c022"
+                     , "ff9852"
+                     , "f07f59"
+                     ]
+
+
+-- http://www.color-hex.com/color-palette/39488
+sweetEscape :: Colours
+sweetEscape = toC [ "f2f6b3"
+                  , "ffe85d"
+                  , "ffdb00"
+                  , "ffc53b"
+                  , "55aaf9"
+                  ]
+
+
+-- http://www.color-hex.com/color-palette/39446
+memphis :: Colours
+memphis = toC [ "672394"
+              , "f725a0"
+              , "fad141"
+              , "0cb2c0"
+              , "e8e6d9"
+              ]
+
+
+-- http://www.color-hex.com/color-palette/39441
+vaporWaves :: Colours
+vaporWaves = toC [ "34e1fb"
+                 , "63bcfb"
+                 , "8dbafb"
+                 , "fb93fc"
+                 , "b9a1fb"
+                 ]
+
+
+-- http://www.color-hex.com/color-palette/39433
+pisos :: Colours
+pisos = toC [ "44a2ea"
+            , "cc55ff"
+            , "dd4048"
+            , "f28e44"
+            , "e7bf35"
+            ]
+
+
+-- http://www.color-hex.com/color-palette/39412
+oceanNotions :: Colours
+oceanNotions  = toC [ "99fff2"
+                    , "55ffea"
+                    , "4cd6ff"
+                    , "88deff"
+                    , "6eb2ff"
+                    ]
+                    
+
+-- http://www.color-hex.com/color-palette/39405
+miracle :: Colours
+miracle = toC [ "ffff80"
+              , "dfffa0"
+              , "c0ffc0"
+              , "a0ffdf"
+              , "80ffff"
+              ]
+
+
+--- http://www.color-hex.com/color-palette/39404
+someKindOfHeaven :: Colours
+someKindOfHeaven = toC [ "ff80ff"
+                       , "dfa0ff"
+                       , "c0c0ff"
+                       , "a0dfff"
+                       , "80ffff"
+                       ]
+
+
+-- http://www.color-hex.com/color-palette/39399
+ethereal :: Colours
+ethereal = toC [ "80ff80"
+               , "80dfa0"
+               , "80c0c0"
+               , "80a0df"
+               , "8080ff"
+               ]
+
+
+-- http://www.color-hex.com/color-palette/39400
+surrender :: Colours
+surrender = toC [ "80ff80"
+                , "a0df80"
+                , "c0c080"
+                , "dfa080"
+                , "ff8080"
+                ]
+
+
+-- http://www.color-hex.com/color-palette/39132
+fruitSmoothie :: Colours
+fruitSmoothie = toC [ "ff5555"
+                    , "ff8055"
+                    , "ffaa55"
+                    , "ff8080"
+                    , "ff55aa"
+                    ]
+
+
+-- http://www.color-hex.com/color-palette/39080
+kujoJotaro :: Colours
+kujoJotaro = toC [ "00012c"
+                 , "07004c"
+                 , "9642d3"
+                 , "ffdf32"
+                 , "b7b7b7"
+                 ]
+
