@@ -1,8 +1,8 @@
--- This file has been generated from package.yaml by hpack version 0.21.2.
+-- This file has been generated from package.yaml by hpack version 0.28.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0bc90db4233caa80f170aa0cf3b94ce5eb3dfb59db586109bd804f414bc44eb7
+-- hash: 5c439660e6a68798cd597dd784cef0986166ccbaa886bf2248f128da9ad82d12
 
 name:           Cylinders
 version:        0.1.0.0
@@ -15,7 +15,6 @@ license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
 cabal-version:  >= 1.10
-
 extra-source-files:
     README.md
 
