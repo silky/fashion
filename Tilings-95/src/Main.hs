@@ -20,8 +20,8 @@ dd :: Diagram B
 dd = vcat $ map hcat tss
   where
     t   = (circleTile <> d gold 4 # centerXY)
-            -- # withEnvelope (rect 5.75 4.85 :: D V2 Double)
-            # withEnvelope (square 4.24 :: D V2 Double)
+            # withEnvelope (rect 4.9 4.24 :: D V2 Double)
+            -- # withEnvelope (square 4.24 :: D V2 Double)
             -- # showEnvelope
 
     ts  = take n2 $ repeat t
@@ -72,8 +72,8 @@ d c n = vcat (map hcat tss)
 
     -- mkCols = foldl (\d' t' -> d' # snugB <> t' # snugT) mempty
     -- mkRow  = foldl (\d' t' -> d' # snugR <> t' # snugL) mempty
-    inner = rose # scale 0.5 
-    -- inner = regPoly 5 0.4 # fc red # lc red
+    -- inner = rose # scale 0.5 
+    inner = regPoly 5 0.4 # fc red # lc red
 
     ts  = take n2 $ repeat t
     tss = chunksOf n ts
@@ -94,7 +94,7 @@ tile colour d' = d' # centerXY <> ((((box # snugB # snugR <> t1 # snugB # snugR)
     t2    = tbase # reflectX
     t3    = tbase # reflectXY
     t4    = tbase # reflectY
-    tbase = rht -- # deform' 0.01 wibble
+    tbase = rht # deform' 0.001 wibble
                 # strokeP
                 # scale 0.4
                 # fc colour 
@@ -118,5 +118,5 @@ wibble :: Deformation V2 V2 Double
 wibble = Deformation $ \p ->
   ((p^._x) + f * cos ((p ^. _y) * tau)) ^& ((p ^. _y) + f * sin ((p ^. _x) * tau))
     where
-      f = 0.01
+      f = 0.02
 
