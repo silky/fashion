@@ -1,6 +1,6 @@
 # Tilings-I95
 
-Reference Issue: [Geometric Tile](https://github.com/silky/fashion/issues/95).
+Reference issue: [Geometric Tile](https://github.com/silky/fashion/issues/95).
 
 ![](images/a.png)
 
