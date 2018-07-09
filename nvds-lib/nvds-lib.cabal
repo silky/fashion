@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d7e281fb9e9e4f77f4332ef68dc24ef71d17e6103f9f2167aa6a64bbe07935ed
+-- hash: 86f5891155689c9794372ba0df3217379de2b27ac6f9a714ac2fd51fae3f42d7
 
 name:           nvds-lib
 version:        0.1.0.4
@@ -31,4 +31,23 @@ library
       Nvds.Colours.ColourSets
   other-modules:
       Paths_nvds_lib
+  default-language: Haskell2010
+
+executable Colour-Sampler
+  main-is: Main.hs
+  other-modules:
+      Paths_nvds_lib
+  hs-source-dirs:
+      bin
+  build-depends:
+      base >=4.7 && <5
+    , colour
+    , containers
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+    , nvds-lib
+    , optparse-applicative
+    , palette
+    , split
   default-language: Haskell2010

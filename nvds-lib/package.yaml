@@ -20,3 +20,16 @@ library:
     source-dirs:      src
     exposed-modules:  
         - Nvds.Colours.ColourSets
+
+
+executables:
+    Colour-Sampler:
+        dependencies:
+            - diagrams
+            - diagrams-cairo
+            - split
+            - nvds-lib
+
+        source-dirs: bin
+        main:        Main.hs
+

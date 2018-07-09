@@ -40,6 +40,7 @@ readColourSetName name = return colourSet
 toC = map sRGB24read
 
 
+allColours :: [ (Colours, String) ]
 allColours = [ (pastelSorrows,         "pastelSorrows")
              , (bellyache,             "bellyache")
              , (sunriseToSunset,       "sunriseToSunset")
