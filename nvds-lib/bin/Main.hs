@@ -18,4 +18,4 @@ d = vsep 0.3 $ (map mkThing allColours)
   where
     mkThing (colours, name) = 
       (text name <> rect 20 2 # lw 0) # fontSize (local 1) # scale 0.7 
-        ||| hcat (map (\c -> rect 1 0.5 # fc c # lw 0) colours)
+        ||| hcat (map (\c -> rect 1.5 1 # fc c # lw 0) colours)
