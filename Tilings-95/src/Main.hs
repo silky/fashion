@@ -19,7 +19,7 @@ main = mainWith ( dd # frame 0.1 # bg white ) >> putStrLn "Done"
 dd :: Diagram B
 dd = vcat $ map hcat tss
   where
-    t   = (circleTile <> d gold 4 # centerXY)
+    t   = (circleTile <> d blue 4 # centerXY)
             # withEnvelope (rect 4.9 4.24 :: D V2 Double)
             -- # withEnvelope (square 4.24 :: D V2 Double)
             -- # showEnvelope
@@ -48,8 +48,8 @@ rose = foldl f mempty datas
 
 circleTile :: Diagram B
 circleTile = shape # lw 5 # lc white
-             <> d blue 10
-                  # bg pink 
+             <> d red 10
+                  # bg white
                   # rotateBy (1/8)
                   # scale 0.5
                   # centerXY 
@@ -63,8 +63,8 @@ d :: Colour Double -> Int -> Diagram B
 d c n = vcat (map hcat tss)
   where
     t :: Diagram B
-    -- t = tile blue (tile orange (tile blue mempty # scale 0.4) # scale 0.5 # rotateBy (1/8))
-    t = tile c (tile magenta (square 1.5 # lc magenta <> inner) # scale 0.5 # rotateBy (1/8))
+    t = tile c (tile orange (tile blue mempty # scale 0.4) # scale 0.5 # rotateBy (1/8))
+    -- t = tile c (tile magenta (square 1.5 # lc magenta <> inner) # scale 0.5 # rotateBy (1/8))
              -- Magic numbers that make things equal:
              -- # frame 0.09
              -- # frame 0.3
