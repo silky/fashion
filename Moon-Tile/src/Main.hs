@@ -48,9 +48,9 @@ tiledMoon = drawEmbeddedTiling drawPolyForT6 t w h
 -- | As-is, it goes the colourful one, if you swap `diamond' c` for `diamond'
 --   then it does the original one.
 hexDiamond :: Diagram B
-hexDiamond = ((diamond' cyan # snugR # snugT <> diamond' magenta # reflectY # snugL # snugT)
+hexDiamond = ((diamond # snugR # snugT <> diamond # reflectY # snugL # snugT)
               # snugB)
-            <> diamond' gold # rotateBy (1/3) # snugT
+            <> diamond # rotateBy (1/3) # snugT
 
 -- One with colours
 diamond' c = d
