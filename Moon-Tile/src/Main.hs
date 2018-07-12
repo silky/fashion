@@ -25,7 +25,8 @@ main = mainWith ( tiledMoon # frame 2 ) >> putStrLn "Done"
 
 -- | Let's build this little wavey thing via arcs?
 waveyThing :: Diagram B
-waveyThing = d # rotateBy (1/8) # scaleY 1.7
+waveyThing = d # rotateBy (1/8) # scaleY 1.7 
+               # lw 0.2
   where
     d = (top <> leftSide) # centerXY <> 
         (top <> leftSide) # reflectXY # centerXY
@@ -70,16 +71,19 @@ tiledMoon = drawEmbeddedTiling drawPolyForT6 t w h
                 # rotateBy (1/12)
   where
     t = t6
-    w = 10
+    w = 2
     h = w
 
 
 -- | As-is, it goes the colourful one, if you swap `diamond' c` for `diamond'
 --   then it does the original one.
 hexDiamond :: Diagram B
-hexDiamond = ((diamond # snugR # snugT <> diamond # reflectY # snugL # snugT)
+hexDiamond = 
+  ( ((diamond # snugR # snugT <> diamond # reflectY # snugL # snugT)
               # snugB)
             <> diamond # rotateBy (1/3) # snugT
+  ) # scale 0.99
+
 
 -- One with colours
 diamond' c = d
