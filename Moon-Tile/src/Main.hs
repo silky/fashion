@@ -20,8 +20,37 @@ main :: IO ()
 -- main = mainWith ( hexDiamond # frame 0.1 ) >> putStrLn "Done"
 -- main = mainWith ( sinFunc # frame 2 ) >> putStrLn "Done"
 main = mainWith ( tiledMoon # frame 2 ) >> putStrLn "Done"
+-- main = mainWith ( waveyThing # frame 2 ) >> putStrLn "Done"
 
 
+-- | Let's build this little wavey thing via arcs?
+waveyThing :: Diagram B
+waveyThing = d # rotateBy (1/8) # scaleY 1.7
+  where
+    d = (top <> leftSide) # centerXY <> 
+        (top <> leftSide) # reflectXY # centerXY
+          # moveOriginBy (r2 (-0.3, 0.34))
+
+    leftSide = top # reflectX # rotateBy (1/4)
+    top      = hsep 0 [corner, hsep (-0.5) (wws), corner # reflectX ]
+
+    corner = circle 1
+    -- corner = arc xDir (190 @@ deg)
+    --           # scaleY 1.6
+    --           # rotateBy ((1/8) - (1 / 36))
+    --           # moveOriginBy (r2 (0, 0.2))
+
+    wws = take 10 $ repeat ww
+    ww = w <> w'
+    w' = reflectY w # centerXY
+    w = arc xDir (130 @@ deg) 
+              # scaleY 1.4
+              # rotateBy (1/9)
+              # centerXY
+              # moveOriginBy (r2 (-0.5, -0.9))
+
+
+-- Some attempt to compute a nice little edge, but it doesn't look so good.
 sinFunc :: Diagram B
 sinFunc = 
   (hrule 10 :: Path V2 Double) # deform' 0.001 (g f1) 
@@ -71,9 +100,10 @@ diamond = moon # rotateBy (1/6) # scale 0.15 # centerXY
           <> d # scale 0.8 # fc blue # lw 0
           -- <> (d :: Path V2 Double) # scale 0.87 # strokeP # dashingL [0.1, 0.1] 0 # lw 2
           --       -- # deform' 0.0001 g # strokeP # lw 2 # lc gray 
-          <> (d :: Path V2 Double) # scale 0.93 # strokeP # dashingL [0.01, 0.01] 0 
-                # lw 10
-                # lc orange
+          <> waveyThing # scale 0.029 # rotateBy (-1/12)
+          -- <> (d :: Path V2 Double) # scale 0.93 # strokeP # dashingL [0.01, 0.01] 0 
+          --       # lw 10
+          --       # lc orange
                 -- # deform' 0.0001 g # strokeP # lw 2 # lc gray 
           <> d # fc white # lw 0
   where
