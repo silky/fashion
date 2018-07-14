@@ -2,14 +2,14 @@ name:                Tilings-I95
 version:             0.1.0.0
 #synopsis:
 #description:
-homepage:            https://github.com/githubuser/Tilings-I95#readme
+homepage:            https://github.com/silky/fashion/Tilings-I95#readme
 license:             BSD3
-author:              Author name here
-maintainer:          example@example.com
-copyright:           2018 Author name here
+author:              Noon van der Silk
+maintainer:          noonsilk@gmail.com
+copyright:           2018 Noon van der Silk
 category:            Web
 extra-source-files:
-- README.md
+  - README.md
 
 dependencies:
   - base >= 4.7 && < 5
@@ -22,7 +22,16 @@ dependencies:
   - split
 
 
+library:
+  source-dirs: src
+  exposed-modules:
+    - Nvds.Designs.Tilings95
+
+
 executables:
   Tilings-I95:
+    dependencies:
+      - Tilings-I95
+
     source-dirs:      src
     main:             Main.hs

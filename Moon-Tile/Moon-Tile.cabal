@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 80ecc9780aab5ab404e31f55b6ac75d144a5d46cf43e7724d08d001efb9f351f
+-- hash: e50a541ffc0eb3da078cb8cd51a42598a44a01c2af5eb852fd8e2bba620d731b
 
 name:           Moon-Tile
 version:        0.1.0.0
@@ -18,14 +18,34 @@ cabal-version:  >= 1.10
 extra-source-files:
     README.md
 
-executable Moon-Tile
-  main-is: Main.hs
+library
+  exposed-modules:
+      Nvds.Designs.MoonTile
   other-modules:
+      Main
       Paths_Moon_Tile
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-contrib
+    , diagrams-lib
+    , random
+    , split
+  default-language: Haskell2010
+
+executable Moon-Tile
+  main-is: Main.hs
+  other-modules:
+      Nvds.Designs.MoonTile
+      Paths_Moon_Tile
+  hs-source-dirs:
+      src
+  build-depends:
+      Moon-Tile
+    , base >=4.7 && <5
     , diagrams
     , diagrams-cairo
     , diagrams-contrib

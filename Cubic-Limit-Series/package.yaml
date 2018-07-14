@@ -2,11 +2,11 @@ name:                Cubic-Limit-Series
 version:             0.1.0.0
 #synopsis:
 #description:
-homepage:            https://github.com/githubuser/Cubic-Limit-Series#readme
+homepage:            https://github.com/silky/fashion/Cubic-Limit-Series#readme
 license:             BSD3
-author:              Author name here
-maintainer:          example@example.com
-copyright:           2018 Author name here
+author:              Noon van der Silk
+maintainer:          noonsilk@gmail.com
+copyright:           2018 Noon van der Silk
 category:            Web
 extra-source-files:
 - README.md
@@ -23,7 +23,15 @@ dependencies:
   - random-fu
   - split
 
+library:
+  source-dirs: src
+  exposed-modules:
+    - Nvds.Designs.CubicLimitSeries
+
 executables:
   Cubic-Limit-Series:
+    dependencies:
+      - Cubic-Limit-Series
+
     source-dirs:      src
     main:             Main.hs

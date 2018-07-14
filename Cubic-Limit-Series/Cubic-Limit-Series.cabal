@@ -2,15 +2,15 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 19744efc9bccebf6f32cb7438f078ab09baf49c4de4c0c894eacef50ad739e37
+-- hash: 3ef360915e106169ac2d313f503d4fff4e383df72f8bf2664b2042b393402f53
 
 name:           Cubic-Limit-Series
 version:        0.1.0.0
 category:       Web
-homepage:       https://github.com/githubuser/Cubic-Limit-Series#readme
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2018 Author name here
+homepage:       https://github.com/silky/fashion/Cubic-Limit-Series#readme
+author:         Noon van der Silk
+maintainer:     noonsilk@gmail.com
+copyright:      2018 Noon van der Silk
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
@@ -18,14 +18,37 @@ cabal-version:  >= 1.10
 extra-source-files:
     README.md
 
-executable Cubic-Limit-Series
-  main-is: Main.hs
+library
+  exposed-modules:
+      Nvds.Designs.CubicLimitSeries
   other-modules:
+      Main
       Paths_Cubic_Limit_Series
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-contrib
+    , diagrams-lib
+    , nvds-lib
+    , random
+    , random-extras
+    , random-fu
+    , split
+  default-language: Haskell2010
+
+executable Cubic-Limit-Series
+  main-is: Main.hs
+  other-modules:
+      Nvds.Designs.CubicLimitSeries
+      Paths_Cubic_Limit_Series
+  hs-source-dirs:
+      src
+  build-depends:
+      Cubic-Limit-Series
+    , base >=4.7 && <5
     , diagrams
     , diagrams-cairo
     , diagrams-contrib

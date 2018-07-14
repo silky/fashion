@@ -1,0 +1,15 @@
+resolver: lts-12.0
+packages:
+  - .
+  - location:  ../Cubic-Limit-Series
+    extra-dep: True
+  - location:  ../Tilings-95
+    extra-dep: True
+  - location:  ../Moon-Tile
+    extra-dep: True
+  - location:  ../nvds-lib
+    extra-dep: True
+    
+extra-deps:
+  - random-extras-0.19@sha256:52579ee8653b17d8b19fb54833ecbab8df47b6cf61a77c9614df0c3155441d29
+
