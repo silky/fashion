@@ -57,12 +57,11 @@ sinFunc =
 
 
 
-tiledMoon :: Diagram B
-tiledMoon = drawEmbeddedTiling drawPolyForT6 t w h
+tiledMoon :: Double -> Diagram B
+tiledMoon w = drawEmbeddedTiling drawPolyForT6 t w h
                 # rotateBy (1/12)
   where
     t = t6
-    w = 2
     h = w
 
 
