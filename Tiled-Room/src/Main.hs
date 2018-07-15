@@ -24,13 +24,13 @@ main = do
 d :: IO (Diagram B)
 d = do
   d1 <- CLS.design
+
   let d2 = T95.dd
-  let d3 = MT.tiledMoon 10 # scale 3
+  let d3 = MT.tiledMoon 20 # scale 1
 
   d4 <- CLS.design
 
-  let sq = square 1 # lw 2 # lc blue
-
+  let sq  = square 1 # lw 2 # lc blue
   let d1' = (d1 # scale 0.066 # centerXY <> sq)
                 -- # clipTo (square 1)
                 # clipBy (square 1)
@@ -74,6 +74,7 @@ d = do
 
 
   -- return roomLeft
-  return $ vsep 0 [room, room # reflectY]
+  -- return $ vsep 0 [room, room # reflectY]
+  return $ room
   -- return d1'
 
