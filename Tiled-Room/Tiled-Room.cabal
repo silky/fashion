@@ -1,8 +1,10 @@
--- This file has been generated from package.yaml by hpack version 0.28.2.
+cabal-version: >= 1.10
+
+-- This file has been generated from package.yaml by hpack version 0.29.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 64646cd2e6d1db88a15753e3777f5343b3f9b25dc8bdda9b9554bdb8b1bdb618
+-- hash: 5673544b1cb4a539a9f8c218740a4dd9ff06f72b14e00a2473caaf02598fc398
 
 name:           Tiled-Room
 version:        0.1.0.0
@@ -14,7 +16,6 @@ copyright:      Noon van der Silk
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
-cabal-version:  >= 1.10
 extra-source-files:
     README.md
 
@@ -32,4 +33,5 @@ executable Tiled-Room
     , diagrams
     , diagrams-cairo
     , diagrams-lib
+    , nvds-lib
   default-language: Haskell2010

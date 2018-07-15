@@ -16,6 +16,7 @@ dependencies:
   - Cubic-Limit-Series
   - Tilings-I95
   - Moon-Tile
+  - nvds-lib
   - diagrams
   - diagrams-lib
   - diagrams-cairo

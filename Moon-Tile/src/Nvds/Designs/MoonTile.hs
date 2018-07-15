@@ -57,8 +57,8 @@ sinFunc =
 
 
 
-tiledMoon :: Double -> Diagram B
-tiledMoon w = drawEmbeddedTiling drawPolyForT6 t w h
+tiledMoon :: Double -> [Colour Double] -> Diagram B
+tiledMoon w colours = drawEmbeddedTiling (drawPolyForT6 colours) t w h
                 # rotateBy (1/12)
   where
     t = t6
@@ -67,12 +67,17 @@ tiledMoon w = drawEmbeddedTiling drawPolyForT6 t w h
 
 -- | As-is, it goes the colourful one, if you swap `diamond' c` for `diamond'
 --   then it does the original one.
-hexDiamond :: Diagram B
-hexDiamond = 
-  ( ((diamond # snugR # snugT <> diamond # reflectY # snugL # snugT)
+hexDiamond :: [Colour Double] -> Diagram B
+hexDiamond colours = 
+  ( ((moonDiamond # snugR # snugT <> moonDiamond # reflectY # snugL # snugT)
               # snugB)
-            <> diamond # rotateBy (1/3) # snugT
+            <> moonDiamond # rotateBy (1/3) # snugT
   ) # scale 0.99
+    where
+      c1 = colours !! 0
+      c2 = colours !! 1
+      c3 = colours !! 2
+      moonDiamond = diamond c1 c2 c3
 
 
 -- One with colours
@@ -89,9 +94,9 @@ diamond' c = d
 
 
 -- | The original
-diamond :: Diagram B
-diamond = moon # rotateBy (1/6) # scale 0.15 # centerXY 
-          <> d # scale 0.8 # fc blue # lw 0
+diamond :: Colour Double -> Colour Double -> Colour Double -> Diagram B
+diamond c1 c2 c3 = moon # fc c2 # rotateBy (1/6) # scale 0.15 # centerXY 
+          <> d # scale 0.8 # fc c1 # lw 0
           -- <> (d :: Path V2 Double) # scale 0.87 # strokeP # dashingL [0.1, 0.1] 0 # lw 2
           --       -- # deform' 0.0001 g # strokeP # lw 2 # lc gray 
           <> waveyThing # scale 0.029 # rotateBy (-1/12)
@@ -99,8 +104,9 @@ diamond = moon # rotateBy (1/6) # scale 0.15 # centerXY
           --       # lw 10
           --       # lc orange
                 -- # deform' 0.0001 g # strokeP # lw 2 # lc gray 
-          <> d # fc white # lw 0
+          <> d # fc c3 # lw 0
   where
+    -- c3 = white
     f x = cos ((x / 4) * tau)
     g = Deformation $ \p ->
       ( ((p ^. _x) + 0.02 * cos ((p ^. _y) * 10 * tau)) ^& 
@@ -115,7 +121,7 @@ diamond = moon # rotateBy (1/6) # scale 0.15 # centerXY
           # centerXY
 
 
-drawPolyForT6 p = d
+drawPolyForT6 colours p = d
   where
     d = case polyFromSides . length . polygonVertices $ p of
           Hexagon -> poly (mempty # lw 0) <> hd # moveTo cp -- (innerSq  <> poly (mempty # lw 1 # fc blue)) 
@@ -124,7 +130,7 @@ drawPolyForT6 p = d
     poly s = drawPoly s p
     poly'  = poly mempty
     cp     = centerPoint poly'
-    hd     = hexDiamond # centerXY # rotateBy (1/12)
+    hd     = hexDiamond colours # centerXY # rotateBy (1/12)
 
     innerSq  = moon # scale 0.2 
                     # rotateBy ( (cp ^. _x) ^ 2 + (cp ^. _y) ^2 )

@@ -2,6 +2,7 @@ module Main where
 
 import Diagrams.Prelude
 import Diagrams.Backend.Cairo.CmdLine
+import Nvds.Colours.ColourSets
 
 import qualified Nvds.Designs.CubicLimitSeries  as CLS
 import qualified Nvds.Designs.Tilings95         as T95
@@ -23,30 +24,37 @@ main = do
 
 d :: IO (Diagram B)
 d = do
-  d1 <- CLS.design
+  -- d1 <- CLS.design
 
-  let d2 = T95.dd
-  let d3 = MT.tiledMoon 20 # scale 1
+  -- let cs = cycle pisos
+  -- let cs = cycle vaporWaves
+  -- let cs = cycle memphis
+  -- let cs = cycle lookMeInTheEye
+  let cs = cycle noodles
 
-  d4 <- CLS.design
+  let d1 = MT.tiledMoon 15 (take 3 cs) # scale 0.1
+  let d2 = MT.tiledMoon 15 (take 3 (drop 3 cs)) # scale 0.1
+  let d3 = MT.tiledMoon 15 (take 3 (drop 6 cs)) # scale 0.1
 
-  let sq  = square 1 # lw 2 # lc blue
-  let d1' = (d1 # scale 0.066 # centerXY <> sq)
-                -- # clipTo (square 1)
-                # clipBy (square 1)
-                # withEnvelope (square 1 :: Diagram B)
+  let sq  = square 1 # lw 2 # lc white
 
-  let d2' = (d2 # centerXY # scale 0.1 # bg white <> sq )
-                -- # clipTo (square 1)
-                # clipBy (square 1)
-                # withEnvelope (square 1 :: Diagram B)
-                # snugR # snugT
-
-  let d3' = (d3 # scale 0.066 # centerXY <> sq)
+  let d1' = (sq <> d1 # centerXY)
                 # clipTo (square 1)
+                -- # clipBy (square 1)
                 -- # withEnvelope (square 1 :: Diagram B)
 
-  let roomMiddle = d1' # centerXY
+  let d2' = (sq <> d2 # centerXY)
+                # clipTo (square 1)
+                -- # clipBy (square 1)
+                -- # withEnvelope (square 1 :: Diagram B)
+                # snugR # snugT
+
+  let d3' = (sq <> d3 # centerXY)
+                # clipTo (square 1)
+                -- # clipBy (square 1)
+                -- # withEnvelope (square 1 :: Diagram B)
+
+  let roomMiddle = d1' -- # centerXY
                        # snugL # snugT
 
 

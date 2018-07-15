@@ -1,8 +1,10 @@
--- This file has been generated from package.yaml by hpack version 0.28.2.
+cabal-version: >= 1.10
+
+-- This file has been generated from package.yaml by hpack version 0.29.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6f90f2459c20977854f9c7da1791f93179faa580d54c58d9a000d5889f84f19b
+-- hash: 2ba721a992f49b656a735f948da8e6d02afdc3fc7ed6cb91e0723119246fbe41
 
 name:           Tilings-I95
 version:        0.1.0.0
@@ -14,7 +16,6 @@ copyright:      2018 Noon van der Silk
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
-cabal-version:  >= 1.10
 extra-source-files:
     README.md
 

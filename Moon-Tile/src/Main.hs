@@ -10,7 +10,7 @@ main :: IO ()
 -- main = mainWith ( diamond # frame 0.1 ) >> putStrLn "Done"
 -- main = mainWith ( hexDiamond # frame 0.1 ) >> putStrLn "Done"
 -- main = mainWith ( sinFunc # frame 2 ) >> putStrLn "Done"
-main = mainWith ( tiledMoon 2 # frame 2 ) >> putStrLn "Done"
+main = mainWith ( tiledMoon 2 [blue] # frame 2 ) >> putStrLn "Done"
 -- main = mainWith ( waveyThing # frame 2 ) >> putStrLn "Done"
 
 

@@ -1,8 +1,10 @@
--- This file has been generated from package.yaml by hpack version 0.28.2.
+cabal-version: >= 1.10
+
+-- This file has been generated from package.yaml by hpack version 0.29.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 86f5891155689c9794372ba0df3217379de2b27ac6f9a714ac2fd51fae3f42d7
+-- hash: fb1a39e50e6f5d2008c067a2fc3e10ec56a5c8c5d86cddbb6a7e59f203de0a84
 
 name:           nvds-lib
 version:        0.1.0.4
@@ -13,7 +15,6 @@ copyright:      2017 Noon van der Silk
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
-cabal-version:  >= 1.10
 extra-source-files:
     README.md
 
