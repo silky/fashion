@@ -31,5 +31,5 @@ executables:
     dependencies:
       - Moon-Tile
 
-    source-dirs:      src
+    source-dirs:      bin
     main:             Main.hs

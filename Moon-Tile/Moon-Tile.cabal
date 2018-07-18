@@ -4,7 +4,7 @@ cabal-version: >= 1.10
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3ba5b8a7e94d079eea6f63dbac12aa75e0b15373594c44e1a7a920573f6e985e
+-- hash: 2023882cc8126a8c2e3289445040a07d987fe1323d8d5a0af4a4e3a11c2b2d23
 
 name:           Moon-Tile
 version:        0.1.0.0
@@ -23,7 +23,6 @@ library
   exposed-modules:
       Nvds.Designs.MoonTile
   other-modules:
-      Main
       Paths_Moon_Tile
   hs-source-dirs:
       src
@@ -40,10 +39,9 @@ library
 executable Moon-Tile
   main-is: Main.hs
   other-modules:
-      Nvds.Designs.MoonTile
       Paths_Moon_Tile
   hs-source-dirs:
-      src
+      bin
   build-depends:
       Moon-Tile
     , base >=4.7 && <5
