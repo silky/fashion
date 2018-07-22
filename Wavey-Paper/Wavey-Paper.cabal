@@ -1,0 +1,34 @@
+cabal-version: >= 1.10
+
+-- This file has been generated from package.yaml by hpack version 0.29.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 0260c91c5085439e1f70d61100ba6b39bf0bd39199d424a85a626a4a62d5a28d
+
+name:           Wavey-Paper
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/silky/fashion/Wavey-Paper#readme
+author:         Noon van der Silk
+maintainer:     noonsilk@gmail.com
+copyright:      Noon van der Silk
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+executable Wavey-Paper
+  main-is: Main.hs
+  other-modules:
+      Paths_Wavey_Paper
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+    , nvds-lib
+  default-language: Haskell2010
