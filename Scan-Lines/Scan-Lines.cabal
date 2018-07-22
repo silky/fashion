@@ -1,0 +1,33 @@
+cabal-version: >= 1.10
+
+-- This file has been generated from package.yaml by hpack version 0.29.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 047aba2557d21a09bb0803063e4442b30ba2783d4ee87b49d808789d5da08d6a
+
+name:           Scan-Lines
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/silky/Scan-Lines#readme
+author:         Noon van der Silk
+maintainer:     noonsilk@gmail.com
+copyright:      Noon van der Silk
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+executable Scan-Lines
+  main-is: Main.hs
+  other-modules:
+      Paths_Scan_Lines
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+  default-language: Haskell2010
