@@ -50,8 +50,9 @@ circleParts n = map f [0..n]
         a = 360 / n
 
 
--- linesToDraw = circleParts 3
-linesToDraw = cubeParts
+linesToDraw = circleParts 150
+-- linesToDraw = circleParts 50
+-- linesToDraw = cubeParts
 
 
 linesWith :: Colour Double -> [Int] -> Diagram B
@@ -66,10 +67,10 @@ linesWith c indicies =
         p = (square 3) # lw 0.2 # lc c
 
         -- Always everything
-        -- sublines = linesToDraw
+        sublines = linesToDraw
         --
         -- Some subset
-        sublines = map (\i -> linesToDraw !! i) indicies
+        -- sublines = map (\i -> linesToDraw !! i) indicies
 
 
 tile :: Colour Double -> Colour Double -> Colour Double -> [Int] -> Diagram B
@@ -154,6 +155,7 @@ design =  do
     -- tiles <- replicateM items (someIndicies >>= return . tile')
 
     let diag = vcat (map hcat (chunksOf chunks tiles))
+                # withEnvelope (square 1 :: Diagram B)
 
     return (diag # frame 0.2)
 

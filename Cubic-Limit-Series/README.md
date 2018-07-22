@@ -1,6 +1,7 @@
 # Cubic-Limit-Series
 
-See: [Cubic-Limit-Series](https://github.com/silky/fashion/issues/96).
+See: [Cubic-Limit-Series](https://github.com/silky/fashion/issues/96) and
+[sunburst](https://github.com/silky/fashion/issues/112).
 
 ![](images/g.png)
 ![](images/f.png)
@@ -11,4 +12,5 @@ See: [Cubic-Limit-Series](https://github.com/silky/fashion/issues/96).
 ![](images/d.png)
 ![](images/h.png)
 ![](images/big.png)
+![](images/i.png)
 

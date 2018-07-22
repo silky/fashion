@@ -10,4 +10,4 @@ import Diagrams.Backend.Cairo.CmdLine
 import Nvds.Designs.CubicLimitSeries
 
 main :: IO ()
-main = mainWith design
+main = mainWith design >> putStrLn "Done!"
