@@ -1,0 +1,33 @@
+cabal-version: >= 1.10
+
+-- This file has been generated from package.yaml by hpack version 0.29.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 031a0cbbef5b5a1b425836f0baf66db14696a2052c6a05e004a6271145787533
+
+name:           Teseloni
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/silky/fashion/Teseloni#readme
+author:         Noon van der Silk
+maintainer:     noonsilk@gmail.com
+copyright:      Noon van der Silk
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+executable Teseloni
+  main-is: Main.hs
+  other-modules:
+      Paths_Teseloni
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+  default-language: Haskell2010

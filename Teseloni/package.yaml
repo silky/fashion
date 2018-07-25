@@ -1,0 +1,21 @@
+name:                Teseloni
+version:             0.1.0.0
+homepage:            https://github.com/silky/fashion/Teseloni#readme
+license:             BSD3
+author:              Noon van der Silk
+maintainer:          noonsilk@gmail.com
+copyright:           Noon van der Silk
+category:            Web
+extra-source-files:
+- README.md
+
+dependencies:
+  - base >= 4.7 && < 5
+  - diagrams
+  - diagrams-cairo
+  - diagrams-lib
+
+executables:
+  Teseloni:
+    source-dirs:      src
+    main:             Main.hs
