@@ -13,7 +13,7 @@ main = mainWith (d # frame 0.2) >> putStrLn "Done!"
 
 
 d :: Diagram B
-d = allBoxes
+d = boxes
   where
     boxes    = sq box
     allBoxes = sq boxes
@@ -25,6 +25,7 @@ d = allBoxes
            )
            # centerXY
 
+    box :: Diagram B
     box = (square 1 <> mconcat [ s # scale (1 - (0.1*s')) | s' <- [0..9] ]
             <> mconcat lines
           )
@@ -34,8 +35,9 @@ d = allBoxes
             # withEnvelope (square 1 :: Diagram B)
             # centerXY
 
+    lines :: [Diagram B]
     lines = [ centerLine # translate (r2 (r, r)) 
-            | r <- map (\s -> ((1 - 0.1 * s) - 0.5) / 2.2) [ 0..9 ] 
+            | r <- map (\s -> ((1 - 0.1 * s) - 0.5) / 3) [ 0..9 ] 
             ]
 
     centerLine = ((0.5) ^& (-0.5)) ~~ ((-0.5) ^& 0.5)
