@@ -21,15 +21,15 @@ locs = [ (x, y)
           , y <- [0.1, 0.3 .. limit]
        ]
 
-vectorField (x, y) = r2 (cos (y), cos (x))
+vectorField (x, y) = r2 (sin x, cos y)
 
 points = map p2 locs
 arrows = map arrowAtPoint locs
 
 arrowAtPoint (x, y) = obj
   where
-    -- obj = arrowAt' opts (p2 (x,y)) (sL *^ vf) # alignTL # lc c
-    obj = circle (m*0.1) # moveTo (p2 (x,y)) # fc c # lw none
+    obj = arrowAt' opts (p2 (x,y)) (sL *^ vf) # alignTL # lc c
+    -- obj = circle (m*0.1) # moveTo (p2 (x,y)) # fc c # lw none
 
     c :: Colour Double
     c = rgbUsingSpace sRGBSpace (x / limit) 0 (m**m)
