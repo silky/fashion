@@ -1,0 +1,34 @@
+cabal-version: >= 1.10
+
+-- This file has been generated from package.yaml by hpack version 0.29.6.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: e9b83b191f53114c053ca79ade376946b848c3efa4c7886352be4e3cec96bb2c
+
+name:           Warp-Speed
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/silky/fashion/Warp-Speed#readme
+author:         Noon van der Silk
+maintainer:     noonsilk@gmail.com
+copyright:      Noon van der Silk
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+executable Warp-Speed
+  main-is: Main.hs
+  other-modules:
+      Paths_Warp_Speed
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+    , gsl-random
+  default-language: Haskell2010

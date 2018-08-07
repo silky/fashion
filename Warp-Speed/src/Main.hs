@@ -1,0 +1,44 @@
+{-# LANGUAGE FlexibleContexts           #-}
+{-# LANGUAGE GADTs                      #-}
+{-# LANGUAGE NoMonomorphismRestriction  #-}
+
+module Main where
+
+import Control.Monad
+import Diagrams.Prelude
+import Diagrams.Backend.Cairo.CmdLine
+import GSL.Random.Quasi (halton, QRNGType, getListSample, newQRNG)
+
+main :: IO ()
+main = mainWith (frame 0.2 <$> d) >> putStrLn "Done!"
+
+
+getPoints :: QRNGType -> Int -> IO [Point V2 Double]
+getPoints qrngType n = do
+    rng     <- newQRNG qrngType 2
+    points  <- replicateM n (getListSample rng)
+
+    return $ map (\[a,b] -> mkP2 a b) points
+
+
+d :: IO (Diagram B)
+d = do
+  let n = 300
+
+  points <- getPoints halton n
+  
+  let c       = circle s # fc white # lw none
+      circles = position (map f points)
+      d'      = circles # centerXY <> rect w h # bg black # centerXY
+      f pt    = (pt, c # scale (norm (pt - pc)))
+
+  return d'
+
+  where
+    s = 0.01
+    w = 1
+    h = 1
+    cx = w / 2
+    cy = h / 2
+    pc = cx ^& cy
+
