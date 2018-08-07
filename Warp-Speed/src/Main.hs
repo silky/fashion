@@ -23,21 +23,25 @@ getPoints qrngType n = do
 
 d :: IO (Diagram B)
 d = do
-  let n = 300
+  let n = 1000
 
   points <- getPoints halton n
   
   let c       = circle s # fc white # lw none
       circles = position (map f points)
       d'      = circles # centerXY <> rect w h # bg black # centerXY
-      f pt    = (pt, c # scale (norm (pt - pc)))
+      -- Black-hole-esque thing
+      -- f pt    = (pt, c # scale (norm (pt - pc)))
+      --
+      -- Accidentally-close:
+      f pt    = (pt, pc ~~ pt # scale 0.2 # lc gold  # lw 0.4 # centerXY)
 
   return d'
 
   where
     s = 0.01
-    w = 1
-    h = 1
+    w = 1.2
+    h = 1.2
     cx = w / 2
     cy = h / 2
     pc = cx ^& cy
