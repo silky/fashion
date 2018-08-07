@@ -5,6 +5,7 @@
 module Main where
 
 import Control.Monad
+import Data.Colour
 import Diagrams.Prelude
 import Diagrams.Backend.Cairo.CmdLine
 import GSL.Random.Quasi (halton, QRNGType, getListSample, newQRNG)
@@ -37,11 +38,17 @@ d = do
       -- f pt    = (pt, c # scale (norm (pt - pc)))
       --
       -- Accidentally-close:
-      f pt    = (pt, pc ~~ pt # scale (norm (pt - pc) ^ 2) # lc gold # lw 0.6)
+      f pt    = ( pt
+                ,  pc ~~ pt # scale (norm (pt - pc) ** 0.6) 
+                            # lc (col (norm (pc - pt) ** 0.2)) # lw 0.9
+                )
 
   return d'
 
   where
+    col :: Double -> Colour Double
+    col n = blend n red blue
+
     s = 0.01
     w = 1
     h = 1

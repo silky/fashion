@@ -4,7 +4,7 @@ cabal-version: >= 1.10
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e9b83b191f53114c053ca79ade376946b848c3efa4c7886352be4e3cec96bb2c
+-- hash: fdde95adff82150b8f0afc4642ba0d383a44ee40a102d36170962bf74ecdd217
 
 name:           Warp-Speed
 version:        0.1.0.0
@@ -27,6 +27,7 @@ executable Warp-Speed
       src
   build-depends:
       base >=4.7 && <5
+    , colour
     , diagrams
     , diagrams-cairo
     , diagrams-lib
