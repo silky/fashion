@@ -37,7 +37,7 @@ d = do
       -- f pt    = (pt, c # scale (norm (pt - pc)))
       --
       -- Accidentally-close:
-      f pt    = (pt, pc ~~ pt # scale (norm (pt - pc)) # lc white # lw 0.6)
+      f pt    = (pt, pc ~~ pt # scale (norm (pt - pc) ^ 2) # lc gold # lw 0.6)
 
   return d'
 
