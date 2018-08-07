@@ -40,7 +40,7 @@ d = do
       -- Accidentally-close:
       f pt    = ( pt
                 ,  pc ~~ pt # scale (norm (pt - pc) ** 0.6) 
-                            # lc (col (norm (pt))) # lw 0.9
+                            # lc (col (norm (pt) ** 1.5)) # lw 0.9
                 )
 
   return d'
