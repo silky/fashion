@@ -14,14 +14,16 @@ main = mainWith (d # frame 0.2) >> putStrLn "Done!"
 
 d :: Diagram B
 d = ts # centerXY
-       <> rect 10 15
+       <> rect 10 15 
+          # fc pink
+          # lc pink
   where
     t   = text "Hello!"
 
     sq n = square n # lw none
     hello = hello'
-              blue
-              pink
+              cyan
+              salmon
               yellow
               green
               orange
@@ -31,8 +33,8 @@ d = ts # centerXY
                # translateY ( 0.1)
                # translateX (-0.1)
               )
-                # font "Fira Code" # bold
-                # centerXY
+              # font "Fira Code" # bold
+              # centerXY
 
     -- text' t = text t # font "Uroob" # bold -- Gala likes this one
     -- text' t = text t # font "Purisa" # bold
