@@ -10,3 +10,5 @@ See: [text along a path](https://github.com/silky/fashion/issues/108).
 
 ![](images/d.png)
 
+![](images/e.png)
+

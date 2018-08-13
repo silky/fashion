@@ -22,11 +22,12 @@ d = ts # centerXY
     -- text' t = text t # font "Uroob" # bold -- Gala likes this one
     -- text' t = text t # font "Purisa" # bold
     -- text' t = text t # font "Fira Code" # bold
-    ys  = reverse [0.5, 0.6 .. 2.5]
+    ys  = reverse [0.5, 0.8 .. 7]
+    -- ys  = reverse [0.5, 0.6 .. 2.5]
     ts  = mconcat $ map pos ys
 
     pos y = gala # moveTo (p2 (y, f y))
-    f x   = exp x
+    f x   = (x ** 2) / 4
 
 text' t = (text t <> 
             text t # fontSize (local 1.1) # bold # fc black
