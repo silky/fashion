@@ -22,11 +22,16 @@ d = ts # centerXY
     -- text' t = text t # font "Uroob" # bold -- Gala likes this one
     -- text' t = text t # font "Purisa" # bold
     -- text' t = text t # font "Fira Code" # bold
-    ys  = reverse [0.5, 0.8 .. 7]
+    start = 0.5
+    step  = 0.3
+    end   = 7
+    ys  = reverse [start, start + step .. end]
     -- ys  = reverse [0.5, 0.6 .. 2.5]
-    ts  = mconcat $ map pos ys
+    ts  = mconcat ([finalT] ++ map pos ys)
+    finalT = pos' (gala' white white white white) (head ys + step)
 
     pos y = gala # moveTo (p2 (y, f y))
+    pos' d y = d # moveTo (p2 (y, f y))
     f x   = (x ** 2) / 4
 
 text' t = (text t <> 
