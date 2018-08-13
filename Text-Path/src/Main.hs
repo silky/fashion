@@ -46,10 +46,10 @@ gala' c1 c2 c3 c4 =
        ]
 
 gala = gala'
-          cyan
+          deepskyblue
           salmon
-          green
-          orange
+          mediumaquamarine
+          mediumslateblue
 
 hello' c1 c2 c3 c4 c5 =
   hcat [ text' "H" # fc c1 <> sq 1  
