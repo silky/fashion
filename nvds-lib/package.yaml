@@ -1,5 +1,5 @@
 name:       nvds-lib
-version:    0.1.0.4
+version:    0.2.0.0
 license:    BSD3
 author:     Noon van der Silk
 maintainer: noonsilk@gmail.com
@@ -11,10 +11,12 @@ extra-source-files:
 dependencies:
     - base >= 4.7 && < 5
     - colour
-    - palette
-    - diagrams-lib
-    - optparse-applicative
     - containers
+    - diagrams-lib
+    - linear
+    - optparse-applicative
+    - palette
+    - svg-tree
 
 library:
     source-dirs:      src

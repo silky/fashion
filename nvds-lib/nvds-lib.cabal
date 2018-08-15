@@ -1,10 +1,10 @@
 cabal-version: >= 1.10
 
--- This file has been generated from package.yaml by hpack version 0.29.0.
+-- This file has been generated from package.yaml by hpack version 0.29.6.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: fb1a39e50e6f5d2008c067a2fc3e10ec56a5c8c5d86cddbb6a7e59f203de0a84
+-- hash: 394b49e7c8c2f5db11446967da10eee54da46e85a3ef67df5714572e0e37e8fb
 
 name:           nvds-lib
 version:        0.1.0.4
@@ -26,11 +26,14 @@ library
     , colour
     , containers
     , diagrams-lib
+    , linear
     , optparse-applicative
     , palette
+    , svg-tree
   exposed-modules:
       Nvds.Colours.ColourSets
   other-modules:
+      Nvds.Svg
       Paths_nvds_lib
   default-language: Haskell2010
 
@@ -47,8 +50,10 @@ executable Colour-Sampler
     , diagrams
     , diagrams-cairo
     , diagrams-lib
+    , linear
     , nvds-lib
     , optparse-applicative
     , palette
     , split
+    , svg-tree
   default-language: Haskell2010
