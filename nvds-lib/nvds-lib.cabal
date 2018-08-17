@@ -4,10 +4,10 @@ cabal-version: >= 1.10
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 394b49e7c8c2f5db11446967da10eee54da46e85a3ef67df5714572e0e37e8fb
+-- hash: 587204ac7fd83691738577f36d59dcfe794faf06801efadf4b415ca0339f98de
 
 name:           nvds-lib
-version:        0.1.0.4
+version:        0.2.0.0
 category:       Web
 author:         Noon van der Silk
 maintainer:     noonsilk@gmail.com
@@ -31,9 +31,9 @@ library
     , palette
     , svg-tree
   exposed-modules:
+      Nvds.Svg
       Nvds.Colours.ColourSets
   other-modules:
-      Nvds.Svg
       Paths_nvds_lib
   default-language: Haskell2010
 

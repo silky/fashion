@@ -21,6 +21,7 @@ dependencies:
 library:
     source-dirs:      src
     exposed-modules:  
+        - Nvds.Svg
         - Nvds.Colours.ColourSets
 
 

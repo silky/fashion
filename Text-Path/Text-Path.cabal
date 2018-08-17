@@ -4,7 +4,7 @@ cabal-version: >= 1.10
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 45eb60eefd79c7d9cae5a68106e7d5f96936f326b52c9a7a82ed8521be0eeb2d
+-- hash: dff5325a069d637e8f382f784f7149f456c955febdf55bc6cb96efa87be85f11
 
 name:           Text-Path
 version:        0.1.0.0
@@ -30,4 +30,5 @@ executable Text-Path
     , diagrams
     , diagrams-cairo
     , diagrams-lib
+    , nvds-lib
   default-language: Haskell2010
