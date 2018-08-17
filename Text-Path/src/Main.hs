@@ -20,12 +20,19 @@ ifilter p xs = map snd $ filter (p . fst) (zip [1..] xs)
 d :: IO (Diagram B)
 d = do
   -- Supposing we "stack run ..." from the "./src" directory.
-  Just (w, h, p) <- singlePathFromFile' "../svg-paths/j-small.svg"
+  Just (w, h, p) <- singlePathFromFile' "../svg-paths/j.svg"
+  -- Just (w, h, p) <- singlePathFromFile' "../svg-paths/j-small.svg"
 
-  let pts = ifilter (\i -> (i `mod` 5) == 0) (toNormalisedPoints p)
+  let npts = toNormalisedPoints p
+      pts  = ifilter (\i -> (i `mod` 50) == 0) npts
               # scale 4
-      ts  = mconcat (map (\pt -> gala'' (pt ^. _y) # scale (1/30) # moveTo pt) (reverse pts))
+      ts   = mconcat (map (\pt -> gala'' (pt ^. _y) # scale (1/30) # moveTo pt) (reverse pts))
 
+  putStrLn $ "min y: " ++ show (minimum (map (\pt -> pt ^. _y) npts))
+  putStrLn $ "max y: " ++ show (maximum (map (\pt -> pt ^. _y) npts))
+  putStrLn $ "min x: " ++ show (minimum (map (\pt -> pt ^. _x) npts))
+  putStrLn $ "max x: " ++ show (maximum (map (\pt -> pt ^. _x) npts))
+  
   return $ ts # centerXY
             <> rect w h
               # fc pink
@@ -75,6 +82,7 @@ gala'' v = gala'
             (blend (1 - v) mediumslateblue salmon)
             (blend (1 - v) mediumaquamarine deepskyblue)
             (blend (1 - v) salmon mediumslateblue)
+            -- <> text (show v )
 
 gala = gala'
           deepskyblue
