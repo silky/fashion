@@ -1,10 +1,10 @@
 cabal-version: >= 1.10
 
--- This file has been generated from package.yaml by hpack version 0.29.0.
+-- This file has been generated from package.yaml by hpack version 0.29.6.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 323a132a795b0bef8badfc16a164c9ee62db5ee1be2bdb41de1c8969dc656852
+-- hash: 6cb6692efce2785b9c25ce519d229bbd6d752e973dd53eb8923ccdebb13ffcba
 
 name:           Cubic-Limit-Series
 version:        0.1.0.0
@@ -29,6 +29,7 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , colour
     , diagrams
     , diagrams-cairo
     , diagrams-contrib
@@ -50,6 +51,7 @@ executable Cubic-Limit-Series
   build-depends:
       Cubic-Limit-Series
     , base >=4.7 && <5
+    , colour
     , diagrams
     , diagrams-cairo
     , diagrams-contrib

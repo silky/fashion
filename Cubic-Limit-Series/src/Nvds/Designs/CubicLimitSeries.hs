@@ -5,6 +5,7 @@
 
 module Nvds.Designs.CubicLimitSeries where
 
+import Data.Colour.SRGB
 import Prelude hiding (lines)
 import Diagrams.Prelude
 import Diagrams.Backend.Cairo.CmdLine
@@ -59,12 +60,13 @@ linesWith :: Colour Double -> [Int] -> Diagram B
 linesWith c indicies = 
     sublines 
         # map fromVertices 
-        # mconcat          
+        # lw 0.3
+        # mconcat
         # centerXY
     <> p
     where
         p :: Diagram B
-        p = (square 3) # lw 0.2 # lc c
+        p = (square 3) # lw 0.05 # lc c
 
         -- Always everything
         sublines = linesToDraw
@@ -75,8 +77,10 @@ linesWith c indicies =
 
 tile :: Colour Double -> Colour Double -> Colour Double -> [Int] -> Diagram B
 tile c1 c2 c3 xs = linesWith c2 xs # lw thin
-                                   # lc c1
-                                   # bg c3
+                                   # lc (sRGB24read "c0c0c0")
+                                   # bg white
+                                   -- # lc c1
+                                   -- # bg c3
 
 
 someIndicies :: IO [Int]

@@ -6,9 +6,13 @@ module Main where
 
 import Diagrams.Prelude
 import Diagrams.Backend.Cairo.CmdLine
+import Data.Colour.SRGB
 
 main :: IO ()
-main = mainWith (type2 # frame 0.2) >> putStrLn "Done!"
+main = mainWith (type1 # frame 0.02) >> putStrLn "Done!"
+
+
+s = sRGB24read
 
 
 type2 :: Diagram B
@@ -47,7 +51,7 @@ type1 :: Diagram B
 type1 = d
   where
     d :: Diagram B
-    d = hsep 0.002 (map r' [1..100])
+    d = hsep 0.002 (map r' [1..50])
           # fc red
           # lc blue
       where
@@ -55,7 +59,13 @@ type1 = d
         r = fromOffsets $ [unitY]
 
         r' k = r # deform' 0.001 (wibble k)
-              # strokeP
+                 # strokeP
+                 # lw 0.5
+                 # lineTexture (mkLinearGradient (mkStops [(gray, 0, 0.9), (white, 1, 1)])
+                                          ((-1) ^& (-1))
+                                          (1 ^& 1)
+                                          GradPad
+                               )
 
 
     wibble :: Double -> Deformation V2 V2 Double

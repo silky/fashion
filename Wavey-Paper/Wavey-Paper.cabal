@@ -1,10 +1,10 @@
 cabal-version: >= 1.10
 
--- This file has been generated from package.yaml by hpack version 0.29.0.
+-- This file has been generated from package.yaml by hpack version 0.29.6.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0260c91c5085439e1f70d61100ba6b39bf0bd39199d424a85a626a4a62d5a28d
+-- hash: cb4549b88d2c8cc8464548f0c8cc814b06279f11655407e9ddbb8fcaddc2e2c2
 
 name:           Wavey-Paper
 version:        0.1.0.0
@@ -27,6 +27,7 @@ executable Wavey-Paper
       src
   build-depends:
       base >=4.7 && <5
+    , colour
     , diagrams
     , diagrams-cairo
     , diagrams-lib
