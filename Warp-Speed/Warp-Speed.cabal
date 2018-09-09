@@ -1,10 +1,10 @@
-cabal-version: >= 1.10
+cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.29.6.
+-- This file has been generated from package.yaml by hpack version 0.30.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: fdde95adff82150b8f0afc4642ba0d383a44ee40a102d36170962bf74ecdd217
+-- hash: 373e44b67b423a097bf90745d5ca4e1412721cdeca06738fb659bf25afef818e
 
 name:           Warp-Speed
 version:        0.1.0.0

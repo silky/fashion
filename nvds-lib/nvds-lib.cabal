@@ -1,10 +1,10 @@
-cabal-version: >= 1.10
+cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.29.6.
+-- This file has been generated from package.yaml by hpack version 0.30.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 587204ac7fd83691738577f36d59dcfe794faf06801efadf4b415ca0339f98de
+-- hash: 0eecd3b0a2181f7bc2c4f1a8f0b23cdedf931af04f95902a8814ef6d9e7e9136
 
 name:           nvds-lib
 version:        0.2.0.0
