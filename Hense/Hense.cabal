@@ -1,0 +1,37 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.30.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: f2aa253f1164367703dfc97ac6730450d7cfacb2334c2dd6803ffeb75a3d7f88
+
+name:           Hense
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/silky/fashion/Hense#readme
+author:         Noon van der Silk
+maintainer:     noonsilk@gmail.com
+copyright:      Noon van der Silk
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+executable Hense
+  main-is: Main.hs
+  other-modules:
+      Paths_Hense
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-core
+    , diagrams-lib
+    , lens
+    , linear
+    , nvds-lib
+  default-language: Haskell2010
