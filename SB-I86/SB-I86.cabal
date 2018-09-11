@@ -1,8 +1,10 @@
--- This file has been generated from package.yaml by hpack version 0.28.2.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.30.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 26b1f4f8692d216e8e276605598761ba91fef17c76eb5885387199412ba754e2
+-- hash: 0f1640fcee2153b8851908b17b1b54efd7c8037585b1dfafd23aec8cff21a36f
 
 name:           SB-I86
 version:        0.1.0.0
@@ -14,7 +16,6 @@ copyright:      2018 Noon van der Silk
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
-cabal-version:  >= 1.10
 extra-source-files:
     README.md
 

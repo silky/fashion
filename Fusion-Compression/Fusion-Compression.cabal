@@ -1,10 +1,10 @@
-cabal-version: >= 1.10
+cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.29.0.
+-- This file has been generated from package.yaml by hpack version 0.30.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 36a3ac4dfdfad227b3e9a4cc144a36e4c40c41160884d01b12eca8153f2e537d
+-- hash: 0200e9e842c076db730999c2aa9c572eb5ac795dd2ab9a1dec03bb693555422d
 
 name:           Fusion-Compression
 version:        0.1.0.0

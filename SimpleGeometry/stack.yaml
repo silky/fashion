@@ -1,5 +1,6 @@
 resolver: lts-9.12
 packages:
     - .
-    - location  : ../nvds-lib
-      extra-dep : True
+
+extra-deps:
+    - ../nvds-lib

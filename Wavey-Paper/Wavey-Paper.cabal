@@ -1,10 +1,10 @@
-cabal-version: >= 1.10
+cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.29.0.
+-- This file has been generated from package.yaml by hpack version 0.30.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0260c91c5085439e1f70d61100ba6b39bf0bd39199d424a85a626a4a62d5a28d
+-- hash: eeed0b610f96e87d655c5fc83f1857330605934b35c365af52d0d27e4a43e3b3
 
 name:           Wavey-Paper
 version:        0.1.0.0

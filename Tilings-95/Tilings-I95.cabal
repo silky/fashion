@@ -1,10 +1,10 @@
-cabal-version: >= 1.10
+cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.29.0.
+-- This file has been generated from package.yaml by hpack version 0.30.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2ba721a992f49b656a735f948da8e6d02afdc3fc7ed6cb91e0723119246fbe41
+-- hash: 88ef271e989c627ea299d7b7a01d68a8cd4a688cd4551dfdd53b861bb64cb605
 
 name:           Tilings-I95
 version:        0.1.0.0

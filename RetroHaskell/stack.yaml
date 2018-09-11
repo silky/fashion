@@ -1,8 +1,8 @@
 resolver: lts-9.9
 packages:
     - .
-    - location  : ../nvds-lib
-      extra-dep : True
+
 extra-deps:
+    - ../nvds-lib
   - gsl-random-0.5.3
 

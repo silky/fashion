@@ -1,10 +1,10 @@
-cabal-version: >= 1.10
+cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.29.0.
+-- This file has been generated from package.yaml by hpack version 0.30.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5673544b1cb4a539a9f8c218740a4dd9ff06f72b14e00a2473caaf02598fc398
+-- hash: 642a343eaa399705307fd3c34f2db9d817fa2e6ae144eff80ee21ff895976783
 
 name:           Tiled-Room
 version:        0.1.0.0

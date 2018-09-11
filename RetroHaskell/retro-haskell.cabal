@@ -1,8 +1,10 @@
--- This file has been generated from package.yaml by hpack version 0.28.2.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.30.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 75762ed0ae6c0a07c6e3ae1e7ff6dc95b4582c1cad3935b31e531a1f30804a00
+-- hash: f313ff46f08327eebea5ebf1b18f00484eb50cc4198f1925426fc8fb72b5bd77
 
 name:           retro-haskell
 version:        0.1.0.0
@@ -13,7 +15,6 @@ maintainer:     noonsilk@gmail.com
 copyright:      2017 Noon van der Silk
 license:        BSD3
 build-type:     Simple
-cabal-version:  >= 1.10
 extra-source-files:
     README.md
 

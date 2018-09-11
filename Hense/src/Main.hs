@@ -31,7 +31,7 @@ d = do
              # scaleY 2
              # stroke
              # lw none
-             # fc yellow
+             # fc darkorchid
              # scale 0.3
              # centerXY
 

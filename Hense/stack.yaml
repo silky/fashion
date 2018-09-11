@@ -1,6 +1,7 @@
 resolver: lts-12.7
 packages:
   - .
+
+extra-deps:
   - ../nvds-lib
-extra-deps: []
 

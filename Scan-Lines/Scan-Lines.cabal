@@ -1,15 +1,15 @@
-cabal-version: >= 1.10
+cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.29.0.
+-- This file has been generated from package.yaml by hpack version 0.30.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 047aba2557d21a09bb0803063e4442b30ba2783d4ee87b49d808789d5da08d6a
+-- hash: 680dcfcd1f07c6e051f6c2b92315e5e5b42a297890b72a13284e8075e018cf8d
 
 name:           Scan-Lines
 version:        0.1.0.0
 category:       Web
-homepage:       https://github.com/silky/Scan-Lines#readme
+homepage:       https://github.com/silky/fashion/Scan-Lines#readme
 author:         Noon van der Silk
 maintainer:     noonsilk@gmail.com
 copyright:      Noon van der Silk

@@ -1,8 +1,10 @@
--- This file has been generated from package.yaml by hpack version 0.20.0.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.30.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: df81d9d66b486777b92c1d656dc7c17469b7a9ae3647fac29a67ff61ebbb8be7
+-- hash: d4598a78f0e70933ce4fcc4de503e2e86649d6cb79c76fff8d134db116c94960
 
 name:           simple-geometry
 version:        0.1.0.0
@@ -13,8 +15,6 @@ copyright:      2017 Noon van der Silk
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
-cabal-version:  >= 1.10
-
 extra-source-files:
     README.md
 

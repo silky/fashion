@@ -1,10 +1,10 @@
-cabal-version: >= 1.10
+cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.29.0.
+-- This file has been generated from package.yaml by hpack version 0.30.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2023882cc8126a8c2e3289445040a07d987fe1323d8d5a0af4a4e3a11c2b2d23
+-- hash: f36e1cf4628ae4ab3c07d9e596efcc53e62c5121610724b47205478167a62066
 
 name:           Moon-Tile
 version:        0.1.0.0

@@ -1,8 +1,10 @@
--- This file has been generated from package.yaml by hpack version 0.28.2.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.30.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 8a054f7a5de9ccbccbaca3f5978673bbd9191a33d40536490b785d1c75c1eda7
+-- hash: 0afbc2e94ead2ee8fac468dbbccd476d067ba5d3261eea333a598d30aa70bb20
 
 name:           Van-der-Silk-Logo
 version:        0.1.0.0
@@ -12,7 +14,6 @@ maintainer:     noonsilk@gmail.com
 copyright:      2017 Noon van der Silk
 license:        BSD3
 build-type:     Simple
-cabal-version:  >= 1.10
 extra-source-files:
     README.md
 

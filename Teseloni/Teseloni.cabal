@@ -1,10 +1,10 @@
-cabal-version: >= 1.10
+cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.29.0.
+-- This file has been generated from package.yaml by hpack version 0.30.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 031a0cbbef5b5a1b425836f0baf66db14696a2052c6a05e004a6271145787533
+-- hash: 80a0150827f3c0a444ebb0d7f48357eda8fec25812291ebd5cd411918ffc44cb
 
 name:           Teseloni
 version:        0.1.0.0

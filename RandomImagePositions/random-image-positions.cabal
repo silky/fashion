@@ -1,8 +1,10 @@
--- This file has been generated from package.yaml by hpack version 0.28.2.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.30.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6bbef34dce796f0ee9a6582cbfe77a6971a7451e44606ea34cedc25964f48ea6
+-- hash: 5541453871c78e5dbdc2e0a5932b72eedf30fbe210af48b87d5f62e279d898f6
 
 name:           random-image-positions
 version:        0.1.0.0
@@ -13,7 +15,6 @@ maintainer:     noonsilk@gmail.com
 copyright:      2018 Noon van der Silk
 license:        BSD3
 build-type:     Simple
-cabal-version:  >= 1.10
 extra-source-files:
     README.md
 

@@ -1,8 +1,10 @@
--- This file has been generated from package.yaml by hpack version 0.28.2.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.30.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 44e6c7afc87039dcb576d1699917d675ef92e02569fc147ec9e921e890f8c3a2
+-- hash: 3abb2366beea18e8911d2c77b932169bca8e8c1a4407f5e4e88d4a5f4345887e
 
 name:           Abelian-Sandpile
 version:        0.1.0.0
@@ -14,7 +16,6 @@ copyright:      2018 Noon van der Silk
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
-cabal-version:  >= 1.10
 extra-source-files:
     README.md
 
