@@ -1,0 +1,33 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.30.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 9f557ca14e259b7d503613b99f3c4afd3063e8485407229a6cb23f83a0dd819f
+
+name:           Contour-Maps
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/silky/fashion/Contour-Maps#readme
+author:         Noon van der Silk
+maintainer:     noonsilk@gmail.com
+copyright:      Noon van der Silk
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+executable Contour-Maps
+  main-is: Main.hs
+  other-modules:
+      Paths_Contour_Maps
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+  default-language: Haskell2010
