@@ -6,14 +6,15 @@ module Main where
 
 import Control.Monad
 import Data.Array.IO
+import Data.List
 import Diagrams.Backend.Cairo.CmdLine
 import Diagrams.Prelude
 import Nvds.Colours.ColourSets
 import System.Random
 
 
-widths  = [ 1, 0.2, 2, 0.5 ]
-heights = [ 2,   3, 2, 0.9 ]
+-- widths  = [ 1, 0.2, 2, 0.5 ]
+-- heights = [ 2,   3, 2, 0.9 ]
 colours = pisos ++ sana
 
 
@@ -34,11 +35,11 @@ row :: Colour Double
     -> Double
     -> Double
     -> Diagram B
-row c1 c2 h w = centerXY . scaleX s . hcat . replicate n $ r1 ||| r2
+row c1 c2 w h = centerXY . scaleX s . hcat . replicate n $ r1 ||| r2
   where
-    r1       = rect h w # lw 0 # fc c1
-    r2       = rect h w # lw 0 # fc c2
-    rowWidth = 5
+    r1       = rect w h # lw 0 # fc c1
+    r2       = rect w h # lw 0 # fc c2
+    rowWidth = 10
     fraction = rowWidth / w
     n        = floor fraction
     s        = rowWidth / (fromIntegral n * w)
@@ -58,21 +59,14 @@ d = do
                                , shuffledColours !! i2)
 
   dims <- replicateM items $ do
-                        h <- randomRIO (0.1, 5.0)
-                        w <- randomRIO (0.1, 5.0)
-                        return (h, w)
+                        h <- randomRIO (0.1, 3.0)
+                        w <- randomRIO (0.1, 3.0)
+                        return (w, h)
 
   let g d ((h, w), (c1, c2)) = d === row c1 c2 h w
-      m = foldl g mempty (zip dims ourColours)
-
-  -- let m = row orange blue 0.3 0.8
-  --         ===
-  --         row orange green 1.2 0.3
-  --         ===
-  --         row purple pink 0.1 0.2
+      m = foldl' g mempty (zip dims ourColours)
 
   return m
-
 
 
 swapElements_ :: (MArray a e m, Ix i) => a i e -> i -> i -> m ()
@@ -81,6 +75,7 @@ swapElements_ arr i j = do a <- readArray arr i
                            writeArray arr i b
                            writeArray arr j a
                            return ()
+
 
 shuffle :: [a] -> IO [a]
 shuffle xs = do let upperBound = length xs
