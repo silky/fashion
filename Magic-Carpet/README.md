@@ -1,7 +1,7 @@
 # Magic-Carpet
 
 ![](images/a.png)
-![](images/b.png)
-![](images/c.png)
+![](images/b.svg)
+![](images/c.svg)
 ![](images/v.svg)
 
