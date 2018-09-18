@@ -1,0 +1,92 @@
+{-# LANGUAGE FlexibleContexts           #-}
+{-# LANGUAGE GADTs                      #-}
+{-# LANGUAGE NoMonomorphismRestriction  #-}
+
+module Main where
+
+import Control.Monad
+import Data.Array.IO
+import Diagrams.Backend.Cairo.CmdLine
+import Diagrams.Prelude
+import Nvds.Colours.ColourSets
+import System.Random
+
+
+widths  = [ 1, 0.2, 2, 0.5 ]
+heights = [ 2,   3, 2, 0.9 ]
+colours = pisos ++ sana
+
+
+-- Idea:
+--  1. Pick at random two parameters, w and h.
+--  2. Pick some set of colours
+--  3. Randomly pick exactly two of the colours from the set
+--  4. Then draw that row!
+--  5. Then, collate them!
+--
+
+main :: IO ()
+main = mainWith (frame 0.2 <$> d) >> putStrLn "Done!"
+
+
+row :: Colour Double
+    -> Colour Double
+    -> Double
+    -> Double
+    -> Diagram B
+row c1 c2 h w = centerXY . scaleX s . hcat . replicate n $ r1 ||| r2
+  where
+    r1       = rect h w # lw 0 # fc c1
+    r2       = rect h w # lw 0 # fc c2
+    rowWidth = 5
+    fraction = rowWidth / w
+    n        = floor fraction
+    s        = rowWidth / (fromIntegral n * w)
+
+
+d :: IO (Diagram B)
+d = do
+
+  shuffledColours <- shuffle colours
+
+  let items = 10
+
+  ourColours <- replicateM items $ do
+                        i1 <- randomRIO (0, length shuffledColours - 1)
+                        i2 <- randomRIO (0, length shuffledColours - 1)
+                        return ( shuffledColours !! i1
+                               , shuffledColours !! i2)
+
+  dims <- replicateM items $ do
+                        h <- randomRIO (0.1, 5.0)
+                        w <- randomRIO (0.1, 5.0)
+                        return (h, w)
+
+  let g d ((h, w), (c1, c2)) = d === row c1 c2 h w
+      m = foldl g mempty (zip dims ourColours)
+
+  -- let m = row orange blue 0.3 0.8
+  --         ===
+  --         row orange green 1.2 0.3
+  --         ===
+  --         row purple pink 0.1 0.2
+
+  return m
+
+
+
+swapElements_ :: (MArray a e m, Ix i) => a i e -> i -> i -> m ()
+swapElements_ arr i j = do a <- readArray arr i
+                           b <- readArray arr j
+                           writeArray arr i b
+                           writeArray arr j a
+                           return ()
+
+shuffle :: [a] -> IO [a]
+shuffle xs = do let upperBound = length xs
+                arr <- (newListArray (1, upperBound) :: [a] -> IO (IOArray Int a)) xs
+                mapM_ (shuffleCycle arr) [2..upperBound]
+                getElems arr
+  where shuffleCycle arr i = do j <- getStdRandom (randomR (1, i))
+                                swapElements_ arr i j
+
