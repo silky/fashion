@@ -50,7 +50,7 @@ d = do
 
   shuffledColours <- shuffle colours
 
-  let items = 10
+  let items = 30
 
   ourColours <- replicateM items $ do
                         i1 <- randomRIO (0, length shuffledColours - 1)
