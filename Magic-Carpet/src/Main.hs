@@ -13,18 +13,9 @@ import Nvds.Colours.ColourSets
 import System.Random
 
 
--- widths  = [ 1, 0.2, 2, 0.5 ]
--- heights = [ 2,   3, 2, 0.9 ]
-colours = pisos ++ sana
+-- colours = pisos ++ sana
+colours = junina ++ lisaFrank
 
-
--- Idea:
---  1. Pick at random two parameters, w and h.
---  2. Pick some set of colours
---  3. Randomly pick exactly two of the colours from the set
---  4. Then draw that row!
---  5. Then, collate them!
---
 
 main :: IO ()
 main = mainWith (frame 0.2 <$> d) >> putStrLn "Done!"
