@@ -6,3 +6,4 @@
 ![](images/v.svg)
 ![](images/d.svg)
 ![](images/e.svg)
+![](images/f.svg)
