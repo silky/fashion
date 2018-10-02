@@ -44,8 +44,8 @@ sun = circle 3 # fc orange # lw 1
 
 d :: IO (Diagram B)
 d = do
-  let count     = 50
-      smoothing = 20
+  let count     = 100
+      smoothing = 1
 
   -- Heights of the mountain
   -- let ys :: [Double]
@@ -55,12 +55,22 @@ d = do
   
   -- ys <- interpolate smoothing <$> (replicateM count $ R.sample (D.gamma 5 0.4))
 
-  -- TODO: Implement Gala's idea
-  let dist = D.gamma 5 0.4
-  r <- newIORef (mkStdGen 1)
-  ys :: [Double] <- flip R.runRVar r $ interpolate smoothing <$> replicateM count dist
+  -- Gala's idea: Consider these ys as offsets, instead of absolute values.
+  let dist = D.normal 0 0.2
+  r <- newIORef (mkStdGen 4)
+  offs :: [Double] <- flip R.runRVar r $ replicateM count dist
 
-  let ys' = 0 : (ys ++ [0])
+  let ys = foldl f [] offs
+      f [] o       = o : []
+      f xs@(a:_) o = o + a : xs
+
+  -- Some kind of Gamma-Distribution
+  -- let dist = D.gamma 5 0.4
+  -- r <- newIORef (mkStdGen 1)
+  -- ys :: [Double] <- flip R.runRVar r $ interpolate smoothing <$> replicateM count dist
+
+  let mm  = minimum ys - 0.2
+      ys' = mm : (ys ++ [mm])
 
   -- x-coordinates
   let xs :: [Double]
@@ -78,6 +88,7 @@ d = do
   return $ f
 
 
+-- This function is broken :(
 interpolate :: Int -> [Double] -> [Double]
 interpolate steps xs = foldl g [] (zip xs (drop 1 xs))
   where
