@@ -1,0 +1,36 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.30.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: dbe4ea1c49e4b4882f32e7656887c7f0f6e5625247599f8e977e12f20ddd52b4
+
+name:           Sun-Mountain-Scape
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/silky/fashion/Sun-Mountain-Scape#readme
+author:         Noon van der Silk
+maintainer:     noonsilk@gmail.com
+copyright:      Noon van der Silk
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+executable Sun-Mountain-Scape
+  main-is: Main.hs
+  other-modules:
+      Paths_Sun_Mountain_Scape
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+    , random
+    , random-fu
+    , random-source
+  default-language: Haskell2010
