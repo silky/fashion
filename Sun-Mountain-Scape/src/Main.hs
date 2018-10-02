@@ -39,7 +39,7 @@ boundary = foldl g mempty heights
 
 
 sun :: Diagram B
-sun = circle 2 # fc orange
+sun = circle 3 # fc orange # lw 1
 
 
 d :: IO (Diagram B)
@@ -67,13 +67,13 @@ d = do
       xs = [0, 1 / fromIntegral (length ys + 1) .. 1]
       mountains = trailFromVertices $ zipWith (^&) xs ys'
 
-  let m = mountains # closeTrail # stroke # scaleX 20 # fc black
+  let m = mountains # closeTrail # stroke # scaleX 20 # fc black # lc white
 
-  let f = boundary
-            ===
-              (rect 1 1 # lw none # centerXY === (sun # moveTo ((2) ^& 10) <> m) # centerXY ) # centerXY
-            ===
-          reflectY boundary
+  let top = sun # moveTo ((-6) ^& (-4)) <> boundary
+
+  let f = vsep 0.1 [ m # centerXY <> top # moveTo (0 ^& 7)
+                   , reflectY boundary
+                   ]
 
   return $ f
 
