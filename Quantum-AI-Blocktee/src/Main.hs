@@ -6,6 +6,7 @@ module Main where
 
 import Diagrams.Prelude
 import Diagrams.Backend.Cairo.CmdLine
+import Data.List
 
 
 main :: IO ()
@@ -22,12 +23,47 @@ rangle b = hsep 0.1 [ bar , b , r ]
                        ]
 
 
-blob :: String -> Colour Double -> Diagram B
-blob str colour = mainBlob
+surfaceCode n m =
+  mgrid
+  -- mgrid
   where
+    oc = circle 0.15 # lw (local 0.05)
+    zblob = blob "Z" blue
+    xblob = blob "X" orange ||| oc
+    -- qgrid = qubitGrid n m # centerXY
+    mgrid = vsep (-0.9) $ take n (cycle [zrow, xrow]) # centerXY
+    zrow  = hsep 0 $ intersperse oc (take m (repeat zblob))
+    -- xrow  = hsep 0 $ take m (phantom (xblob # scaleX 0.005) : repeat xblob)
+    -- TODO: Hmm, a bit hacky.
+    xrow  = hsep 0 $ oc : take m (strutX 0.001 : repeat xblob)
+
+qubitGrid :: Int -> Int -> Diagram B
+qubitGrid n m =
+  vsep 1 ( take n (cycle [qubitRow m, altQubitRow m]) )
+
+
+altQubitRow :: Int -> Diagram B
+altQubitRow = centerXY . reflectX . qubitRow
+
+
+qubitRow :: Int -> Diagram B
+qubitRow n =
+  hsep 1 (take n (cycle [wc, bc])) # centerXY
+    where
+      r = 0.2
+      wc = circle r
+      bc = circle r # fc black
+
+
+blob :: String -> Colour Double -> Diagram B
+blob str colour = 
+  mainBlob # pad 1.12
+  where
+    r = (local 0.05)
     mainBlob = 
-      around # centerXY # scale 0.4 <> (circle 0.2 # fc black
-        <> seg # fc colour # lw none # centerXY)
+      around # centerXY # scale 0.4 <> 
+        (circle 0.15 # fc black # lw r <>
+          seg # fc colour # lw none # centerXY)
 
     around = m === (m ||| phantom cc ||| m) # center === m
     cc :: Diagram B
@@ -70,8 +106,10 @@ d :: Diagram B
 -- d = rangle dollar
 -- d = quantum  ||| ai ||| blockchain
 -- d = circuit
--- d = blob blue 
-d = blob "X" orange 
+-- d = blob "X" orange 
+-- d = qubitRow 10
+-- d = qubitGrid 10 10
+d = surfaceCode 10 10
 
 
 circuit :: Diagram B
