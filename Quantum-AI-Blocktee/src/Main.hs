@@ -21,6 +21,33 @@ rangle b = hsep 0.1 [ bar , b , r ]
                        , (0 ^& 0.5)
                        ]
 
+specificBlob str c =
+  around # centerXY # scale 0.4 <>
+    blob c # centerXY
+    where
+      around = m === (m ||| phantom cc ||| m) # center === m
+      cc :: Diagram B
+      cc = square 1 # pad 3
+      m = t str # fc white
+            <> phantom (rect 1 1 :: Diagram B)
+
+
+blob :: Colour Double -> Diagram B
+blob colour = 
+  circle 0.2 # fc black
+    <> seg # fc colour # lw none # centerXY
+  where
+    seg = cubicSpline True pts
+    a = 0.2
+    b = 0.3
+    c = 1
+    pts = map p2
+           [ (-a, a)  , (-b, c)  , (b, c)
+           , (a, a)   , (c, b)   , (c, -b)
+           , (a, -a)  , (b, -c)  , (-b, -c)
+           , (-a, -a) , (-c, -b) , (-c, b)
+           ]
+
 
 measurement :: Diagram B
 measurement =
@@ -44,7 +71,9 @@ blockchain = t "Blockchain" <> rect 7 1.2
 d :: Diagram B
 -- d = rangle dollar
 -- d = quantum  ||| ai ||| blockchain
-d = circuit
+-- d = circuit
+-- d = blob blue 
+d = specificBlob "Z" blue 
 
 
 circuit :: Diagram B
@@ -96,14 +125,13 @@ circuit = c # lastThing
                       ||| (t "$$$..." <> rect 3 1 # lw none) # scale 0.7
                     ]
 
-    -- row2   = hsep 3 [ dr, quantum, dot, dot ]
     dot    = circle 0.2 # fc black
-    cross  = circle 0.2 # fc red # lc red
+    cross  = circle 0.2
+              <> (-0.2 ^& 0) ~~ (0.2 ^& 0)
+              <> (0 ^& (-0.2)) ~~ (0 ^& 0.2)
     dr     = rangle dollar
     dollar = t "$" <> rect 0.5 1 # lw none
--- Plan:
---
--- 1. The circuit logo with dollars
+
 -- 2. The surface code in the background
 -- 3. That's it!
 
