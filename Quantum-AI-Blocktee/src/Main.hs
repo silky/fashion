@@ -21,22 +21,20 @@ rangle b = hsep 0.1 [ bar , b , r ]
                        , (0 ^& 0.5)
                        ]
 
-specificBlob str c =
-  around # centerXY # scale 0.4 <>
-    blob c # centerXY
-    where
-      around = m === (m ||| phantom cc ||| m) # center === m
-      cc :: Diagram B
-      cc = square 1 # pad 3
-      m = t str # fc white
-            <> phantom (rect 1 1 :: Diagram B)
 
-
-blob :: Colour Double -> Diagram B
-blob colour = 
-  circle 0.2 # fc black
-    <> seg # fc colour # lw none # centerXY
+blob :: String -> Colour Double -> Diagram B
+blob str colour = mainBlob
   where
+    mainBlob = 
+      around # centerXY # scale 0.4 <> (circle 0.2 # fc black
+        <> seg # fc colour # lw none # centerXY)
+
+    around = m === (m ||| phantom cc ||| m) # center === m
+    cc :: Diagram B
+    cc = square 1 # pad 3
+    m = t str # fc white
+          <> phantom (rect 1 1 :: Diagram B)
+    -- Spline
     seg = cubicSpline True pts
     a = 0.2
     b = 0.3
@@ -73,7 +71,7 @@ d :: Diagram B
 -- d = quantum  ||| ai ||| blockchain
 -- d = circuit
 -- d = blob blue 
-d = specificBlob "Z" blue 
+d = blob "X" orange 
 
 
 circuit :: Diagram B
