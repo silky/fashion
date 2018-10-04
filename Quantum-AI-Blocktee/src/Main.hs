@@ -25,34 +25,15 @@ rangle b = hsep 0.1 [ bar , b , r ]
 
 surfaceCode n m =
   mgrid
-  -- mgrid
   where
-    oc = circle 0.15 # lw (local 0.05)
+    oc    = circle 0.15 # lw (local 0.05)
     zblob = blob "Z" blue
     xblob = blob "X" orange ||| oc
-    -- qgrid = qubitGrid n m # centerXY
-    mgrid = vsep (-0.9) $ take n (cycle [zrow, xrow]) # centerXY
+    mgrid = vsep (-0.9) $ xrow : take n (cycle [zrow, xrow])
     zrow  = hsep 0 $ intersperse oc (take m (repeat zblob))
     -- xrow  = hsep 0 $ take m (phantom (xblob # scaleX 0.005) : repeat xblob)
     -- TODO: Hmm, a bit hacky.
     xrow  = hsep 0 $ oc : take m (strutX 0.001 : repeat xblob)
-
-qubitGrid :: Int -> Int -> Diagram B
-qubitGrid n m =
-  vsep 1 ( take n (cycle [qubitRow m, altQubitRow m]) )
-
-
-altQubitRow :: Int -> Diagram B
-altQubitRow = centerXY . reflectX . qubitRow
-
-
-qubitRow :: Int -> Diagram B
-qubitRow n =
-  hsep 1 (take n (cycle [wc, bc])) # centerXY
-    where
-      r = 0.2
-      wc = circle r
-      bc = circle r # fc black
 
 
 blob :: String -> Colour Double -> Diagram B
