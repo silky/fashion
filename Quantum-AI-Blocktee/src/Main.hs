@@ -22,9 +22,13 @@ rangle b = hsep 0.1 [ bar , b , r ]
                        , (0 ^& 0.5)
                        ]
 
+tee :: Diagram B
+tee =
+  ((circuit # center <> rect 30 7 # fc white # lw none ) # scale 0.7)
+  <> surfaceCode 10 10 # center
 
-surfaceCode n m =
-  mgrid
+surfaceCode :: Int -> Int -> Diagram B
+surfaceCode n m = mgrid
   where
     oc    = circle 0.15 # lw (local 0.05)
     zblob = blob "Z" blue
@@ -32,7 +36,9 @@ surfaceCode n m =
     mgrid = vsep (-0.9) $ xrow : take n (cycle [zrow, xrow])
     zrow  = hsep 0 $ intersperse oc (take m (repeat zblob))
     -- xrow  = hsep 0 $ take m (phantom (xblob # scaleX 0.005) : repeat xblob)
-    -- TODO: Hmm, a bit hacky.
+    -- TODO: Hmm, a bit hacky because of the hardcoded strut; but it works,
+    --       so ... meh. Should be possible with scaling the original, but
+    --       doesn't work for some reason.
     xrow  = hsep 0 $ oc : take m (strutX 0.001 : repeat xblob)
 
 
@@ -90,7 +96,8 @@ d :: Diagram B
 -- d = blob "X" orange 
 -- d = qubitRow 10
 -- d = qubitGrid 10 10
-d = surfaceCode 10 10
+-- d = surfaceCode 10 10
+d = tee
 
 
 circuit :: Diagram B
