@@ -19,11 +19,11 @@ main = mainWith (frame 0.2 <$> d) >> putStrLn "Done!"
 rangle :: Diagram B -> Diagram B
 rangle b = hsep 0.1 [ bar , b , r ] 
   where
-    bar = (0 ^& (-0.5)) ~~ (0 ^& 0.5)
+    bar = (0 ^& (-0.5)) ~~ (0 ^& 0.5) # lw (local 0.05)
     r   = fromVertices [ (0 ^& (-0.5))
                        , (0.2 ^& 0)
                        , (0 ^& 0.5)
-                       ]
+                       ] # lw (local 0.05)
 
 
 tee :: [Colour Double] -> Int -> Int -> Diagram B
@@ -88,9 +88,10 @@ blob str colour =
 
 measurement :: Diagram B
 measurement =
-  square 1.4
+  (square 1.4
     <> (arc xDir (180 @@ deg) # scale 0.5 # centerXY)
     <> (0 ^& (-0.3)) ~~ (0.5 ^& 0.5)
+  ) # lw (local 0.05)
 
 
 t :: String -> Diagram B
@@ -99,15 +100,15 @@ t m = text m # font "firacode"
 
 
 quantum :: Diagram B
-quantum = t "Quantum" <> rect 5 1.2
+quantum = t "Quantum" <> rect 5 1.2 # lw (local 0.05)
 
 
 ai :: Diagram B
-ai = t "AI" <> rect 2 1.2
+ai = t "AI" <> rect 2 1.2 # lw (local 0.05)
 
 
 blockchain :: Diagram B
-blockchain = t "Blockchain" <> rect 7 1.2
+blockchain = t "Blockchain" <> rect 7 1.2 # lw (local 0.05)
 
 
 -- TODO: Change the line widths; I think they all got bumped up somehow.
@@ -131,7 +132,8 @@ circuit = c # lastThing
 
   where
     link a b a1 a2
-      = connectPerim' (with & arrowHead .~ noHead) a b a1 a2
+      = connectPerim' (with & arrowHead .~ noHead
+                            & shaftStyle %~ lw (local 0.05)) a b a1 a2
 
     lastThing = withName "d2-1" $ \n1 ->
                 withName "dr3"  $ \n2 ->
@@ -160,10 +162,11 @@ circuit = c # lastThing
                       ||| (t "$$$..." <> rect 3 1 # lw none) # scale 0.7
                     ]
 
-    dot    = circle 0.2 # fc black
-    cross  = circle 0.2
+    dot    = circle 0.2 # fc black # lw (local 0.05)
+    cross  = (circle 0.2
               <> (-0.2 ^& 0) ~~ (0.2 ^& 0)
               <> (0 ^& (-0.2)) ~~ (0 ^& 0.2)
+             ) # lw (local 0.05)
     dr     = rangle dollar
     dollar = t "$" <> rect 0.5 1 # lw none
 
@@ -180,11 +183,9 @@ d = do
   let n = 10
       m = 10
 
-  -- let colours = cycle [green, green, blue, orange]
-
   -- let colourSet = goldfish -- Noon's Fav
-  let colourSet = anythingBut
-      repped    = concat (replicate 100 colourSet)
+  let colourSet = brewerSet3_12
+      repped    = concat (replicate (n*m) colourSet)
 
   let mcolours = shuffleNofM ((n+2)*(m+2)) (length repped) repped
 
