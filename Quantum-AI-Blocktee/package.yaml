@@ -14,6 +14,9 @@ dependencies:
   - diagrams
   - diagrams-cairo
   - diagrams-lib
+  - nvds-lib
+  - random
+  - random-fu
 
 executables:
   Quantum-AI-Blocktree:

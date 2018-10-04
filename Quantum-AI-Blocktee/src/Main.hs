@@ -7,10 +7,13 @@ module Main where
 import Diagrams.Prelude
 import Diagrams.Backend.Cairo.CmdLine
 import Data.List
-
+import Data.IORef (newIORef)
+import System.Random
+import Data.Random
+import Nvds.Colours.ColourSets
 
 main :: IO ()
-main = mainWith (d # frame 0.2) >> putStrLn "Done!"
+main = mainWith (frame 0.2 <$> d) >> putStrLn "Done!"
 
 
 rangle :: Diagram B -> Diagram B
@@ -22,24 +25,37 @@ rangle b = hsep 0.1 [ bar , b , r ]
                        , (0 ^& 0.5)
                        ]
 
-tee :: Diagram B
-tee =
-  ((circuit # center <> rect 30 7 # fc white # lw none ) # scale 0.7)
-  <> surfaceCode 10 10 # center
 
-surfaceCode :: Int -> Int -> Diagram B
-surfaceCode n m = mgrid
+tee :: [Colour Double] -> Int -> Int -> Diagram B
+tee colours n m =
+  ((circuit # center <> rect 30 7 # fc white # lw none ) # scale 0.7) # padY 2 # alignT
+  <> surfaceCode colours n m # center # alignT
+
+
+surfaceCode :: [Colour Double] -> Int -> Int -> Diagram B
+surfaceCode colours n m = grid
   where
+    cs1 = colours
+    cs2 = drop 100 colours
+
     oc    = circle 0.15 # lw (local 0.05)
-    zblob = blob "Z" blue
-    xblob = blob "X" orange ||| oc
-    mgrid = vsep (-0.9) $ xrow : take n (cycle [zrow, xrow])
-    zrow  = hsep 0 $ intersperse oc (take m (repeat zblob))
+
+    -- TODO: Use the colours somehow!
+    zblob c = blob "Z" c
+    xblob c = blob "X" c ||| oc
+
+    zrow k = hsep 0 $ intersperse oc (map (\i-> zblob (cs1 !! (i*k)) ) [1..m-1])
+    
     -- xrow  = hsep 0 $ take m (phantom (xblob # scaleX 0.005) : repeat xblob)
     -- TODO: Hmm, a bit hacky because of the hardcoded strut; but it works,
     --       so ... meh. Should be possible with scaling the original, but
     --       doesn't work for some reason.
-    xrow  = hsep 0 $ oc : take m (strutX 0.001 : repeat xblob)
+    xrow k = hsep 0 $ oc : take m (strutX 0.001 : map (\i -> xblob (cs2 !! (i*k)) ) [1..m-2])
+
+    --
+    -- grid  = vsep (-0.9) $ xrow : take n (cycle [zrow, xrow])
+    grid  = vsep (-0.9) $ xrow 1 : take n (concat (map (\i -> [zrow i, xrow i]) [1..n-1]))
+    -- cycle [zrow 1, xrow 1])
 
 
 blob :: String -> Colour Double -> Diagram B
@@ -76,30 +92,25 @@ measurement =
     <> (arc xDir (180 @@ deg) # scale 0.5 # centerXY)
     <> (0 ^& (-0.3)) ~~ (0.5 ^& 0.5)
 
+
+t :: String -> Diagram B
 t m = text m # font "firacode"
              # fontSize (local 0.8)
+
 
 quantum :: Diagram B
 quantum = t "Quantum" <> rect 5 1.2
 
+
 ai :: Diagram B
 ai = t "AI" <> rect 2 1.2
+
 
 blockchain :: Diagram B
 blockchain = t "Blockchain" <> rect 7 1.2
 
 
-d :: Diagram B
--- d = rangle dollar
--- d = quantum  ||| ai ||| blockchain
--- d = circuit
--- d = blob "X" orange 
--- d = qubitRow 10
--- d = qubitGrid 10 10
--- d = surfaceCode 10 10
-d = tee
-
-
+-- TODO: Change the line widths; I think they all got bumped up somehow.
 circuit :: Diagram B
 circuit = c # lastThing
             -- Row 1
@@ -156,6 +167,32 @@ circuit = c # lastThing
     dr     = rangle dollar
     dollar = t "$" <> rect 0.5 1 # lw none
 
--- 2. The surface code in the background
--- 3. That's it!
+
+d :: IO (Diagram B)
+-- d = rangle dollar
+-- d = quantum  ||| ai ||| blockchain
+-- d = circuit
+-- d = blob "X" orange 
+-- d = qubitRow 10
+-- d = qubitGrid 10 10
+-- d = surfaceCode 10 10
+d = do
+  let n = 10
+      m = 10
+
+  -- let colours = cycle [green, green, blue, orange]
+
+  -- let colourSet = goldfish -- Noon's Fav
+  let colourSet = anythingBut
+      repped    = concat (replicate 100 colourSet)
+
+  let mcolours = shuffleNofM ((n+2)*(m+2)) (length repped) repped
+
+  r <- newIORef (mkStdGen 2)
+  colours <- runRVar mcolours r
+  
+  
+  -- TODO: Compute a nxm number of list
+
+  return $ tee colours n m
 

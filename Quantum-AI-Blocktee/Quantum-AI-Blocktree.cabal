@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ad3d25345e5e958dcc442b8f30834ae2c3986343bb2ba334b3101492ecc59255
+-- hash: 7dff278454a1367632e3a97b3a887878826298946c5425c4d1cc2434dcc9b0e9
 
 name:           Quantum-AI-Blocktree
 version:        0.1.0.0
@@ -30,4 +30,7 @@ executable Quantum-AI-Blocktree
     , diagrams
     , diagrams-cairo
     , diagrams-lib
+    , nvds-lib
+    , random
+    , random-fu
   default-language: Haskell2010
