@@ -1,0 +1,33 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.30.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: e5a9f52ce78b3c2471b0ec31233d05c0bcd1b25f8eb2369800c50ba04e1a4161
+
+name:           Community-Circle
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/silky/fashion/Community-Circle#readme
+author:         Noon van der Silk
+maintainer:     noonsilk@gmail.com
+copyright:      Noon van der Silk
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+executable Community-Circle
+  main-is: Main.hs
+  other-modules:
+      Paths_Community_Circle
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+  default-language: Haskell2010
