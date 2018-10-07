@@ -1,0 +1,34 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.30.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 8abe72b9ade7b22acc6773994a10b3c333e955ebd8cdc34f19bcee8628d28eda
+
+name:           Hue-Circle
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/silky/fashion/Hue-Circle#readme
+author:         Noon van der Silk
+maintainer:     noonsilk@gmail.com
+copyright:      Noon van der Silk
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+executable Hue-Circle
+  main-is: Main.hs
+  other-modules:
+      Paths_Hue_Circle
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , colour
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+  default-language: Haskell2010
