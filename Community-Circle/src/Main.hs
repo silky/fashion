@@ -9,21 +9,21 @@ import Diagrams.Backend.Cairo.CmdLine
 
 main :: IO ()
 -- Static
--- main = mainWith (frame 0.2 <$> static) >> putStrLn "Done!"
-main = mainWith ( gif ) >> putStrLn "Done!"
+main = mainWith (frame 0.2 <$> static) >> putStrLn "Done!"
+-- main = mainWith ( gif ) >> putStrLn "Done!"
 
+static = d 90
 
 gif :: IO [(Diagram B, Int)]
 gif = do
-  let n = 200
+  let n = 360
 
-  imgs <- mapM (\k -> bg white . frame 0.2 <$> d k) [1,5..n]
+  imgs <- mapM (\k -> bg white . frame 0.2 <$> d k) [1,10..n]
 
-  let half = zip imgs [ 5 | k <- [1..n] ]
+  let half = zip imgs [ 10 | k <- [1..n] ]
       
   return $ half ++ reverse half
 
-static = d 500
 
 
 base :: Diagram B
@@ -33,29 +33,43 @@ base = circle 1 # lw none
 d :: Double 
   -> IO (Diagram B)
 d n = do
-  let anchorAngles = [ 0, 90, 180, 270 ]
+  let colours = [ orange
+                , purple
+                , blue
+                , cyan
+                , black
+                , red
+                , magenta
+                , brown
+                , gold
+                , gray
+                ]
+      nc   = length colours
+      frac = 360 / fromIntegral nc
+
+  let anchorAngles = [ fromIntegral k * frac | k <- [0..nc-1] ]
       anchorPts    = map mkPt anchorAngles
       mkPt a       = sin (a / (180/pi)) ^& cos (a / (180/pi))
 
   let c = circle 0.05 # fc black
       m = base 
  
-  let totalLines = n
-      range      = pi
+  let totalLines = n - 80
+      -- range      = 360 / (fromIntegral nc/2) 
+      range      = 270 
 
   let lines a = mconcat $ map (f a) [0..totalLines-1]
-                  # lw 0.4
+                  # lw 0.2
 
       f a k   = mkPt a ~~
-                mkPt (a + ((k+1) * (180/totalLines)))
+                mkPt (a + ((k+1) * (range/totalLines)))
 
-  let topLayer = (lines 270) # lc orange
+  let c1:cs    = colours
+  let topLayer = (lines (last anchorAngles)) # lc c1
       crop     = topLayer # clipBy (wedge 1 xDir (90 @@ deg))
 
   return $ (m <> crop 
-              <> (lines   0) # lc purple
-              <> (lines  90) # lc blue
-              <> (lines 180) # lc cyan
+              <> mconcat (zipWith (\c f -> lines f # lc c) cs (init anchorAngles))
               <> topLayer
            ) # reflectX 
 
