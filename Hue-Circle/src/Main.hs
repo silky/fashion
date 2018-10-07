@@ -24,7 +24,38 @@ main = mainWith (d # frame 0.2) >> putStrLn "Done!"
 
 -- d = numberWheel
 -- d = letterWheel
-d = saturationWheel
+-- d = saturationWheel
+d = brightnessWheel
+
+
+brightnessWheel :: Diagram B
+brightnessWheel = m
+  where
+    c a l b = (text l # fontSize 5)
+                <> circle 0.2  # fc white # lw none
+                <> circle 0.3  # fc (hsv' a 1 b)
+                               # lw none
+ 
+    bs = [ 0, 0.25..1 ]
+
+    m        = mconcat $ map (\r -> position $ zip (map ((*.) (3+(-r*2))) pts) (cs (show (floor $ r * 65535)) r)) bs
+    cs s sat = zipWith (\a l -> c a l sat) angles (repeat s)
+
+
+    n      = 12
+    dangle = 360 / fromIntegral n
+    angles = [fromIntegral k * dangle | k <- [0..n-1]]
+
+    pts    = map mkPt angles
+    mkPt a = sin (a / (180/pi)) ^& cos (a / (180/pi))
+    -- where
+    --   m   = hcat $ map f bs
+    --   f b = text (show $ floor (b * 65535)) # fontSize 12
+    --                          # fc white
+    --         <> square 1 # fc (hsv' 270 1 b)
+    --                     # lc (hsv' 270 1 b)
+
+    --   bs  = [ 0, 0.25..1 ]
 
 
 saturationWheel :: Diagram B
@@ -35,9 +66,7 @@ saturationWheel = m
                 <> circle 0.3  # fc (hsv' a s 1)
                                # lw none
  
-    saturations :: [Double]
-    saturations = reverse [ 0, 0.25..1 ]
-    -- saturations = [ 1, 0 ]
+    saturations = [ 0, 0.25..1 ]
 
     m        = mconcat $ map (\r -> position $ zip (map ((*.) (3+(-r*2))) pts) (cs (show (floor $ r * 65535)) r)) saturations
     cs s sat = zipWith (\a l -> c a l sat) angles (repeat s)
