@@ -12,6 +12,7 @@ import System.Random
 import Data.Random
 import Nvds.Colours.ColourSets
 
+
 main :: IO ()
 main = mainWith (frame 0.2 <$> d) >> putStrLn "Done!"
 
@@ -28,12 +29,14 @@ rangle b = hsep 0.1 [ bar , b , r ]
 
 tee :: [Colour Double] -> Int -> Int -> Diagram B
 tee colours n m =
-  ((circuit # center <> rect 30 7 # fc white # lw none ) # scale 0.7) # padY 2 # alignT
-  <> surfaceCode colours n m # center # alignT
+  ((circuit # center <> rect 30 7 # fc white # lw none ) # scale 0.13) # padY 7.0
+    # alignT
+  <> surfaceCode colours n m # center 
+    # alignT
 
 
 surfaceCode :: [Colour Double] -> Int -> Int -> Diagram B
-surfaceCode colours n m = grid
+surfaceCode colours n m = grid # scale 0.45
   where
     cs1 = colours
     cs2 = drop 100 colours
@@ -60,7 +63,8 @@ surfaceCode colours n m = grid
 
 blob :: String -> Colour Double -> Diagram B
 blob str colour = 
-  mainBlob # pad 1.12
+  -- mainBlob # pad 1.12
+  mainBlob # pad 1.5
   where
     r = (local 0.05)
     mainBlob = 
@@ -183,8 +187,20 @@ d = do
   let n = 10
       m = 10
 
-  -- let colourSet = goldfish -- Noon's Fav
+  let colourSet = washfastAcid
+  let colourSet = nightLagoon
+  let colourSet = pulpy
+  let colourSet = bhuvansGroupo
+  let colourSet = gypsyStick
+  let colourSet = junina
+  let colourSet = instagramGradient
+  let colourSet = noodles
+  let colourSet = kujoJotaro
+  let colourSet = memphis
   let colourSet = brewerSet3_12
+  let colourSet = smoothScaling
+  let colourSet = goldfish -- Noon's Fav
+  let colourSet = takoTank
       repped    = concat (replicate (n*m) colourSet)
 
   let mcolours = shuffleNofM ((n+2)*(m+2)) (length repped) repped
@@ -192,8 +208,11 @@ d = do
   r <- newIORef (mkStdGen 2)
   colours <- runRVar mcolours r
   
-  
   -- TODO: Compute a nxm number of list
 
-  return $ tee colours n m
+  return $ tee colours n m 
+            # bg white
 
+
+-- Final command:
+--   stack run -- -h 882 -o a.png && convert a.png -crop 882x503+0+0+0 rr.png && identify rr.png
