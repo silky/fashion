@@ -26,7 +26,8 @@ half = pattern (wedge 1 xDir (180 @@ deg))
 
 
 colour :: Colour Double
-colour = mediumpurple
+-- colour = mediumpurple
+colour = cornflowerblue
 
 
 d :: Diagram B
