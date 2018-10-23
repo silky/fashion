@@ -12,20 +12,26 @@ main :: IO ()
 main = mainWith (d # frame 0.2) >> putStrLn "Done!"
 
 
-half :: Diagram B
-half = t 
+pattern :: Diagram B 
+     -> Diagram B
+pattern d = t 
   where
-    t      = mconcat (imap im [0.1,0.2..1])
-    a      = wedge 1 xDir (180 @@ deg)
-    im k s = if k `mod` 2 == 0 then a # scale s # lw none # fc white
-                               else a # scale s # lw none # fc gold
+    sizes  = map exp [0.1, 0.2 .. 10]
+    -- sizes  = [0.1, 0.2 .. 1]
+    t      = mconcat (imap im sizes)
+    im k s = if k `mod` 2 == 0 then d # scale s # lw none # fc white
+                               else d # scale s # lw none # fc gold
+
+half :: Diagram B
+half = pattern (wedge 1 xDir (180 @@ deg))
+
 
 
 d :: Diagram B
-d = f <> (square 2.3 # bg gold # lw none)
+d = f # bg gold
   where
-    f = lower <> upper' <> upper
-    upper = half # snugB 
-    lower = half # reflectY # snugT
+    f      = lower <> upper' <> upper
+    upper  = half # snugB
+    lower  = half # reflectY # snugT
     upper' = upper # scaleY 0.3
 
