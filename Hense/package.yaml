@@ -18,6 +18,9 @@ dependencies:
   - lens
   - linear
   - nvds-lib
+  - random
+  - random-fu
+  - random-source
 
 executables:
   Hense:

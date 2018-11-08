@@ -28,18 +28,18 @@ star' c = interior <> exterior
                   # lw none
 
     exterior = s 9 # fc c
-    interior = s 5 # fc white # scale 0.9
+    interior = s 5 # fc white # scale 0.7
 
 
 
 d :: IO (Diagram B)
 d = do
   blackStars   <- stars black  15000 1
-  goldStars    <- stars gold     500 2
-  yellowStars  <- stars yellow   500 3 
-  blueStars    <- stars blue     500 4
-  silverStars  <- stars silver   500 5
-  magentaStars <- stars magenta  500 6
+  goldStars    <- stars gold     200 2
+  yellowStars  <- stars yellow   200 3 
+  blueStars    <- stars blue     200 4
+  silverStars  <- stars silver   200 5
+  magentaStars <- stars magenta  200 6
 
   let m =    goldStars
           <> blueStars
@@ -67,7 +67,6 @@ stars colour count s0 = do
   let pts = zipWith (^&) xs ys
       m   = position $ zip pts (repeat (star' colour # scale 0.01))
 
-  -- return $ star' blue # scale 0.01
   return $ m
   -- Plan:
   -- 1. Millions of circle

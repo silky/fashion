@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f2aa253f1164367703dfc97ac6730450d7cfacb2334c2dd6803ffeb75a3d7f88
+-- hash: 3134e6e02511a9da8c932cc5897b091606727d0ff802071e1597610460ddef7c
 
 name:           Hense
 version:        0.1.0.0
@@ -34,4 +34,7 @@ executable Hense
     , lens
     , linear
     , nvds-lib
+    , random
+    , random-fu
+    , random-source
   default-language: Haskell2010
