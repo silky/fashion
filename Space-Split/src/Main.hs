@@ -37,7 +37,7 @@ landing =  c # centerXY
               # lw none # fc darksalmon
     w      = 3
     h      = 3
-    count  = 50
+    count  = 70
     line x = (x ^& 0) ~~ (x ^& h)
     lines  = mconcat (map line [0, w/count .. w ])
               # lc black
@@ -49,13 +49,14 @@ d = do
   blueStars  <- stars royalblue 90  1
   redStars   <- stars red       90  2
   whiteStars <- stars white     140 3 
+  bgStars    <- stars' (D.uniform (-1) 1) 0.15 1 1 pink 700  4
+  farStars   <- stars' (D.uniform (-1) (-0.2)) 0.12 (2 / 0.8) 1 gold 2000  5
 
-  orangeStars  <- stars' (D.uniform (-1) 1) 0.1 pink 700  4
-
-  let m =     blueStars
+  let m = (    blueStars
           <> redStars
           <> whiteStars
-          <> orangeStars
+          <> bgStars ) # alignB
+          <> farStars # centerXY # alignB
 
   let b = landing # alignB <> m # alignB
       c = b # bg black 
@@ -63,7 +64,7 @@ d = do
             # centerXY
             # clipTo (rect 1.2 1.2)
 
-  -- return $ b
+  -- return $ b # bg black
   return $ c
 
 
@@ -72,15 +73,15 @@ stars :: Colour Double
       -> Int
       -> Int
       -> IO (Diagram B)
-stars = stars' (D.uniform (-1) 1) 0.3
+stars = stars' (D.uniform (-1) 1) 0.3 1 1
   
 
-stars' dist radius colour count s0 = do
+stars' dist radius rx ry colour count s0 = do
 
   r <- newIORef (mkStdGen s0)
   [xs, ys] :: [[Double]] <- chunksOf count <$> ( flip runRVar r $ replicateM (count * 2) dist )
 
-  let pts = zipWith (^&) xs ys
+  let pts = zipWith (\x y -> (rx * x) ^& (ry * y)) xs ys
       m   = position $ zip pts (repeat (star' colour radius # scale 0.01))
 
   return $ m
