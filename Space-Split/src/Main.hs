@@ -56,6 +56,7 @@ d = do
   whiteStars <- stars white     140 3 
   bgStars    <- stars' (D.uniform (-1) 1) 0.15 1 1 pink 700  4
   farStars   <- stars' (D.uniform (-1) (-0.2)) 0.12 (2 / 0.8) 1 gold 2000  5
+  -- farStars   <- stars' (D.uniform (-1) 1) 0.12 1 1 gold 2000  5
 
   let m = (    blueStars
           <> redStars
@@ -75,7 +76,7 @@ d = do
       c = b # bg black 
             # rotate (-30 @@ deg)
             # centerXY
-            # clipTo (rect 1.2 0.4)
+            -- # clipTo (rect 1.2 0.4)
 
   -- return $ b # bg black
   return $ c
