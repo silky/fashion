@@ -16,7 +16,7 @@ import Data.List.Split
 
 
 main :: IO ()
-main = mainWith (frame 0.05 <$> d) >> putStrLn "Done!"
+main = mainWith d >> putStrLn "Done!"
 
 
 star' :: Colour Double 
@@ -28,16 +28,21 @@ star' c r = circ
 
 
 landing =  c # centerXY
-             # clipTo (rect 2 0.6)
+             # clipTo (rect 2 0.7)
              # alignB
   where
     c = m # rotate (-40 @@ deg)
-    m = lines # centerXY # alignB
-          <> rect w h # alignB
-              # lw none # fc darksalmon
+    m = lines 
+          # centerXY 
+          # alignB
+        <> rect w h 
+            # alignB
+            # lw none 
+            # fc mediumslateblue
+
     w      = 3
     h      = 3
-    count  = 70
+    count  = 100
     line x = (x ^& 0) ~~ (x ^& h)
     lines  = mconcat (map line [0, w/count .. w ])
               # lc black
@@ -58,11 +63,19 @@ d = do
           <> bgStars ) # alignB
           <> farStars # centerXY # alignB
 
-  let b = landing # alignB <> m # alignB
+  let b = (landing # alignB <> m # alignB)
+            # centerXY
+  -- let b = m
+      t = text "BRANESHOP" # fontSize (local 1.1)
+            # font "Fira Code"
+            # bold
+          <> rect 10 2 # fc white # lw none
+          <> (rect 10 2 # fc royalblue # lw none # translate (0.4 ^& (-0.4)))
+
       c = b # bg black 
             # rotate (-30 @@ deg)
             # centerXY
-            # clipTo (rect 1.2 1.2)
+            # clipTo (rect 1.2 0.4)
 
   -- return $ b # bg black
   return $ c
