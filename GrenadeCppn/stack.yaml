@@ -1,0 +1,34 @@
+resolver:
+  url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/12/20.yaml
+
+packages:
+  - .
+    
+extra-deps:
+  - ../../ext/grenade
+  - hmatrix-0.18.2.0@sha256:8fc917dc1f45f363fe11efd0e78a88f011c5c92573d997011320fc256098e957
+
+
+# Override default flag values for local packages and extra-deps
+# flags: {}
+
+# Extra package databases containing global packages
+# extra-package-dbs: []
+
+# Control whether we use the GHC we find on the path
+# system-ghc: true
+#
+# Require a specific version of stack, using version ranges
+# require-stack-version: -any # Default
+# require-stack-version: ">=1.10"
+#
+# Override the architecture used by stack, especially useful on Windows
+# arch: i386
+# arch: x86_64
+#
+# Extra directories used by stack for building
+# extra-include-dirs: [/path/to/dir]
+# extra-lib-dirs: [/path/to/dir]
+#
+# Allow a newer minor version of GHC than the snapshot specifies
+# compiler-check: newer-minor

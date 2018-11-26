@@ -1,0 +1,42 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 7f9d7c15f2bdb4e1a04bb3a5e7678ad9e174771f2e30e74edd2b0ff8f83a2b10
+
+name:           Grenade-Cppn
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/silky/fashion/Grenade-Cppn#readme
+author:         Noon van der Silk
+maintainer:     noonsilk@gmail.com
+copyright:      Noon van der Silk
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+executable Grenade-Cppn
+  main-is: Main.hs
+  other-modules:
+      Paths_Grenade_Cppn
+  hs-source-dirs:
+      src
+  build-depends:
+      JuicyPixels
+    , MonadRandom
+    , base >=4.7 && <5
+    , bytestring
+    , cereal
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+    , grenade
+    , hmatrix
+    , optparse-applicative
+    , singletons
+    , vector
+  default-language: Haskell2010
