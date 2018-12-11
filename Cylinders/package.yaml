@@ -18,6 +18,11 @@ dependencies:
   - diagrams-contrib
   - diagrams-lib
 
+library:
+  source-dirs: src
+  exposed-modules:
+    - Nvds.Designs.Cylinders
+
 executables:
   Cylinders:
     source-dirs:      src

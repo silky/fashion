@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.30.0.
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c47696eb582ca5f4550c2ef0131c27352b35ab0c2bff2c4aa6fa14678bcff956
+-- hash: 90fa7464a5675c55e91fd4e91a6cf734fcc45f3a3c9c694d27af49481ad16d73
 
 name:           Cylinders
 version:        0.1.0.0
@@ -19,9 +19,26 @@ build-type:     Simple
 extra-source-files:
     README.md
 
+library
+  exposed-modules:
+      Nvds.Designs.Cylinders
+  other-modules:
+      Main
+      Paths_Cylinders
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-contrib
+    , diagrams-lib
+  default-language: Haskell2010
+
 executable Cylinders
   main-is: Main.hs
   other-modules:
+      Nvds.Designs.Cylinders
       Paths_Cylinders
   hs-source-dirs:
       src
