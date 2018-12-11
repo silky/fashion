@@ -23,6 +23,15 @@ dependencies:
   - random
   - split
 
+
+library:
+  source-dirs: src
+  exposed-modules:
+    - Nvds.Designs.RetroHaskell
+
+
 executables:
   retro-haskell:
+    dependencies:
+      - retro-haskell
     main: Main.hs

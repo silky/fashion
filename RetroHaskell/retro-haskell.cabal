@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.30.0.
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f313ff46f08327eebea5ebf1b18f00484eb50cc4198f1925426fc8fb72b5bd77
+-- hash: 7f43f871877c00ba89f62e421f9685f6d0f7e8b968cf2e5185ef3ea9bf1b0caf
 
 name:           retro-haskell
 version:        0.1.0.0
@@ -17,6 +17,28 @@ license:        BSD3
 build-type:     Simple
 extra-source-files:
     README.md
+
+library
+  exposed-modules:
+      Nvds.Designs.RetroHaskell
+  other-modules:
+      Paths_retro_haskell
+  hs-source-dirs:
+      src
+  build-depends:
+      active
+    , base >=4.7 && <5
+    , colour
+    , diagrams
+    , diagrams-cairo
+    , diagrams-contrib
+    , diagrams-lib
+    , gsl-random
+    , nvds-lib
+    , palette
+    , random
+    , split
+  default-language: Haskell2010
 
 executable retro-haskell
   main-is: Main.hs
@@ -32,6 +54,7 @@ executable retro-haskell
     , nvds-lib
     , palette
     , random
+    , retro-haskell
     , split
   other-modules:
       Paths_retro_haskell

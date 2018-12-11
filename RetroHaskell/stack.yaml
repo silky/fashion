@@ -3,6 +3,6 @@ packages:
     - .
 
 extra-deps:
-    - ../nvds-lib
+  - ../nvds-lib
   - gsl-random-0.5.3
 
