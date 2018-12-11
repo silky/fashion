@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.30.0.
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0200e9e842c076db730999c2aa9c572eb5ac795dd2ab9a1dec03bb693555422d
+-- hash: 0e05576f7a9313b7d79b40ba11648afbb1acdd286b224a7b36d53eb13c77c7dd
 
 name:           Fusion-Compression
 version:        0.1.0.0
@@ -19,9 +19,25 @@ build-type:     Simple
 extra-source-files:
     README.md
 
+library
+  exposed-modules:
+      Nvds.Designs.FusionCompression
+  other-modules:
+      Main
+      Paths_Fusion_Compression
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+  default-language: Haskell2010
+
 executable Fusion-Compression
   main-is: Main.hs
   other-modules:
+      Nvds.Designs.FusionCompression
       Paths_Fusion_Compression
   hs-source-dirs:
       src
