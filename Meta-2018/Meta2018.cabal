@@ -1,0 +1,48 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 4e837865398ec7513c3a030f0105fc5b6694bd07ca54b088c8287fbde75fc197
+
+name:           Meta2018
+version:        0.1.0.0
+category:       Web
+homepage:       https://github.com/silky/fashion/Meta2018#readme
+author:         Noon van der Silk
+maintainer:     noonsilk@gmail.com
+copyright:      Noon van der Silk
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+executable Meta2018
+  main-is: Main.hs
+  other-modules:
+      Paths_Meta2018
+  hs-source-dirs:
+      src
+  build-depends:
+      Community-Circle
+    , Cubic-Limit-Series
+    , Cylinders
+    , Double-Slit
+    , Fusion-Compression
+    , Glitter-Painting
+    , Magic-Carpet
+    , Moon-Tile
+    , SB-I86
+    , Scan-Lines
+    , Sun-Mountain-Scape
+    , Teseloni
+    , Tilings-I95
+    , Warp-Speed
+    , base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+    , retro-haskell
+  default-language: Haskell2010

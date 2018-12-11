@@ -1,0 +1,27 @@
+resolver:
+  url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/12/22.yaml
+
+packages:
+  - .
+    
+extra-deps:
+  - ../Community-Circle
+  - ../Cubic-Limit-Series
+  - ../Cylinders
+  - ../Double-Slit
+  - ../Fusion-Compression
+  - ../Glitter-Painting
+  - ../Magic-Carpet
+  - ../Moon-Tile
+  - ../RetroHaskell
+  - ../Tilings-95
+  - ../SB-I86
+  - ../Scan-Lines
+  - ../Sun-Mountain-Scape
+  - ../Teseloni
+  - ../nvds-lib
+  - ../Warp-Speed
+  - random-extras-0.19@sha256:52579ee8653b17d8b19fb54833ecbab8df47b6cf61a77c9614df0c3155441d29,1137
+  - gsl-random-0.5.3@sha256:ecfd2a9e309033aa9ecae2be575a8ffa36d91ec785d32f86a04063b246a67dd3,1454
+
+
