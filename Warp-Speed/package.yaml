@@ -17,7 +17,15 @@ dependencies:
   - diagrams-lib
   - gsl-random
 
+library:
+  source-dirs: src
+  exposed-modules:
+    - Nvds.Designs.WarpSpeed
+
 executables:
   Warp-Speed:
+    dependencies:
+      - Warp-Speed
+
     source-dirs:      src
     main:             Main.hs

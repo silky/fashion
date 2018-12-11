@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.30.0.
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 680dcfcd1f07c6e051f6c2b92315e5e5b42a297890b72a13284e8075e018cf8d
+-- hash: 1dc9e0b05b84873815dcca6b0768d1c1be09204f935d0ef3fd186d330e51a695
 
 name:           Scan-Lines
 version:        0.1.0.0
@@ -19,14 +19,31 @@ build-type:     Simple
 extra-source-files:
     README.md
 
-executable Scan-Lines
-  main-is: Main.hs
+library
+  exposed-modules:
+      Nvds.Designs.ScanLines
   other-modules:
+      Main
       Paths_Scan_Lines
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+  default-language: Haskell2010
+
+executable Scan-Lines
+  main-is: Main.hs
+  other-modules:
+      Nvds.Designs.ScanLines
+      Paths_Scan_Lines
+  hs-source-dirs:
+      src
+  build-depends:
+      Scan-Lines
+    , base >=4.7 && <5
     , diagrams
     , diagrams-cairo
     , diagrams-lib

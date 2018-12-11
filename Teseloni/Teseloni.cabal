@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.30.0.
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 80a0150827f3c0a444ebb0d7f48357eda8fec25812291ebd5cd411918ffc44cb
+-- hash: 6335c0802825f5aaa8697e8a1c7d8cb471a51791f87323b13d2781dada0889a5
 
 name:           Teseloni
 version:        0.1.0.0
@@ -19,14 +19,31 @@ build-type:     Simple
 extra-source-files:
     README.md
 
-executable Teseloni
-  main-is: Main.hs
+library
+  exposed-modules:
+      Nvds.Designs.Teseloni
   other-modules:
+      Main
       Paths_Teseloni
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+  default-language: Haskell2010
+
+executable Teseloni
+  main-is: Main.hs
+  other-modules:
+      Nvds.Designs.Teseloni
+      Paths_Teseloni
+  hs-source-dirs:
+      src
+  build-depends:
+      Teseloni
+    , base >=4.7 && <5
     , diagrams
     , diagrams-cairo
     , diagrams-lib

@@ -15,7 +15,15 @@ dependencies:
   - diagrams-cairo
   - diagrams-lib
 
+library:
+  source-dirs: src
+  exposed-modules:
+    - Nvds.Designs.Teseloni
+
 executables:
   Teseloni:
+    dependencies:
+      - Teseloni
+
     source-dirs:      src
     main:             Main.hs

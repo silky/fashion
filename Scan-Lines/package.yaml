@@ -17,7 +17,16 @@ dependencies:
   - diagrams-cairo
   - diagrams-lib
 
+
+library:
+  source-dirs: src
+  exposed-modules:
+    - Nvds.Designs.ScanLines
+
+
 executables:
   Scan-Lines:
+    dependencies:
+      - Scan-Lines
     source-dirs:      src
     main:             Main.hs

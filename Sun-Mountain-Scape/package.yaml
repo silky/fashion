@@ -18,7 +18,17 @@ dependencies:
   - random-fu
   - random-source
 
+
+library:
+  source-dirs: src
+  exposed-modules:
+    - Nvds.Designs.SunMountainScape
+
+
 executables:
   Sun-Mountain-Scape:
+    dependencies:
+      - Sun-Mountain-Scape
+
     source-dirs:      src
     main:             Main.hs

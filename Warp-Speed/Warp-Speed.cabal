@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.30.0.
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 373e44b67b423a097bf90745d5ca4e1412721cdeca06738fb659bf25afef818e
+-- hash: 4918127a8d3b718684bfabeeae166814c7906c78138fad5b0d3fd900d49d95f3
 
 name:           Warp-Speed
 version:        0.1.0.0
@@ -19,14 +19,33 @@ build-type:     Simple
 extra-source-files:
     README.md
 
-executable Warp-Speed
-  main-is: Main.hs
+library
+  exposed-modules:
+      Nvds.Designs.WarpSpeed
   other-modules:
+      Main
       Paths_Warp_Speed
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+    , colour
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+    , gsl-random
+  default-language: Haskell2010
+
+executable Warp-Speed
+  main-is: Main.hs
+  other-modules:
+      Nvds.Designs.WarpSpeed
+      Paths_Warp_Speed
+  hs-source-dirs:
+      src
+  build-depends:
+      Warp-Speed
+    , base >=4.7 && <5
     , colour
     , diagrams
     , diagrams-cairo

@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.30.0.
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0f1640fcee2153b8851908b17b1b54efd7c8037585b1dfafd23aec8cff21a36f
+-- hash: a906ee21e0768eb5f555bdd5bd78a452e872f9a891349d50f82af17c246381c5
 
 name:           SB-I86
 version:        0.1.0.0
@@ -19,14 +19,35 @@ build-type:     Simple
 extra-source-files:
     README.md
 
-executable SB-I86
-  main-is: Main.hs
+library
+  exposed-modules:
+      Nvds.Designs.SBI86
   other-modules:
+      Main
       Paths_SB_I86
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-contrib
+    , diagrams-lib
+    , nvds-lib
+    , random
+    , split
+  default-language: Haskell2010
+
+executable SB-I86
+  main-is: Main.hs
+  other-modules:
+      Nvds.Designs.SBI86
+      Paths_SB_I86
+  hs-source-dirs:
+      src
+  build-depends:
+      SB-I86
+    , base >=4.7 && <5
     , diagrams
     , diagrams-cairo
     , diagrams-contrib

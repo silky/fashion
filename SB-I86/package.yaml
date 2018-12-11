@@ -21,7 +21,14 @@ dependencies:
   - random
   - split
 
+library:
+  source-dirs: src
+  exposed-modules:
+    - Nvds.Designs.SBI86
+
 executables:
   SB-I86:
+    dependencies:
+      - SB-I86
     source-dirs:      src
     main:             Main.hs

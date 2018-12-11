@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.30.0.
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: dbe4ea1c49e4b4882f32e7656887c7f0f6e5625247599f8e977e12f20ddd52b4
+-- hash: 89358254844ceafef91b632c98242ef1946834625b8e3384d624afee09055174
 
 name:           Sun-Mountain-Scape
 version:        0.1.0.0
@@ -19,14 +19,34 @@ build-type:     Simple
 extra-source-files:
     README.md
 
-executable Sun-Mountain-Scape
-  main-is: Main.hs
+library
+  exposed-modules:
+      Nvds.Designs.SunMountainScape
   other-modules:
+      Main
       Paths_Sun_Mountain_Scape
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+    , random
+    , random-fu
+    , random-source
+  default-language: Haskell2010
+
+executable Sun-Mountain-Scape
+  main-is: Main.hs
+  other-modules:
+      Nvds.Designs.SunMountainScape
+      Paths_Sun_Mountain_Scape
+  hs-source-dirs:
+      src
+  build-depends:
+      Sun-Mountain-Scape
+    , base >=4.7 && <5
     , diagrams
     , diagrams-cairo
     , diagrams-lib
