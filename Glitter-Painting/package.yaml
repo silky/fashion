@@ -19,6 +19,13 @@ dependencies:
   - random-source
   - split
 
+
+library:
+  source-dirs: src
+  exposed-modules:
+    - Nvds.Designs.GlitterPainting
+
+
 executables:
   Glitter-Painting:
     source-dirs:      src

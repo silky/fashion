@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.30.0.
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 255e2585c093dcc85fb0f3a3dbc8a29014633ed7daca8c5d2f9b323a860a481f
+-- hash: 4490fcc4254c9b742b81c2159de7a7e4001d8bfc39af94f7a581e7f3a37e44f4
 
 name:           Glitter-Painting
 version:        0.1.0.0
@@ -19,9 +19,29 @@ build-type:     Simple
 extra-source-files:
     README.md
 
+library
+  exposed-modules:
+      Nvds.Designs.GlitterPainting
+  other-modules:
+      Main
+      Paths_Glitter_Painting
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+    , random
+    , random-fu
+    , random-source
+    , split
+  default-language: Haskell2010
+
 executable Glitter-Painting
   main-is: Main.hs
   other-modules:
+      Nvds.Designs.GlitterPainting
       Paths_Glitter_Painting
   hs-source-dirs:
       src

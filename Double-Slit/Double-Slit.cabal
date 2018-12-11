@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.30.0.
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: fc1f8da5a93fa0084eea75a638fe09d0eb222fe09bb23ee12f65e9a657bd5911
+-- hash: 10a808b606cd4b27239a10546eac563d5dd6ffda6926340cbaa7b6702dc2c60e
 
 name:           Double-Slit
 version:        0.1.0.0
@@ -19,9 +19,25 @@ build-type:     Simple
 extra-source-files:
     README.md
 
+library
+  exposed-modules:
+      Nvds.Designs.DoubleSlit
+  other-modules:
+      Main
+      Paths_Double_Slit
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+  default-language: Haskell2010
+
 executable Double-Slit
   main-is: Main.hs
   other-modules:
+      Nvds.Designs.DoubleSlit
       Paths_Double_Slit
   hs-source-dirs:
       src
