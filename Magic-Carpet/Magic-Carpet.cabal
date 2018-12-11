@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.30.0.
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: cba0711ea2a683e3f0ac50b9589a5a45d1319460ae7708144774fc3a7dfab6d4
+-- hash: df572e27a2b1a20e883cac19f348cee7fa1f6718e70ea3a84c7a198a7c815b16
 
 name:           Magic-Carpet
 version:        0.1.0.0
@@ -19,9 +19,28 @@ build-type:     Simple
 extra-source-files:
     README.md
 
+library
+  exposed-modules:
+      Nvds.Designs.MagicCarpet
+  other-modules:
+      Main
+      Paths_Magic_Carpet
+  hs-source-dirs:
+      src
+  build-depends:
+      array
+    , base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+    , nvds-lib
+    , random
+  default-language: Haskell2010
+
 executable Magic-Carpet
   main-is: Main.hs
   other-modules:
+      Nvds.Designs.MagicCarpet
       Paths_Magic_Carpet
   hs-source-dirs:
       src

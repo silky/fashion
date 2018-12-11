@@ -18,6 +18,13 @@ dependencies:
   - nvds-lib
   - random
 
+
+library:
+  source-dirs: src
+  exposed-modules:
+    - Nvds.Designs.MagicCarpet
+
+
 executables:
   Magic-Carpet:
     source-dirs:      src
