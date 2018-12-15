@@ -55,8 +55,8 @@ d = do
   redStars   <- stars red       90  2
   whiteStars <- stars black     140 3 
   bgStars    <- stars' (D.uniform (-1) 1) 0.15 1 1 gold 700  4
-  -- farStars   <- stars' (D.uniform (-1) (-0.2)) 0.12 (2 / 0.8) 1 gold 2000  5
-  farStars   <- stars' (D.uniform (-1) 1) 0.12 1 1 gold 2000  5
+  farStars   <- stars' (D.uniform (-1) (-0.2)) 0.12 (2 / 0.8) 1 gold 2000  5
+  -- farStars   <- stars' (D.uniform (-1) 1) 0.12 1 1 gold 2000  5
 
   let m = (    blueStars
           <> redStars
@@ -66,14 +66,14 @@ d = do
 
   let b = (landing # alignB <> m # alignB)
             # centerXY
-  let b = m
+  -- let b = m
       t = text "BRANESHOP" # fontSize (local 1.1)
             # font "Fira Code"
             # bold
           <> rect 10 2 # fc white # lw none
           <> (rect 10 2 # fc royalblue # lw none # translate (0.4 ^& (-0.4)))
 
-      c = b # bg white 
+      c = b # bg black 
             # rotate (-30 @@ deg)
             # centerXY
             # clipTo (rect 1.2 0.4)
