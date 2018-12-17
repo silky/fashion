@@ -8,7 +8,7 @@ import Diagrams.Prelude
 import Diagrams.Backend.Cairo.CmdLine
 
 main :: IO ()
-main = mainWith (type2 # frame 0.2) >> putStrLn "Done!"
+main = mainWith (grid) >> putStrLn "Done!"
 
 
 type2 :: Diagram B
@@ -42,14 +42,27 @@ type2 = d
           m = 2/tau
 
 
+grid = 
+  ( type1 # lw 0.4 # scaleY 0.5 # centerXY <>
+    (type1 # rotateBy (-1/4)
+                # lw 0.4
+                # scaleX 0.4
+                -- # scaleY 1.5
+                # centerXY)
+  ) # centerXY
+         # clipTo (square 0.5 # centerXY)
+
+
+
+
 -- | The original one
 type1 :: Diagram B
-type1 = d
+type1 = d # rotateBy (1/4)
   where
     d :: Diagram B
     d = hsep 0.002 (map r' [1..100])
           # fc red
-          # lc blue
+          # lc (sRGB24read "4169e1")
       where
         r :: Path V2 Double
         r = fromOffsets $ [unitY]
@@ -62,6 +75,6 @@ type1 = d
     wibble k = Deformation $ \p ->
       ((p^._x) + f * cos ((p ^. _y) * tau + m * k)) ^& ((p ^. _y) + f * sin ((p ^. _x) * tau + m * k))
         where
-          f = 0.01
+          f = 0.02
           m = 3/tau
 
