@@ -18,6 +18,7 @@ dependencies:
   - random-fu
   - random-source
   - split
+  - nvds-lib
 
 executables:
   Space-Split:

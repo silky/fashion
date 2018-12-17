@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.31.0.
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ab37aecb249257bc39ab35f28c8f6ae3a2acdf626ee8cf8d90e0c56998da336e
+-- hash: dd0cccec9a7728780d3c5c3b6a86415bb8d7c9b98f821c2f187c7ca8e90989a1
 
 name:           Space-Split
 version:        0.1.0.0
@@ -30,6 +30,7 @@ executable Space-Split
     , diagrams
     , diagrams-cairo
     , diagrams-lib
+    , nvds-lib
     , random
     , random-fu
     , random-source

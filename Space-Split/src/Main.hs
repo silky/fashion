@@ -13,6 +13,7 @@ import Data.Random (runRVar)
 import Diagrams.Prelude
 import Diagrams.Backend.Cairo.CmdLine
 import Data.List.Split
+import Nvds.Svg
 
 
 main :: IO ()
@@ -49,8 +50,14 @@ landing =  c # centerXY
               # lw 0.8
 
 
+ifilter :: (Int -> Bool) -> [a] -> [a]
+ifilter p xs = map snd $ filter (p . fst) (zip [1..] xs)
+
+
 d :: IO (Diagram B)
 d = do
+  Just emuPath <- singlePathFromFile "../svg-input/emu.svg"
+
   blueStars  <- stars royalblue 90  1
   redStars   <- stars red       90  2
   whiteStars <- stars black     140 3 
@@ -63,6 +70,11 @@ d = do
           <> whiteStars
           <> bgStars ) # alignB
           <> farStars # centerXY # alignB
+
+  let emuPoints = ifilter (\i -> (i `mod` 500) == 0) (toNormalisedPoints emuPath)
+                     # scale 2
+      emuStars  = mconcat (map (\pt -> star' orange 0.0012 # moveTo pt) emuPoints)
+      emu       = emuStars # centerXY
 
   let b = (landing # alignB <> m # alignB)
             # centerXY
@@ -79,7 +91,8 @@ d = do
             # clipTo (rect 1.2 0.4)
 
   -- return $ b # bg black
-  return $ c
+
+  return $ (emu <> c # centerXY) # bg black
 
 
 
