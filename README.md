@@ -44,12 +44,6 @@
 ![](./Hense/images/broken.svg)
 ![](./Hense/images/double-broken.svg)
 
-#### [Hue-Circle](Hue-Circle)
-
-![](./Hue-Circle/images/a.svg)
-![](./Hue-Circle/images/b.svg)
-![](./Hue-Circle/images/c.svg)
-![](./Hue-Circle/images/d.svg)
 
 #### [Magic-Carpet](Magic-Carpet)
 
