@@ -66,7 +66,8 @@ toSimplePath :: S.Path
 toSimplePath svgPath = 
     path
   where
-    percent  = 0.95
+    -- TODO: Make this a parameter.
+    percent  = 0.98 -- Was: 95
     beziers  = map (\(a, b, c) -> bezier3 a b c) (toCubicBezierParams svgPath)
     half     = length beziers `div` 2
     amount   = floor (fromIntegral half * percent)
@@ -81,7 +82,7 @@ getPaths doc = concat $ map (S.foldTree g s0) (S._elements doc)
     s0 = []
 
     g ps (S.GroupTree tree) = ps ++ concatMap extractPaths (S._groupChildren tree)
-    g ps _                = ps
+    g ps _                  = ps
 
     extractPaths (S.PathTree path) = [path]
     extractPaths _ = []
