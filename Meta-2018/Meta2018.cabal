@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 4e837865398ec7513c3a030f0105fc5b6694bd07ca54b088c8287fbde75fc197
+-- hash: 025655956ae401eb29ff9cd6d41ee64adb5ba35bcf432f680dc6a13ef0782f27
 
 name:           Meta2018
 version:        0.1.0.0
@@ -36,10 +36,12 @@ executable Meta2018
     , Moon-Tile
     , SB-I86
     , Scan-Lines
+    , Sketchy-Depth
     , Sun-Mountain-Scape
     , Teseloni
     , Tilings-I95
     , Warp-Speed
+    , Wave-Axis
     , base >=4.7 && <5
     , diagrams
     , diagrams-cairo

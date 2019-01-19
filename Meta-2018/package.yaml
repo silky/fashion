@@ -26,9 +26,11 @@ dependencies:
   - Scan-Lines
   - retro-haskell
   - Sun-Mountain-Scape
+  - Sketchy-Depth
   - Teseloni
   - Tilings-I95
   - Warp-Speed
+  - Wave-Axis
 
 executables:
   Meta2018:
