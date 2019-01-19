@@ -71,7 +71,7 @@ d = do
           <> bgStars ) # alignB
           <> farStars # centerXY # alignB
 
-  let emuPoints = ifilter (\i -> (i `mod` 500) == 0) (toNormalisedPoints emuPath)
+  let emuPoints = ifilter (\i -> (i `mod` 1200) == 0) (toNormalisedPoints emuPath)
                      # scale 2
       emuStars  = mconcat (map (\pt -> star' orange 0.0012 # moveTo pt) emuPoints)
       emu       = emuStars # centerXY
