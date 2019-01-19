@@ -21,7 +21,15 @@ dependencies:
   - split
   - vector
 
+library:
+  source-dirs: src
+  exposed-modules:
+    - Nvds.Designs.SketchyDepths
+
 executables:
   Sketchy-Depth:
+    dependencies:
+      - Sketchy-Depth
+
     source-dirs:      src
     main:             Main.hs

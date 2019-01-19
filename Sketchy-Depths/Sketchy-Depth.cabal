@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.31.0.
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 99d29ca18c28f0fb3e6a1a00fd8109d678ab784929c0c3612264e9ecc4ae0492
+-- hash: 69ce1050ddeec7b1827377c15975e80996e5b48e4d1f3dd0dbdbcdae4667b8c3
 
 name:           Sketchy-Depth
 version:        0.1.0.0
@@ -19,14 +19,37 @@ build-type:     Simple
 extra-source-files:
     README.md
 
-executable Sketchy-Depth
-  main-is: Main.hs
+library
+  exposed-modules:
+      Nvds.Designs.SketchyDepths
   other-modules:
+      Main
       Paths_Sketchy_Depth
   hs-source-dirs:
       src
   build-depends:
       aeson
+    , base >=4.7 && <5
+    , bytestring
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+    , filepath
+    , split
+    , string-conv
+    , vector
+  default-language: Haskell2010
+
+executable Sketchy-Depth
+  main-is: Main.hs
+  other-modules:
+      Nvds.Designs.SketchyDepths
+      Paths_Sketchy_Depth
+  hs-source-dirs:
+      src
+  build-depends:
+      Sketchy-Depth
+    , aeson
     , base >=4.7 && <5
     , bytestring
     , diagrams
