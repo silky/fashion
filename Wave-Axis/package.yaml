@@ -15,7 +15,15 @@ dependencies:
   - diagrams-cairo
   - diagrams-lib
 
+library:
+  source-dirs: src
+  exposed-modules:
+    - Nvds.Designs.WaveAxis
+
 executables:
   Wave-Axis:
+    dependencies:
+      - Wave-Axis
+
     source-dirs:      src
     main:             Main.hs

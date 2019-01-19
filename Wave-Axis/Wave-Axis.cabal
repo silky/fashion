@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.31.0.
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 48e4a4dcde41d4cbc4d6fa0da996ddc91531231764c63ca38b903c8cba0b0c90
+-- hash: a91df7dde2b546c635319de8052dfb6011458c8412eec3f0246895a93cebc5d1
 
 name:           Wave-Axis
 version:        0.1.0.0
@@ -19,14 +19,31 @@ build-type:     Simple
 extra-source-files:
     README.md
 
-executable Wave-Axis
-  main-is: Main.hs
+library
+  exposed-modules:
+      Nvds.Designs.WaveAxis
   other-modules:
+      Main
       Paths_Wave_Axis
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+    , diagrams
+    , diagrams-cairo
+    , diagrams-lib
+  default-language: Haskell2010
+
+executable Wave-Axis
+  main-is: Main.hs
+  other-modules:
+      Nvds.Designs.WaveAxis
+      Paths_Wave_Axis
+  hs-source-dirs:
+      src
+  build-depends:
+      Wave-Axis
+    , base >=4.7 && <5
     , diagrams
     , diagrams-cairo
     , diagrams-lib
