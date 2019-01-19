@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.30.0.
+-- This file has been generated from package.yaml by hpack version 0.31.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 9f557ca14e259b7d503613b99f3c4afd3063e8485407229a6cb23f83a0dd819f
+-- hash: 5cea6c4c111d6cf1eaf5ceed900b347091fc02e627fe60ce9d2a12825da47442
 
 name:           Contour-Maps
 version:        0.1.0.0
@@ -30,4 +30,6 @@ executable Contour-Maps
     , diagrams
     , diagrams-cairo
     , diagrams-lib
+    , hmatrix
+    , linear
   default-language: Haskell2010
