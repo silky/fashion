@@ -50,14 +50,15 @@ circleParts n = map f [0..n]
         a = 360 / n
 
 
-linesToDraw = circleParts 150
--- linesToDraw = circleParts 50
+linesToDraw :: [[P2 Double]]
+-- linesToDraw = circleParts 150
+linesToDraw = circleParts 50
 -- linesToDraw = cubeParts
 
 
-linesWith :: Colour Double -> [Int] -> Diagram B
-linesWith c indicies = 
-    sublines 
+linesWith :: [[P2 Double]] -> Colour Double -> [Int] -> Diagram B
+linesWith sublines c indicies = 
+    sublines'
         # map fromVertices 
         # mconcat          
         # centerXY
@@ -67,16 +68,16 @@ linesWith c indicies =
         p = (square 3) # lw 0.2 # lc c
 
         -- Always everything
-        sublines = linesToDraw
+        -- sublines' = sublines
         --
         -- Some subset
-        -- sublines = map (\i -> linesToDraw !! i) indicies
+        sublines' = map (\i -> sublines !! i) indicies
 
 
-tile :: Colour Double -> Colour Double -> Colour Double -> [Int] -> Diagram B
-tile c1 c2 c3 xs = linesWith c2 xs # lw thin
-                                   # lc c1
-                                   # bg c3
+tile :: [[P2 Double]] -> Colour Double -> Colour Double -> Colour Double -> [Int] -> Diagram B
+tile lines c1 c2 c3 xs = linesWith lines c2 xs # lw thin
+                                               # lc c1
+                                               # bg c3
 
 
 someIndicies :: IO [Int]
@@ -95,15 +96,15 @@ someIndicies = do
 --  1. Removing some element
 --  2. Adding some element
 --
-nextSet :: [Int] -> IO [Int]
-nextSet xs = do
+nextSet :: [[P2 Double]] -> [Int] -> IO [Int]
+nextSet lines xs = do
     b :: Int <- randomRIO (0, 1)
     i <- randomRIO (0, length xs - 1)
 
-    let remaining = [0..length linesToDraw - 1] \\ xs
+    let remaining = [0..length lines - 1] \\ xs
     shuffled <- runRVar (shuffle remaining) StdRandom
 
-    let forcedDrop = length xs == length linesToDraw
+    let forcedDrop = length xs == length lines
 
     let xs' = if length xs > 1 && (b == 0 || forcedDrop) 
                 then dropIndex i xs 
@@ -119,11 +120,16 @@ dropIndex 0 xs = drop 1 xs
 dropIndex i xs = let (h, t) = splitAt i xs in h ++ dropIndex i (drop 1 t)
 
 
-design :: IO (Diagram B)
-design =  do
-    let chunks = 5
+
+pdesign :: [[P2 Double]] 
+        -> Int 
+        -> Bool
+        -> Colour Double
+        -> IO (Diagram B)
+pdesign lines n vary bg = do
+    let chunks = n
         items  = chunks * chunks
-        tile'  = tile gray white black
+        -- tile'  = tile gray white white
 
     colourIndex <- randomRIO (0, length allColours - 1)
 
@@ -132,17 +138,19 @@ design =  do
     -- Method 1:
     --  Random variations in each step.
     --
-    let stepDifference = 3
-    let f (cur, xs) _  = do xs' <- foldM (\nxs _ -> nextSet nxs) xs [1..stepDifference]
+    let stepDifference = 1
+    let f (cur, xs) _  = do xs' <- foldM (\nxs _ -> nextSet lines nxs) xs [1..stepDifference]
                             return (xs' : cur, xs')
 
-    seqs    <- foldM f (return [], [1, 2]) [0.. items -1] >>= return . fst
+    seqs'   <- foldM f (return [], [1, 2]) [0.. items -1] >>= return . fst
     colours <- replicateM items (runRVar (shuffle colourSet) StdRandom)
+
+    let seqs = if vary then seqs' else replicate n [0 .. length lines - 1]
 
     -- Colour ones:
     -- let getTile s cs = tile black (head cs) (head cs) s
     -- let getTile s cs = tile (head cs) (head cs) black s
-    let getTile s cs = tile (head cs) gray black s
+    let getTile s cs = tile lines (head cs) bg bg s
     --
     -- Original one:
     -- let getTile s cs = tile gray white black s
@@ -155,7 +163,18 @@ design =  do
     -- tiles <- replicateM items (someIndicies >>= return . tile')
 
     let diag = vcat (map hcat (chunksOf chunks tiles))
-                # withEnvelope (square 1 :: Diagram B)
+                -- # clipTo (square 2.1) --  :: Diagram B)
 
-    return (diag # frame 0.2)
+    return diag
+
+
+
+
+design :: IO (Diagram B)
+design =  do
+    let lines = linesToDraw
+        n     = 500
+        vary  = False
+        bg    = black
+    pdesign lines n vary bg
 
