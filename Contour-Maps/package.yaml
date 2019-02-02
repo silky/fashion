@@ -17,6 +17,10 @@ dependencies:
   - diagrams-lib
   - linear
   - hmatrix
+  - repa
+  - repa-io
+  - repa-algorithms
+  - vector
 
 
 executables:

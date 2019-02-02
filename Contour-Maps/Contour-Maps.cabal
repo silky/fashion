@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.31.0.
+-- This file has been generated from package.yaml by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5cea6c4c111d6cf1eaf5ceed900b347091fc02e627fe60ce9d2a12825da47442
+-- hash: b95a33decfae470ec983e551299ee0d0f51729770a36e0b00951af1533f90343
 
 name:           Contour-Maps
 version:        0.1.0.0
@@ -22,6 +22,7 @@ extra-source-files:
 executable Contour-Maps
   main-is: Main.hs
   other-modules:
+      Canny
       Paths_Contour_Maps
   hs-source-dirs:
       src
@@ -32,4 +33,8 @@ executable Contour-Maps
     , diagrams-lib
     , hmatrix
     , linear
+    , repa
+    , repa-algorithms
+    , repa-io
+    , vector
   default-language: Haskell2010
