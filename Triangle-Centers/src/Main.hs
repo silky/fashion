@@ -3,12 +3,19 @@
 {-# LANGUAGE NoMonomorphismRestriction  #-}
 {-# LANGUAGE NamedFieldPuns             #-}
 {-# LANGUAGE DuplicateRecordFields      #-}
+{-# LANGUAGE ScopedTypeVariables        #-}
 
 
 module Main where
 
-import Diagrams.Prelude
+import Control.Monad
+import Data.IORef (newIORef)
+import Data.List.Split
+import Data.Random (runRVar)
+import Data.Random.Source.StdGen (mkStdGen)
 import Diagrams.Backend.Cairo.CmdLine
+import Diagrams.Prelude
+import qualified Data.Random.Distribution.Normal as D
 
 
 data Trilinear = Trilinear
@@ -84,8 +91,22 @@ csc x = 1 / sin x
 cot x = 1 / tan x
 
 
-d :: Diagram B
-d = triangleWithCenter tri nagel
+d :: IO (Diagram B)
+d = do
+  let m     = triangleWithCenter tri centroid
+      dist  = D.normal 1 0.5
+      count = 10
+
+  r <- newIORef (mkStdGen 3)
+  [xs, ys, as] :: [[Double]] <- chunksOf count 
+                 <$> ( flip runRVar r $ replicateM (count * 3) dist )
+
+  let g  = flip triangleWithCenter incenter
+  let ms = zipWith3 ( (\c' β' a' -> g $ DT c' (β' * pi @@ rad) a')
+                    ) xs as ys
+
+  return $ hcat ms
+
   where
     tri = DT 0.9 (90 @@ deg) 1
     (T { area, a, b, c, α, β, γ }) = computeT tri
@@ -137,9 +158,15 @@ triangleWithCenter :: DiagramsTriangle
                    -> Trilinear 
                    -> Diagram B
 triangleWithCenter tri@(DT { c, β, a }) tl@(Trilinear {x, y, z}) =
-  (t1 # stroke # lw 1 <> circle r # fc black # moveTo pv)
-  <> (mconcat $ zipWith (\pt c -> circle 0.04 # lw none # fc c # moveTo pt) [av, bv, cv] [red, blue, green])
+  (t1 # stroke # lw 1 
+    -- <> circle r # fc black # moveTo pv
+  )
+  -- <> (mconcat $ zipWith (\pt c -> circle 0.04 # lw none # fc c # moveTo pt) [av, bv, cv] [red, blue, green])
+  <> av ~~ pv # dashed
+  <> bv ~~ pv # dashed
+  <> cv ~~ pv # dashed
   where
+    dashed = dashingN [0.03, 0.03] 0.2 # lw 0.5
     nt = computeT tri
     b' = b nt
     t1 = t tri
@@ -162,4 +189,4 @@ triangleWithCenter tri@(DT { c, β, a }) tl@(Trilinear {x, y, z}) =
 
 
 main :: IO ()
-main = mainWith (d # frame 0.2) >> putStrLn "Done!"
+main = mainWith (frame 0.2 <$> d) >> putStrLn "Done!"

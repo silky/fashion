@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: bfc949dcda57391c069dd78bba634c6630c2fff1378fcd23f63eb24496a5d241
+-- hash: e9a40bd5d1f9287d403ed7d5fcf5b6eab74344e73f93245511fc198aa70508b3
 
 name:           Triangle-Centers
 version:        0.1.0.0
@@ -30,4 +30,8 @@ executable Triangle-Centers
     , diagrams
     , diagrams-cairo
     , diagrams-lib
+    , random
+    , random-fu
+    , random-source
+    , split
   default-language: Haskell2010
