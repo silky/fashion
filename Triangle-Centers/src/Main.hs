@@ -80,17 +80,18 @@ t (DT { c, β, a }) = polygon
             [ c , a ]
       )
 
-sec x = 1 / cos x
 
-d = triangleWithCenter tri tc
+sec x = 1 / cos x
+csc x = 1 / sin x
+
+
+d :: Diagram B
+d = triangleWithCenter tri incenter
   where
-    tri = DT 1 (90 @@ deg) 1
+    tri = DT 0.9 (32 @@ deg) 1
     (T { area, a, b, c, α, β, γ }) = computeT tri
 
-    -- tc              = incenter
-    -- tc              = centerOfGravity
-    -- tc              = circumcenter
-    tc              = ninePointCenter
+    tc = centroid
 
     incenter        = Trilinear 1 1 1
 
@@ -106,6 +107,19 @@ d = triangleWithCenter tri tc
                                 (cos (γ ^. rad - α ^. rad)) 
                                 (cos (α ^. rad - β ^. rad)) 
 
+    symmedian       = Trilinear (sin (α ^. rad)) (sin (β ^. rad)) (sin (γ ^. rad))
+
+    gergonne        = Trilinear (sec (α ^. rad / 2) ** 2) 
+                                (sec (β ^. rad / 2) ** 2)
+                                (sec (γ ^. rad / 2) ** 2)
+
+    nagel           = Trilinear (csc (α ^. rad / 2) ** 2) 
+                                (csc (β ^. rad / 2) ** 2)
+                                (csc (γ ^. rad / 2) ** 2)
+
+    feurerbach      = Trilinear (1 - cos (β ^. rad - γ ^. rad)) 
+                                (1 - cos (γ ^. rad - α ^. rad)) 
+                                (1 - cos (α ^. rad - β ^. rad)) 
 
 
 triangleWithCenter :: DiagramsTriangle 
