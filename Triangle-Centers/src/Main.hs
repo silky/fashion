@@ -25,12 +25,12 @@ data Triangle  = T
   } deriving (Show)
 
 
--- k :: Trilinear -> Triangle -> Double
--- k (Trilinear { x, y, z }) (T { area, a, b, c }) =
---   num / denom
---     where
---       num   = 2*area
---       denom = a*x + b*y + c*z
+k :: Trilinear -> Triangle -> Double
+k (Trilinear { x, y, z }) (T { area, a, b, c }) =
+  num / denom
+    where
+      num   = 2*area
+      denom = a*x + b*y + c*z
   
 
 data DiagramsTriangle = DT 
@@ -68,8 +68,10 @@ t (DT { a, β, c}) = polygon
 
 d :: Diagram B
 d = 
-  t1 # lw 1 <> circle 0.293 # fc black # moveTo pv
+  t1 # lw 1 <> circle r # fc black # moveTo pv
   where
+    -- For fun
+    r                        = k tl nt
     tri@(DT { a, β, c })     = DT 1 (90 @@ deg) 1
     -- tl@(Trilinear {x, y, z}) = Trilinear (1/a) (1/b') (1/c)
     tl@(Trilinear {x, y, z}) = Trilinear 1 1 1
@@ -79,7 +81,7 @@ d =
     --
     -- Moderate crimes against Haskell
     --
-    [[av, bv, cv]]     = pathVertices (t1)
+    [[av, bv, cv]]     = pathVertices t1
 
     -- From: https://en.wikipedia.org/wiki/Trilinear_coordinates
     k1   = a*x  / (a*x + b'*y + c*z)
