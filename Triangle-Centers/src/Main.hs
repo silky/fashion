@@ -5,10 +5,6 @@
 {-# LANGUAGE DuplicateRecordFields      #-}
 
 
--- TODO:
---  - It isn't work for other triangle types yet.
-
-
 module Main where
 
 import Diagrams.Prelude
@@ -24,11 +20,13 @@ data Trilinear = Trilinear
 
 data Triangle  = T
   { area :: Double
+  --
+  -- Edge lengths
   , a    :: Double
   , b    :: Double
   , c    :: Double
-
-  -- Hmm
+  --
+  -- Internal angles
   , α    :: Angle Double
   , β    :: Angle Double
   , γ    :: Angle Double
@@ -83,12 +81,13 @@ t (DT { c, β, a }) = polygon
 
 sec x = 1 / cos x
 csc x = 1 / sin x
+cot x = 1 / tan x
 
 
 d :: Diagram B
-d = triangleWithCenter tri incenter
+d = triangleWithCenter tri nagel
   where
-    tri = DT 0.9 (32 @@ deg) 1
+    tri = DT 0.9 (90 @@ deg) 1
     (T { area, a, b, c, α, β, γ }) = computeT tri
 
     tc = centroid
@@ -121,11 +120,23 @@ d = triangleWithCenter tri incenter
                                 (1 - cos (γ ^. rad - α ^. rad)) 
                                 (1 - cos (α ^. rad - β ^. rad)) 
 
+    fermat          = Trilinear (csc (α ^. rad + pi/3)) 
+                                (csc (β ^. rad + pi/3))
+                                (csc (γ ^. rad + pi/3))
+
+    isodynamic1     = Trilinear (sin (α ^. rad + pi/3)) 
+                                (sin (β ^. rad + pi/3))
+                                (sin (γ ^. rad + pi/3))
+
+    napoleon1       = Trilinear (csc (α ^. rad + pi/6)) 
+                                (csc (β ^. rad + pi/6))
+                                (csc (γ ^. rad + pi/6))
+
 
 triangleWithCenter :: DiagramsTriangle 
                    -> Trilinear 
                    -> Diagram B
-triangleWithCenter tri@(DT { a, β, c }) tl@(Trilinear {x, y, z}) =
+triangleWithCenter tri@(DT { c, β, a }) tl@(Trilinear {x, y, z}) =
   (t1 # stroke # lw 1 <> circle r # fc black # moveTo pv)
   <> (mconcat $ zipWith (\pt c -> circle 0.04 # lw none # fc c # moveTo pt) [av, bv, cv] [red, blue, green])
   where
@@ -135,7 +146,6 @@ triangleWithCenter tri@(DT { a, β, c }) tl@(Trilinear {x, y, z}) =
     -- For fun: Make the radius equal to the equidistant
     --          length to the centerpoint.
     -- r = k tl nt
-    --
     r = 0.02
 
     -- From: https://en.wikipedia.org/wiki/Trilinear_coordinates
