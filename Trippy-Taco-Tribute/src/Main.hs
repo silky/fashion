@@ -34,8 +34,8 @@ sign :: Diagram B
 sign =
     (content <> background)
               # font "Arial"
-    ===
-      pole
+    -- ===
+    --   pole
   where
     pole = rect 0.015 0.42
                 # lw none
@@ -67,7 +67,21 @@ sign =
                   # fc orange
 
 
-d = sign 
+d = ( sign 
       # translateX (-0.05)
       # translateY (-0.05)
+      # scale 1.5
       <> pattern
+      )
+    ===
+      aliens
+
+
+aliens = dl # centerXY # scale 0.5 <> b
+  where
+    d1   = mconcat $ map wc [0.01,  0.013, 0.02, 0.03, 0.034]
+    d2   = mconcat $ map wc [0.008, 0.015, 0.021]
+    dl   = d1 === (d2 # translateY (0.01) <> ((0 ^& 0) ~~ (0 ^& 0.06) # lc white # lw 0.5))
+    wc n = circle n # lw 0.5 # lc white
+
+    b    = rect 1 0.1 # fc black # lw none
