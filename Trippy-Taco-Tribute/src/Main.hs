@@ -34,7 +34,13 @@ sign :: Diagram B
 sign =
     (content <> background)
               # font "Arial"
+    ===
+      pole
   where
+    pole = rect 0.015 0.42
+                # lw none
+                # fc gray
+
     arrow = (((0 ^& 0) ~~ (1 ^& 0)
               # scale 0.04
               # centerXY
