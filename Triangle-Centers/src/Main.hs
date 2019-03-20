@@ -6,6 +6,9 @@
 {-# LANGUAGE ScopedTypeVariables        #-}
 
 
+-- http://faculty.evansville.edu/ck6/tcenters/trilin.html
+-- http://faculty.evansville.edu/ck6/encyclopedia/ETC.html
+
 module Main where
 
 import Control.Monad
@@ -15,7 +18,8 @@ import Data.Random (runRVar)
 import Data.Random.Source.StdGen (mkStdGen)
 import Diagrams.Backend.Cairo.CmdLine
 import Diagrams.Prelude
-import qualified Data.Random.Distribution.Normal as D
+import qualified Data.Random.Distribution.Normal  as D
+import qualified Data.Random.Distribution.Uniform as D
 
 
 data Trilinear = Trilinear
@@ -94,15 +98,15 @@ cot x = 1 / tan x
 d :: IO (Diagram B)
 d = do
   let m     = triangleWithCenter tri centroid
-      dist  = D.normal 1 0.5
+      dist  = D.uniform 0.5 1 
       count = 10
 
-  r <- newIORef (mkStdGen 3)
+  r <- newIORef (mkStdGen 1)
   [xs, ys, as] :: [[Double]] <- chunksOf count 
                  <$> ( flip runRVar r $ replicateM (count * 3) dist )
 
   let g  = flip triangleWithCenter incenter
-  let ms = zipWith3 ( (\c' β' a' -> g $ DT c' (β' * pi @@ rad) a')
+  let ms = zipWith3 ( (\c' β' a' -> g $ DT c' (β' * 2*pi @@ rad) a')
                     ) xs as ys
 
   return $ hcat ms
