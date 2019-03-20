@@ -1,0 +1,21 @@
+name:                Trippy-Taco-Tribute
+version:             0.1.0.0
+homepage:            https://github.com/silky/fashion/Trippy-Taco-Tribute#readme
+license:             BSD3
+author:              Noon van der Silk
+maintainer:          noonsilk@gmail.com
+copyright:           Noon van der Silk
+category:            Web
+extra-source-files:
+- README.md
+
+dependencies:
+  - base >= 4.7 && < 5
+  - diagrams
+  - diagrams-cairo
+  - diagrams-lib
+
+executables:
+  Trippy-Taco-Tribute:
+    source-dirs:      src
+    main:             Main.hs
