@@ -161,7 +161,7 @@ replicateText
                   # fc white
 
 -- d = randomLayout
-d = zigzagLayout # bg bgColour
+d = zigzagLayout 
 -- d :: IO (Diagram B)
 -- d = do
 --   putStrLn $ line
@@ -172,22 +172,22 @@ gridLogos =
   vcat (map hcat (chunksOf n ds))
     where
       n      = 9
-      -- Square
+      -- Square:
       -- ds     = replicate (n*n) llogo'
-      -- Diagonal
+      -- Diagonal:
       ds     = concat $ replicate (n*n `div` 2) [llogo', phantom llogo']
       llogo' = llogo <> (phantom (square 0.5 :: Diagram B))
 
 
 
-zigzagLayout :: Diagram B
-zigzagLayout =
-    replicateText # centerXY # scale 0.02
-      # translateY (0.8)
-    <>
-    gridLogos # centerXY
-    <>
-    type1 # centerXY # scale 1.5
+zigzagLayout :: IO (Diagram B)
+zigzagLayout = do
+  putStrLn line
+  return $
+    (replicateText # centerXY # scale 0.02 # translateY (0.8)
+    <> gridLogos # centerXY
+    <> type1 # centerXY # scale 1.5
+    ) # bg bgColour
 
 
 randomLayout :: IO (Diagram B)
