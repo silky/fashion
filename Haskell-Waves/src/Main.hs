@@ -155,9 +155,9 @@ line = unwords (intersperse "&&" commands)
 
 replicateText 
   = text line # font "Fira Code"
-              # fontSize (local 1.1)
+              # fontSize (local 1.05)
               # bold
-              <> rect 168 3
+              <> rect 156 3
                   # fc white
 
 -- d = randomLayout
