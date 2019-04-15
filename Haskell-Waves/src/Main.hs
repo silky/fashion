@@ -114,12 +114,16 @@ llogo = logo
           # centerXY 
           # scale 0.1
           -- Scheme 1:
-          # fc peachpuff
-          # lwL 0.001
+          -- # fc peachpuff
+          -- # lwL 0.001
           --
           -- Scheme 2:
-          -- # lc (s "4169e1")
-          -- # fc white
+          # lc (s "4169e1")
+          # fc white
+          # lwL 0.01
+          --
+          -- Scheme 3:
+          -- # lc white
           -- # lwL 0.01
 
 logos =
@@ -141,8 +145,7 @@ gridLogos =
       -- Square
       -- ds     = replicate (n*n) llogo'
       -- Diagonal
-      ds = concat $ replicate (n*n `div` 2) [llogo', phantom llogo']
-
+      ds     = concat $ replicate (n*n `div` 2) [llogo', phantom llogo']
       llogo' = llogo <> (phantom (square 0.5 :: Diagram B))
 
 
