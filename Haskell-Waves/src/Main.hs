@@ -72,7 +72,7 @@ type1 :: Diagram B
 type1 = d # rotateBy (1/4)
   where
     d :: Diagram B
-    d = hsep 0.002 (map r' [1..65])
+    d = hsep 0.002 (map r' [1..71])
           # fc red
           # lc (s "4169e1")
       where
@@ -113,8 +113,14 @@ llogo = logo
           # strokeP
           # centerXY 
           # scale 0.1
+          -- Scheme 1:
           # fc peachpuff
           # lwL 0.001
+          --
+          -- Scheme 2:
+          -- # lc (s "4169e1")
+          -- # fc white
+          -- # lwL 0.01
 
 logos =
   hsep 0.2 [ logoStack
@@ -128,12 +134,24 @@ logos =
 -- d = randomLayout
 d = zigzagLayout
 
+gridLogos = 
+  vcat (map hcat (chunksOf n ds))
+    where
+      n      = 9
+      -- Square
+      -- ds     = replicate (n*n) llogo'
+      -- Diagonal
+      ds = concat $ replicate (n*n `div` 2) [llogo', phantom llogo']
+
+      llogo' = llogo <> (phantom (square 0.5 :: Diagram B))
+
+
 
 zigzagLayout :: Diagram B
 zigzagLayout =
-  logos # centerXY
+  gridLogos # centerXY
     <>
-    type1 # centerXY
+    type1 # centerXY # scale 1.5
 
 
 randomLayout :: IO (Diagram B)
