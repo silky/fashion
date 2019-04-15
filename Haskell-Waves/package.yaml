@@ -13,9 +13,13 @@ dependencies:
   - base >= 4.7 && < 5
   - diagrams
   - diagrams-cairo
-  - diagrams-lib
-  - nvds-lib
   - diagrams-contrib
+  - diagrams-lib
+  - gsl-random
+  - nvds-lib
+  - random
+  - split
+
 
 executables:
   Haskell-Waves:

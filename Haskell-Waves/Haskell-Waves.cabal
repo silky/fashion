@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f2a7382f29ec35d9bdeb45066387df80ef902ab6e91854ff6889f09ff3f19feb
+-- hash: 24b3946bead23d952c204cff264eae6617ae6f3c22a9a37475ba832140b1da04
 
 name:           Haskell-Waves
 version:        0.1.0.0
@@ -31,5 +31,8 @@ executable Haskell-Waves
     , diagrams-cairo
     , diagrams-contrib
     , diagrams-lib
+    , gsl-random
     , nvds-lib
+    , random
+    , split
   default-language: Haskell2010
