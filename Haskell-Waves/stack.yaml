@@ -1,0 +1,5 @@
+resolver: lts-12.26
+packages:
+- .
+extra-deps:
+  - ../nvds-lib

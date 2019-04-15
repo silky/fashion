@@ -1,0 +1,23 @@
+name:                Haskell-Waves
+version:             0.1.0.0
+homepage:            https://github.com/silky/fashion/Haskell-Waves#readme
+license:             BSD3
+author:              Noon van der Silk
+maintainer:          noonsilk@gmail.com
+copyright:           Noon van der Silk
+category:            Web
+extra-source-files:
+- README.md
+
+dependencies:
+  - base >= 4.7 && < 5
+  - diagrams
+  - diagrams-cairo
+  - diagrams-lib
+  - nvds-lib
+  - diagrams-contrib
+
+executables:
+  Haskell-Waves:
+    source-dirs:      src
+    main:             Main.hs
