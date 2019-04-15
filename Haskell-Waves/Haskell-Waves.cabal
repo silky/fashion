@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 24b3946bead23d952c204cff264eae6617ae6f3c22a9a37475ba832140b1da04
+-- hash: febd665ff0383b2dd5c4aa7f6959a020021ea03c68bd6c0ca5e0d35b582901d6
 
 name:           Haskell-Waves
 version:        0.1.0.0
@@ -31,6 +31,7 @@ executable Haskell-Waves
     , diagrams-cairo
     , diagrams-contrib
     , diagrams-lib
+    , gitrev
     , gsl-random
     , nvds-lib
     , random

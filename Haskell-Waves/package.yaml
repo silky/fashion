@@ -15,6 +15,7 @@ dependencies:
   - diagrams-cairo
   - diagrams-contrib
   - diagrams-lib
+  - gitrev
   - gsl-random
   - nvds-lib
   - random

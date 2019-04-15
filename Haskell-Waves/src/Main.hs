@@ -1,6 +1,7 @@
 {-# LANGUAGE FlexibleContexts           #-}
 {-# LANGUAGE GADTs                      #-}
 {-# LANGUAGE NoMonomorphismRestriction  #-}
+{-# LANGUAGE TemplateHaskell            #-}
 
 module Main where
 
@@ -13,7 +14,13 @@ import Diagrams.TwoD.Path.Boolean (union)
 import GSL.Random.Quasi
 import Nvds.Colours.ColourSets
 import System.Random
+import Data.List (intersperse)
+import Development.GitRev          (gitCommitDate, gitCommitCount, gitHash)
 
+
+-- TODO:
+--
+--  - Add self-replicating code path.
 
 s = sRGB24read
 
@@ -92,6 +99,9 @@ wibble k = Deformation $ \p ->
       m = 3/tau
 
 
+bgColour = black
+fgColour = white
+
 
 logoStack =
   vsep 0.2 (take 5 $ repeat slogo)
@@ -104,7 +114,7 @@ logoStack =
                    # fc peachpuff
                    -- # lc (s "4169e1")
                    -- # fc (s "4169e1")
-                   # lc white
+                   # lc bgColour
                    # lwL 0.001
 
 llogo :: Diagram B
@@ -119,7 +129,7 @@ llogo = logo
           --
           -- Scheme 2:
           # lc (s "4169e1")
-          # fc white
+          # fc bgColour
           # lwL 0.01
           --
           -- Scheme 3:
@@ -135,8 +145,28 @@ logos =
            ]
 
 
+commands = [ "git clone https://github.com/silky/fashion.git silky-fashion"
+           , "cd silky-fashion/Haskell-Waves/"
+           , "git checkout " ++ $(gitHash)
+           , "stack run -- -o design.png -w 2000"
+           ]
+
+line = unwords (intersperse "&&" commands)
+
+replicateText 
+  = text line # font "Fira Code"
+              # fontSize (local 1.1)
+              # bold
+              <> rect 168 3
+                  # fc white
+
 -- d = randomLayout
-d = zigzagLayout
+d = zigzagLayout # bg bgColour
+-- d :: IO (Diagram B)
+-- d = do
+--   putStrLn $ line
+  -- return $ replicateText
+
 
 gridLogos = 
   vcat (map hcat (chunksOf n ds))
@@ -152,7 +182,10 @@ gridLogos =
 
 zigzagLayout :: Diagram B
 zigzagLayout =
-  gridLogos # centerXY
+    replicateText # centerXY # scale 0.02
+      # translateY (0.8)
+    <>
+    gridLogos # centerXY
     <>
     type1 # centerXY # scale 1.5
 
