@@ -23,22 +23,28 @@ arm n = applyNTimes n tree mempty
 d :: Diagram B
 d = branches <> branches # rotateBy (1/4)
   where
-    arm'     = arm 10
-    branches = ((base # alignT <> arm' # alignB)
-                # alignB <> (arm' # rotateBy (1/2) # alignT))
-                # centerXY
+    depth    = 10
+    arm'     = arm depth
+    branches = (  
+                 (base # alignT <> arm' # alignB # translateY (-1)) # alignB 
+                 <> 
+                 (arm' # rotateBy (1/2) # alignT # translateY 1)
+               )
+               # centerXY
 
 
 tree :: Diagram B -> Diagram B
-tree d' = ( (r 10 1 # alignR <> d # rotateBy (-1/4)) # rotateBy (1/8) # alignL
-         <> (r 10 1 # alignL <> d # rotateBy (1/4)) # rotateBy (-1/8) # alignR
-          )
+tree d' = ( (r 10 1 # alignR <> d # rotateBy (-1/4)) # rotateBy (1/8) # alignL # translateX (-0.5)
+         <> (r 10 1 # alignL <> d # rotateBy (1/4)) # rotateBy (-1/8) # alignR # translateX ( 0.5)
+          ) 
   where
     d = d' # scale 0.6
            # alignB
+           # translateY (-1)
 
 
-base = r 10 1 <> r 1 10
+base = (r 10 1 <> r 1 10)
+        # scale 2
 
 
 r x y = rect x y # bg mediumslateblue
