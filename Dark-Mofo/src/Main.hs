@@ -21,10 +21,11 @@ arm n = applyNTimes n tree mempty
 
 
 d :: Diagram B
-d = r <> r # rotateBy (1/16)
+d = q
   where
+    q = r <> r # rotateBy (1/16)
     r = s <> s # rotateBy (1/8)
-    s = branches <> branches # rotateBy (1/4)
+    s = branches # fc gold <> branches # rotateBy (1/4)
     depth    = 10
     arm'     = arm depth
     branches = (  
@@ -49,7 +50,6 @@ base = (r 10 1 <> r 1 10)
         # scale 2
 
 
-r x y = rect x y # bg mediumslateblue
-                 # lc mediumslateblue
+r x y = rect x y # recommendFillColor mediumslateblue
                  # lw none
 
