@@ -21,8 +21,10 @@ arm n = applyNTimes n tree mempty
 
 
 d :: Diagram B
-d = branches <> branches # rotateBy (1/4)
+d = r <> r # rotateBy (1/16)
   where
+    r = s <> s # rotateBy (1/8)
+    s = branches <> branches # rotateBy (1/4)
     depth    = 10
     arm'     = arm depth
     branches = (  
