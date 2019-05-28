@@ -90,9 +90,12 @@ d = do
             # centerXY
             # clipTo (rect 1.2 0.4)
 
+  return $ (    blueStars
+          <> redStars
+          <> whiteStars
+          <> bgStars ) # alignB # bg black
   -- return $ b # bg black
-
-  return $ (emu <> c # centerXY) # bg black
+  -- return $ (emu <> c # centerXY) # bg black
 
 
 
@@ -105,7 +108,7 @@ stars = stars' (D.uniform (-1) 1) 0.3 1 1
 
 stars' dist radius rx ry colour count s0 = do
 
-  r <- newIORef (mkStdGen s0)
+  r <- newIORef (mkStdGen (s0*2))
   [xs, ys] :: [[Double]] <- chunksOf count <$> ( flip runRVar r $ replicateM (count * 2) dist )
 
   let pts = zipWith (\x y -> (rx * x) ^& (ry * y)) xs ys
