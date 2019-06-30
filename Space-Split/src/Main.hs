@@ -69,16 +69,17 @@ d = do
           <> redStars
           <> whiteStars
           <> bgStars ) # alignB
-          <> farStars # centerXY # alignB
+          -- -- <> farStars 
+          -- # centerXY # alignB
 
   let emuPoints = ifilter (\i -> (i `mod` 1200) == 0) (toNormalisedPoints emuPath)
                      # scale 2
       emuStars  = mconcat (map (\pt -> star' orange 0.0012 # moveTo pt) emuPoints)
       emu       = emuStars # centerXY
 
-  let b = (landing # alignB <> m # alignB)
-            # centerXY
-  -- let b = m
+  -- let b = (landing # alignB <> m # alignB)
+  --           # centerXY
+  let b = m
       t = text "BRANESHOP" # fontSize (local 1.1)
             # font "Fira Code"
             # bold
@@ -90,12 +91,12 @@ d = do
             # centerXY
             # clipTo (rect 1.2 0.4)
 
-  return $ (    blueStars
-          <> redStars
-          <> whiteStars
-          <> bgStars ) # alignB # bg black
+  -- return $ (    blueStars
+  --         <> redStars
+  --         <> whiteStars
+  --         <> bgStars ) # alignB # bg black
   -- return $ b # bg black
-  -- return $ (emu <> c # centerXY) # bg black
+  return $ (emu <> c # centerXY) # bg black
 
 
 
