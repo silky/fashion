@@ -12,14 +12,17 @@ import Nvds.Colours.ColourSets
 main :: IO ()
 main = mainWith (d # frame 0.2) >> putStrLn "Done!"
 
-d1 = e # snugR <> ( e # translateY (sqrt 2 / 2)) # snugL
-
-d = d1 # snugB <> d1 # snugT
-
-e = w1 <> w2
+d1 = t1 <> t2
   where
-    w1 = p1 (bn31) (reverse bn31) # centerXY # reflectX
-    w2 = p1 jamaicanDutchBeach (reverse jamaicanDutchBeach) # reflectY # rotateBy (1/4) # centerXY 
+    t1 = e bn31 jamaicanDutchBeach # snugR 
+    t2 = e summertime barbapapa # translateY (sqrt 2 / 2) # snugL
+
+d = d1 # snugB <> d1 # reflectX # reflectY # snugT 
+
+e c1 c2 = w1 <> w2
+  where
+    w1 = p1 c1 (reverse c1) # centerXY # reflectX
+    w2 = p1 c2 (reverse c2) # reflectY # rotateBy (1/4) # centerXY 
 
 
 p1 :: Colours -> Colours -> Diagram B
